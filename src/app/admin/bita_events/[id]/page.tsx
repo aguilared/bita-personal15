@@ -8,7 +8,7 @@ import {
   DefaultValues,
 } from "react-hook-form";
 import Select from "react-select";
-import { Box, IconButton, Modal, Typography } from "@mui/material";
+import { Box, debounce, IconButton, Modal, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import Container from "@/components/Container";
 import useBitacora from "../../../../hooks/useBitacora";
@@ -108,7 +108,6 @@ export default function App() {
 
 const BitaEvents = (props: any): JSX.Element => {
   const { events } = useContext(EventsContext);
-  const [id, setId] = useState(0);
   const dateBitacora = new Date();
   const convertDate = (date: any) => {
     return dayjs(date).format("DD/MM/YYYY hh:mm");
@@ -232,19 +231,17 @@ const BitaEvents = (props: any): JSX.Element => {
       image: data.image,
     };
     console.log("ParseData", parsedata);
-    createPostMutation.mutate(parsedata);
+    debounce(() => createPostMutation.mutate(parsedata), 500)();
   };
   const createPostMutation = useMutation({
     mutationFn: (parsedata: any) => {
       return axios.post("/api/bitacora/events/admin/create", parsedata);
     },
-    onSuccess: (data, variables, context) => {
+    onSuccess: (data, variables) => {
       queryClient.invalidateQueries({ queryKey: ["BitacoraEvents"] });
       console.log("DATADDEVUELLTA", data);
       console.log("DATADATA0", data.data);
       console.log("variables", variables);
-      const idd = data.data.id;
-      ///router.push(`/bitacoras/bita_events/1?id=${encodeURIComponent(idd)}`);
       modalCreateClose();
     },
   });
