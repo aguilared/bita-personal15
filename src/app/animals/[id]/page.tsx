@@ -47,13 +47,13 @@ export default function App() {
 const BitaEventCard = (props: any): JSX.Element => {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
-  const [birthdate, setBirthdate] = useState("");
+  const [birthdate, setBirthdate] = useState<string | null>(null);
   const [owner, setOwner] = useState("");
   const [mother, setMother] = useState("");
   const [motherid, setMotherid] = useState("");
   const [clase, setClase] = useState("");
   const [hierro, setHierro] = useState("");
-  const [live, setLive] = useState("");
+  const [live, setLive] = useState<boolean>(false);
   const [info, setInfo] = useState("");
   const params = useSearchParams();
   const [intervalMs, setIntervalMs] = useState(1000);
@@ -62,11 +62,24 @@ const BitaEventCard = (props: any): JSX.Element => {
     process.env.NEXT_PUBLIC_API_URL + "animals/animal_id/" + params?.get("id");
   console.log("ENDPOINT ", ENDPOINT);
 
+  interface AnimalData {
+    id: string;
+    name: string;
+    birthdate: string | null;
+    owner: { name: string };
+    mother: string;
+    mother_id: string;
+    clase: { description: string };
+    hierro: string;
+    live: boolean;
+    info: string;
+  }
+
   const { data, isLoading, refetch, status, isError } = useQuery({
     queryKey: ["AnimalId"],
     queryFn: async () => {
-      const data = await axios.get(`${ENDPOINT}`);
-      return data.data;
+      const response = await axios.get(`${ENDPOINT}`);
+      return response.data;
     },
     refetchInterval: intervalMs,
   });
@@ -76,17 +89,17 @@ const BitaEventCard = (props: any): JSX.Element => {
       console.log("====================================");
       console.log("renders");
       console.log("Datos", data);
-      setId(data.id);
-      setName(data.name);
+      setId((data as AnimalData).id);
+      setName((data as AnimalData).name);
 
-      setBirthdate(data.birthdate);
-      setOwner(data.owner.name);
-      setMother(data.mother);
-      setMotherid(data.mother_id);
-      setClase(data.clase.description);
-      setHierro(data.hierro);
-      setLive(data.live);
-      setInfo(data.info);
+      setBirthdate((data as AnimalData).birthdate);
+      setOwner((data as AnimalData).owner.name);
+      setMother((data as AnimalData).mother);
+      setMotherid((data as AnimalData).mother_id);
+      setClase((data as AnimalData).clase.description);
+      setHierro((data as AnimalData).hierro);
+      setLive((data as AnimalData).live);
+      setInfo((data as AnimalData).info);
     }
   }, [data, status]);
 
@@ -130,7 +143,7 @@ const BitaEventCard = (props: any): JSX.Element => {
           </Typography>{" "}
           <Typography variant="h6" component="h2">
             Owner: {owner}
-            {}
+            { }
           </Typography>{" "}
           <Typography variant="h6" component="h2">
             Nacimiento: {birthdate}, Live?:
