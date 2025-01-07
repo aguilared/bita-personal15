@@ -131,7 +131,7 @@ const BitaEventsCard: NextPage = () => {
                     )}
                     <Typography variant="body1">
                       <a
-                        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+                        className="bg-blue-200 rounded underline hover:underline hover:underline-offset-4"
                         href={`bita_events/4?id=${encodeURIComponent(
                           event.bitacora_id
                         )}`}
@@ -145,7 +145,7 @@ const BitaEventsCard: NextPage = () => {
                     </Typography>
                     <Typography variant="body1">
                       <a
-                        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+                        className="bg-blue-200 rounded underline hover:underline hover:underline-offset-4"
                         href={`bita_event/4?id=${encodeURIComponent(event.id)}`}
                         target={"_blank"}
                         rel="noreferrer"

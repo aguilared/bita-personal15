@@ -32,7 +32,7 @@ const queryClient = new QueryClient({
 });
 
 const convertDate1 = (date: any) => {
-  var d = dayjs(date).format("D-M-YY h:mm");
+  const d = dayjs(date).format("D-M-YY h:mm");
   return d;
 };
 
@@ -46,9 +46,11 @@ export default function App() {
 
 const BitaEventCard = (props: any): JSX.Element => {
   const [id, setId] = useState("");
+  const [name, setName] = useState("");
   const [birthdate, setBirthdate] = useState("");
   const [owner, setOwner] = useState("");
   const [mother, setMother] = useState("");
+  const [motherid, setMotherid] = useState("");
   const [clase, setClase] = useState("");
   const [hierro, setHierro] = useState("");
   const [live, setLive] = useState("");
@@ -75,9 +77,12 @@ const BitaEventCard = (props: any): JSX.Element => {
       console.log("renders");
       console.log("Datos", data);
       setId(data.id);
+      setName(data.name);
+
       setBirthdate(data.birthdate);
       setOwner(data.owner.name);
       setMother(data.mother);
+      setMotherid(data.mother_id);
       setClase(data.clase.description);
       setHierro(data.hierro);
       setLive(data.live);
@@ -113,11 +118,7 @@ const BitaEventCard = (props: any): JSX.Element => {
           <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900" />
         </div>
       ) : null}
-      <Card
-        sx={{ maxWidth: 745, bgcolor: "neutral.900" }}
-        color="neutral"
-        invertedColors
-      >
+      <Card sx={{ maxWidth: 745, bgcolor: "neutral.900" }} color="neutral">
         <CardContent sx={{ flex: "1 0 auto" }}>
           <div>
             <h3 className="text-2xl tahoma font-extrabold tracking-widest text-gray-500">
@@ -125,11 +126,14 @@ const BitaEventCard = (props: any): JSX.Element => {
             </h3>
           </div>
           <Typography variant="h6" component="h2">
-            Id: {params?.get("id")}, Clase: {clase}, Owner: {owner}
+            Id: {params?.get("id")}, Nombre: {name}
+          </Typography>{" "}
+          <Typography variant="h6" component="h2">
+            Owner: {owner}
             {}
           </Typography>{" "}
           <Typography variant="h6" component="h2">
-            Nacimiento: {birthdate}, Madre: {mother}, Live:
+            Nacimiento: {birthdate}, Live?:
             {live! ? (
               <input
                 type="checkbox"
@@ -141,6 +145,18 @@ const BitaEventCard = (props: any): JSX.Element => {
             ) : (
               <input type="checkbox" placeholder="Live" className="mx-3" />
             )}{" "}
+          </Typography>{" "}
+          <Typography variant="h6" component="h2">
+            Madre: {mother},{" "}
+            <a
+              className="bg-blue-200 rounded underline hover:underline hover:underline-offset-4"
+              href={`/animals/1?id=${encodeURIComponent(motherid)}`}
+              target={"_blank"}
+              rel="noreferrer"
+            >
+              {" "}
+              motherID:&nbsp; {motherid},{" "}
+            </a>{" "}
           </Typography>
           <Typography gutterBottom variant="h6" component="h2">
             Info: {info}
