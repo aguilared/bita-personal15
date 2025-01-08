@@ -7,17 +7,15 @@ import CardMedia from "@mui/material/CardMedia";
 import CardHeader from "@mui/material/CardHeader";
 import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
-import Interweave from "interweave";
 import { useInView } from "react-intersection-observer";
-import useBitacoras, { Bitacora } from "../../../hooks/useBitacoras";
-import Link from "next/link";
+import useBitacoras, { Bitacora } from "@/hooks/useBitacoras";
 import {
   useQuery,
   useInfiniteQuery,
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
-import fetchClient from "../../../services/fetchClient1";
+import fetchClient from "@/services/fetchClient1";
 import Container from "@/components/Container";
 import { Button, CardActions } from "@mui/material";
 
@@ -208,8 +206,8 @@ const BitaEventsCard: NextPage = () => {
           {isFetchingNextPage
             ? "Loading more..."
             : hasNextPage
-            ? "Load Newer"
-            : "Nothing more to load"}
+              ? "Load Newer"
+              : "Nothing more to load"}
         </button>
       </div>
     </Container>

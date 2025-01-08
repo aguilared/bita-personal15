@@ -13,7 +13,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
-import fetchClient from "../../../services/fetchClient1";
+import fetchClient from "@/services/fetchClient1";
 
 type Bitacora = {
   id: number;
