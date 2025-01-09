@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Button, Modal, Typography, debounce } from "@mui/material";
 
 import Container from "@/components/Container";
-import useUser from "../../hooks/useUser";
+import useUser from "@/hooks/useUser";
 import BitacoraCreate from "@/components/Bitacoras/BitacoraCreate";
 import BitacoraEdit from "@/components/Bitacoras/BitacoraEdit";
 

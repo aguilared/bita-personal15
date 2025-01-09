@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
 import Interweave from "interweave";
 import { useInView } from "react-intersection-observer";
-import useBitacoras, { Bitacora } from "../../../hooks/useBitacoras";
+import useBitacoras, { Bitacora } from "@/hooks/useBitacoras";
 import Link from "next/link";
 import {
   useQuery,
@@ -17,7 +17,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
-import fetchClient from "../../../services/fetchClient1";
+import fetchClient from "@/services/fetchClient1";
 import Container from "@/components/Container";
 import { Button, CardActions } from "@mui/material";
 

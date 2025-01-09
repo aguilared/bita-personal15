@@ -7,22 +7,11 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import fetchClient from "../../services/fetchClient1";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  Typography,
-} from "@mui/material";
-import Link from "next/link";
-import { Interweave } from "interweave";
-import dayjs from "dayjs";
+import fetchClient from "@/services/fetchClient1";
 import BitaEventList from "@/components/BitaEventList";
 import Select from "react-select";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { useTypeEvents1 } from "../../hooks/useTypeEvents1";
+import { useTypeEvents1 } from "@/hooks/useTypeEvents1";
 import axios from "axios";
 
 const queryClient = new QueryClient();
@@ -31,7 +20,11 @@ type ResultData = {
   count: number;
   next: number;
   previous: number;
-  results: Bitacora[];
+  results: {
+    id: number;
+    name: string;
+    // Add other properties of Bitacora here
+  }[];
 };
 
 export type Inputs = {

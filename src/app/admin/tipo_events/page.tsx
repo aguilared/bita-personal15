@@ -17,7 +17,7 @@ import {
 import { IoMdClose } from "react-icons/io";
 import toast from "react-hot-toast";
 import dayjs from "dayjs";
-import { TiposEvents } from "../../../interfaces/interfaces";
+import { TiposEvents } from "@/interfaces/interfaces";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -152,7 +152,7 @@ const TipoEvents = (): JSX.Element => {
       console.log("DATADDEVUELLTA", data);
       console.log("DATADATA0", data.data);
       console.log("variables", variables);
-      let idd = data.data.id;
+      const idd = data.data.id;
       ///router.push(`/bitacoras/bita_events/1?id=${encodeURIComponent(idd)}`);
       modalCreateClose();
     },

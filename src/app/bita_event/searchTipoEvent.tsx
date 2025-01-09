@@ -22,9 +22,9 @@ import Interweave from "interweave";
 import axios from "axios";
 import Select from "react-select";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { useTypeEvents1 } from "../../hooks/useTypeEvents1";
+import { useTypeEvents1 } from "@/hooks/useTypeEvents1";
 import { Bitacora } from "@/hooks/useBitacoras";
-import fetchClient from "../../services/fetchClient1";
+import fetchClient from "@/services/fetchClient1";
 
 const queryClient = new QueryClient({
   defaultOptions: {

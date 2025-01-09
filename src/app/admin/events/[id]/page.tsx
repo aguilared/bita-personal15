@@ -11,10 +11,10 @@ import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { Box, IconButton, Modal, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import Container from "@/components/Container";
-import { useTypeEvents } from "../../../../hooks/useTypeEvents";
-import { useTypeEvents1 } from "../../../../hooks/useTypeEvents1";
-import { useEventsId } from "../../../../hooks/useEventsId";
-import getTypeEventsId from "../../../../services/getTypeEventsId";
+import { useTypeEvents } from "@/hooks/useTypeEvents";
+import { useTypeEvents1 } from "@/hooks/useTypeEvents1";
+import { useEventsId } from "@/hooks/useEventsId";
+import getTypeEventsId from "@/services/getTypeEventsId";
 import Button from "@/components/ButtonAdd";
 import HeaderEventss from "@/components/HearderEventss";
 import EventCreate from "@/components/events/EventCreate";
@@ -29,7 +29,7 @@ import {
 
 import axios from "axios";
 import { IoMdClose } from "react-icons/io";
-import { Events } from "../../../../interfaces/interfaces";
+import { Events } from "@/interfaces/interfaces";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -208,7 +208,7 @@ const TipoEventsEventss = (props: any): JSX.Element => {
       console.log("DATADDEVUELLTA", data);
       console.log("DATADATA0", data.data);
       console.log("variables", variables);
-      let idd = data.data.id;
+      const idd = data.data.id;
       modalCreateClose();
     },
   });

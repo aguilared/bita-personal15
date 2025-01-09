@@ -14,23 +14,7 @@ import {
 import axios from "axios";
 import dayjs from "dayjs";
 import Image from "next/image";
-import { useOwners } from "../../../hooks/useOwners";
-import { useClases } from "../../../hooks/useClases";
-import { useVacas } from "../../../hooks/useVacas";
-import useAnimals from "../../../hooks/useAnimals";
-
-import toast, { Toaster } from "react-hot-toast";
-
-const notify = () =>
-  toast.custom((t) => (
-    <div
-      className={`bg-white px-6 py-4 shadow-md rounded-full ${
-        t.visible ? "animate-enter" : "animate-leave"
-      }`}
-    >
-      Animal updated successfully 👋
-    </div>
-  ));
+import useAnimals from "@/hooks/useAnimals";
 
 const DATABASEURL = process.env.NEXT_PUBLIC_API_URL;
 

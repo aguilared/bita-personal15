@@ -5,8 +5,8 @@ import StreetviewRoundedIcon from "@material-ui/icons/StreetviewRounded";
 import { useForm } from "react-hook-form";
 import { Modal, ModalBody, ModalHeader, ModalFooter } from "reactstrap";
 import dayjs from "dayjs";
-import BitacoraCard from "../../../components/Bitacoras/BitacoraCard";
-import Container from "../../../components/Container";
+import BitacoraCard from "@/components/Bitacoras/BitacoraCard";
+import Container from "@/components/Container";
 //import { useQuery, QueryClient, QueryClientProvider } from "react-query";
 import {
   useQuery,

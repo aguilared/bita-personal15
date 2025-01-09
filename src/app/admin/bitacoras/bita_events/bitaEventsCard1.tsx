@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
 import Interweave from "interweave";
 import { useInView } from "react-intersection-observer";
-import useBitacoras, { Bitacora } from "../../../hooks/useBitacoras";
+import useBitacoras, { Bitacora } from "@/hooks/useBitacoras";
 import Link from "next/link";
 import {
   useQuery,

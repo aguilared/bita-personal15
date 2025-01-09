@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Box, Button, Modal, Typography } from "@mui/material";
-import Container from "../../components/Container";
+import Container from "@/components/Container";
 import { Controller, useForm } from "react-hook-form";
 import Select from "react-select";
-import useUser from "../../hooks/useUser";
+import useUser from "@/hooks/useUser";
 import {
   useQuery,
   QueryClient,
@@ -14,10 +14,10 @@ import {
 import axios from "axios";
 import dayjs from "dayjs";
 import Image from "next/image";
-import { useOwners } from "../../hooks/useOwners";
-import { useClases } from "../../hooks/useClases";
-import { useVacas } from "../../hooks/useVacas";
-import AnimalEdit from "../../components/Animals/AnimalEdit";
+import { useOwners } from "@/hooks/useOwners";
+import { useClases } from "@/hooks/useClases";
+import { useVacas } from "@/hooks/useVacas";
+import AnimalEdit from "@/components/Animals/AnimalEdit";
 import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { IoMdClose } from "react-icons/io";

@@ -11,12 +11,11 @@ import { Box, Button, IconButton, Modal, Typography } from "@mui/material";
 import { red } from "@mui/material/colors";
 import dayjs from "dayjs";
 import Container from "@/components/Container";
-import useBitacora from "../../../../../hooks/useBitacora";
-import { useTypeEvents1 } from "../../../../../hooks/useTypeEvents1";
-import { useEventsId } from "../../../../../hooks/useEventsId";
-import getBitacora from "../../../../../services/getBitacora";
-import { EventsContext } from "../../../../../context/EventState";
-//import Button from "../../../components/ButtonAdd";
+import useBitacora from "@/hooks/useBitacora";
+import { useTypeEvents1 } from "@/hooks/useTypeEvents1";
+import { useEventsId } from "@/hooks/useEventsId";
+import getBitacora from "@/services/getBitacora";
+import { EventsContext } from "@/context/EventState";
 import HeaderBitacora from "@/components/HearderBita";
 import BitaEventCard from "@/components/Bitacoras/BitaEventCard";
 import BitaEventEdit from "@/components/Bitacoras/BitaEventEdit";
@@ -305,7 +304,7 @@ const BitaEvents = (props: any): JSX.Element => {
       console.log("DATADDEVUELLTA", data);
       console.log("DATADATA0", data.data);
       console.log("variables", variables);
-      let idd = data.data.id;
+      const idd = data.data.id;
       ///router.push(`/bitacoras/bita_events/1?id=${encodeURIComponent(idd)}`);
       modalCreateClose();
     },
