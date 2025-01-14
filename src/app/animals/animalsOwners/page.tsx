@@ -228,20 +228,12 @@ const AnimalsCardQuery: NextPage = () => {
                   </Typography>
 
                   <Typography gutterBottom align="left">
-                    Nombre: {animal.name}, Dueno: {animal.owner.name}
+                    {animal.clase.description}: {animal.name}, Dueno:{" "}
+                    {animal.owner.name}
                   </Typography>
 
                   <Typography gutterBottom align="left">
-                    Nacimiento: {convertDate(animal.birthdate)}, Tipo animal:{" "}
-                    <b> {animal.clase.description}</b>
-                  </Typography>
-
-                  <Typography align="left">
-                    Madre: {animal.mother}, Hierro: {animal.hierro}
-                  </Typography>
-
-                  <Typography align="left">
-                    Live:{" "}
+                    Nacimiento: {convertDate(animal.birthdate)}, Live:{" "}
                     {animal.live! ? (
                       <input
                         type="checkbox"
@@ -257,6 +249,24 @@ const AnimalsCardQuery: NextPage = () => {
                         className="mx-3"
                       />
                     )}{" "}
+                  </Typography>
+                  <Typography gutterBottom align="left">
+                    Tipo animal: <b> {animal.clase.description}</b>
+                  </Typography>
+
+                  <Typography align="left">
+                    Madre: {animal.mother},{" "}
+                    <a
+                      className="bg-blue-200 rounded underline hover:underline hover:underline-offset-4"
+                      href={`/animals/animal/4?id=${encodeURIComponent(
+                        animal.mother_id
+                      )}`}
+                      target={"_blank"}
+                      rel="noreferrer"
+                    >
+                      {" "}
+                      motherID:&nbsp; {animal.mother_id},{" "}
+                    </a>{" "}
                   </Typography>
 
                   <Typography paragraph>Info: {animal.info}</Typography>
