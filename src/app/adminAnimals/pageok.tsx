@@ -344,39 +344,32 @@ const Animals = (): React.JSX.Element => {
                 <b> {animal.name}</b>, &nbsp; Dueno=
                 {animal.owner.name}. &nbsp; <br />
                 Nacimiento=
-                {convertDate(animal.birthdate)}, Live:
+                {convertDate(animal.birthdate)}. &nbsp; Madre:{" "}
+                {animal.mother_id}
+                &nbsp;{animal.mother} <br />
+                Live:
                 {animal.live! ? (
                   <input
                     type="checkbox"
                     checked
                     placeholder="Live"
-                    onChange={() => console.log("change")}
+                    onChange={handleOnChange1}
                     className="mx-3"
                   />
                 ) : (
-                  <input type="checkbox" placeholder="Live" className="mx-3" />
+                  <input
+                    type="checkbox"
+                    placeholder="Live"
+                    className="mx-3"
+                    onChange={() => console.log("No live")}
+                  />
                 )}{" "}
                 <br />
-                Tipo animal: <b>{animal.clase.description}</b> <br />
-                Madre: {animal.mother},{" "}
-                <a
-                  className="bg-blue-200 rounded underline hover:underline hover:underline-offset-4"
-                  href={`/animals/animal/4?id=${encodeURIComponent(
-                    animal.mother_id
-                  )}`}
-                  target={"_blank"}
-                  rel="noreferrer"
-                >
-                  {" "}
-                  motherID:&nbsp; {animal.mother_id},{" "}
-                </a>{" "}
-                <br />
                 Info= {animal.info} &nbsp;
-                <br />
               </div>
               <td className="border px-2 py-2  text-gray-500 dark:text-white">
                 <Link
-                  href={`/animals/animal/1?id=${encodeURIComponent(animal.id)}`}
+                  href={`/animals/1?id=${encodeURIComponent(animal.id)}`}
                   passHref
                   legacyBehavior
                 >

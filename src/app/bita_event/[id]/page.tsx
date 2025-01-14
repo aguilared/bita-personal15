@@ -1,13 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
-import { red } from "@mui/material/colors";
 import dayjs from "dayjs";
 import { Interweave } from "interweave";
 import Card from "@mui/material/Card";
 
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 
 import Image from "next/image";
@@ -18,7 +16,6 @@ import {
   useMutation,
 } from "@tanstack/react-query";
 import axios from "axios";
-import Container from "@/components/Container";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,7 +29,7 @@ const queryClient = new QueryClient({
 });
 
 const convertDate1 = (date: any) => {
-  var d = dayjs(date).format("D-M-YY h:mm");
+  const d = dayjs(date).format("D-M-YY h:mm");
   return d;
 };
 
@@ -45,13 +42,13 @@ export default function App() {
 }
 
 const BitaEventCard = (props: any): JSX.Element => {
+  const params = useSearchParams();
   const [bitacora_id, setBitacora_id] = useState("");
   const [bitacoraDate, setBitacoraDate] = useState("");
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
   const [tipoevent, setTipoEvent] = useState("");
   const [event, setEvent] = useState("");
-  const params = useSearchParams();
   const [intervalMs, setIntervalMs] = useState(1000);
 
   const ENDPOINT =

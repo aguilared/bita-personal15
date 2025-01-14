@@ -33,7 +33,7 @@ export default function RootLayout({
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <EventsProvider>
             <ThemeProvider theme={theme}>
-              <div className="sm:p-3 md:py-3 lg:px-3 py-3 px-4 bg-white dark:bg-black">
+              <div className="rounded sm:p-3 md:py-3 lg:px-3 py-3 px-4 bg-gray-200 dark:bg-black">
                 <div className="grid grid-cols-3 gap-4">
                   <div className="grid grid-cols-1 gap-4">
                     <div className="flex items-center flex-shrink-0 mr-6  text-gray-900 dark:text-white">
@@ -45,7 +45,7 @@ export default function RootLayout({
                         style={{ objectFit: "cover" }}
                       />
                       <span className="sm:inline-block font-semibold text-xl tracking-tight px-4 ">
-                        Bitacora Personal Aguila
+                        Bitacora Personal Aguila111
                       </span>
                     </div>
                   </div>
@@ -243,7 +243,7 @@ export default function RootLayout({
                         style={{ objectFit: "cover" }}
                       />
                       <span className="sm:inline-block font-semibold text-xl tracking-tight px-4 ">
-                        Bitacora Personal Aguila
+                        Bitacora Personal Aguila1
                       </span>
                     </div>
                     <nav className="text-base font-medium space-x-6 text-gray-900 dark:text-white">
