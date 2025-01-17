@@ -1,10 +1,10 @@
 import { sign } from "jsonwebtoken";
 import { serialize } from "cookie";
-import prisma from "../../../lib/prisma";
+import prisma from "@/lib/prisma";
 
 export default async function LoginHandler(req, res) {
   const { email, password } = req.body;
-
+// const serialize = require("cookie");
   try {
     const result = await prisma.user.findMany({
       where: {

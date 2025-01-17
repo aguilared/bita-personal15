@@ -1,5 +1,7 @@
+
+"use client";
 import { useCallback, useContext, useState } from "react";
-import { UserContext } from "../context/UserState";
+import { UserContext } from "@/context/UserState";
 
 export default function UseUser() {
   const { user, setUser } = useContext(UserContext);
@@ -14,7 +16,7 @@ export default function UseUser() {
     setState({ loadingUser: false, error: false });
     //invoca al contexto
     setUser(usertoLoad);
-  });
+  }, [setUser]);
 
   const clearUser = useCallback(() => {
     //console.log("Limpiando User");
