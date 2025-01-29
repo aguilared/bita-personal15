@@ -106,76 +106,76 @@ const BitaEventsCard: NextPage = () => {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {data && data.pages.length > 0
           ? data.pages.map((group, i) => (
-            <Fragment key={group.results[0]?.id}>
-              {group?.results.map((event) => (
-                <Card
-                  key={event.id}
-                  sx={{ maxWidth: 545, bgcolor: "neutral.900" }}
-                  color="neutral"
-                >
-                  {event.image! ? (
-                    <a
-                      href={"/static/images/" + `${event.id}` + ".jpg"}
-                      target={"_blank"}
-                      rel="noreferrer"
-                    >
-                      <CardMedia
-                        component="img"
-                        height="194"
-                        image={"/static/images/" + `${event.id}` + ".jpg"}
-                        alt="No Image"
-                      />
-                    </a>
-                  ) : (
-                    <></>
-                  )}
-                  <Typography variant="body1">
-                    <a
-                      className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-                      href={`bita_events/4?id=${encodeURIComponent(
-                        event.bitacora_id
-                      )}`}
-                      target={"_blank"}
-                      rel="noreferrer"
-                    >
-                      BitacoraID: {event.bitacora_id}
-                      {",  "}
-                    </a>
-                    {convertDate(event.bitacora.bitacora_date)}
-                  </Typography>
-                  <Typography variant="body1">
-                    <a
-                      className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-                      href={`bita_event/4?id=${encodeURIComponent(event.id)}`}
-                      target={"_blank"}
-                      rel="noreferrer"
-                    >
-                      IdEvent: {event.id}
-                      {",  "}
-                    </a>
-                  </Typography>
-                  <Typography variant="body1" component="div">
-                    {"Tipo/Event: " +
-                      `${event.tipoEvent.description}` +
-                      ", " +
-                      `${event.event.description}`}
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    color="text.secondary"
-                    component="div"
+              <Fragment key={group.results[0]?.id}>
+                {group?.results.map((event) => (
+                  <Card
+                    key={event.id}
+                    sx={{ maxWidth: 545, bgcolor: "neutral.900" }}
+                    color="neutral"
                   >
-                    <Interweave content={event.description} />
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    color="text.secondary"
-                    component="div"
-                  ></Typography>
-                </Card>
-              ))}
-            </Fragment>
-          ))
+                    {event.image! ? (
+                      <a
+                        href={"/static/images/" + `${event.id}` + ".jpg"}
+                        target={"_blank"}
+                        rel="noreferrer"
+                      >
+                        <CardMedia
+                          component="img"
+                          height="194"
+                          image={"/static/images/" + `${event.id}` + ".jpg"}
+                          alt="No Image"
+                        />
+                      </a>
+                    ) : (
+                      <></>
+                    )}
+                    <Typography variant="body1">
+                      <a
+                        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+                        href={`bita_events/4?id=${encodeURIComponent(
+                          event.bitacora_id
+                        )}`}
+                        target={"_blank"}
+                        rel="noreferrer"
+                      >
+                        BitacoraID: {event.bitacora_id}
+                        {",  "}
+                      </a>
+                      {convertDate(event.bitacora.bitacora_date)}
+                    </Typography>
+                    <Typography variant="body1">
+                      <a
+                        className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+                        href={`bita_event/4?id=${encodeURIComponent(event.id)}`}
+                        target={"_blank"}
+                        rel="noreferrer"
+                      >
+                        IdEvent: {event.id}
+                        {",  "}
+                      </a>
+                    </Typography>
+                    <Typography variant="body1" component="div">
+                      {"Tipo/Event: " +
+                        `${event.tipoEvent.description}` +
+                        ", " +
+                        `${event.event.description}`}
+                    </Typography>
+                    <Typography
+                      variant="h6"
+                      color="text.secondary"
+                      component="div"
+                    >
+                      <Interweave content={event.description} />
+                    </Typography>
+                    <Typography
+                      variant="h6"
+                      color="text.secondary"
+                      component="div"
+                    ></Typography>
+                  </Card>
+                ))}
+              </Fragment>
+            ))
           : null}
       </div>
 
