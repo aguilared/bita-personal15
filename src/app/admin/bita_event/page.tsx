@@ -40,6 +40,10 @@ const AddBlog = () => {
     console.log(contentState);
   };
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value);
+  };
+
   const createFormDefaultValues: DefaultValues<CreateFormValues> = {
     tipo_event_id: 0,
     events_id: 0,
@@ -68,11 +72,10 @@ const AddBlog = () => {
                 <label htmlFor="title">Title</label>
                 <input
                   id="title"
-                  type="text"
+                  onChange={handleInputChange}
                   className="form-control"
                   placeholder="title"
                   name="title"
-                  onChange={handleChange}
                 />
               </div>
               <div className="form-group">

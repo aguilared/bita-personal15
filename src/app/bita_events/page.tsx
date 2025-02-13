@@ -63,12 +63,17 @@ const BitaEventsCard: NextPage = () => {
   }: {
     pageParam?: number;
     tipo_event_id?: number;
-  }): Promise<ResultData> {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}bitacora/events/bita_events_paginated?offset=${pageParam}&limit=9`;
-
-    const request = await fetchClient.get<ResultData>(url);
-    console.log("Requestttt", request);
-    return request.data;
+  }): Promise<ResultData | null> {
+    // Cambiamos el tipo de retorno a Promise<ResultData | null>
+    try {
+      const url = `${process.env.NEXT_PUBLIC_API_URL}bitacora/events/bita_events_paginated?offset=${pageParam}&limit=9`;
+      const request = await fetchClient.get<ResultData>(url);
+      console.log("Requestttt", request);
+      return request.data;
+    } catch (error) {
+      console.error("Error fetching bitacoras:", error);
+      return null; // O podrías lanzar el error nuevamente: throw error;
+    }
   }
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
@@ -90,6 +95,7 @@ const BitaEventsCard: NextPage = () => {
     }
   }, [data, fetchNextPage, inView]);
   console.log("DATA", data);
+  console.log("FethCliente", fetchClient.defaults.baseURL);
 
   return (
     <div className="py-3">
