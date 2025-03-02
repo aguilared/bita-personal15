@@ -27,7 +27,7 @@
     "draftjs-to-html": "^0.9.1",
     "interweave": "^13.1.0",
     "jsonwebtoken": "^9.0.2",
-    "next": "^15.2.0-canary.66",
+    "next": "^15.2.1-canary.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-draft-wysiwyg": "^1.15.0",
