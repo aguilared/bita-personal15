@@ -461,16 +461,14 @@ const BitaEvents = (props: any): JSX.Element => {
                         {convertDate(event.event_date)}
                       </td>
                       {event.image! ? (
-                        <>
-                          <td className="border px-2 py-2  text-gray-500 dark:text-white">
-                            <input
-                              type="checkbox"
-                              checked
-                              placeholder="Image"
-                              className="mx-3"
-                            />
-                          </td>
-                        </>
+                        <td className="border px-2 py-2  text-gray-500 dark:text-white">
+                          <input
+                            type="checkbox"
+                            checked
+                            placeholder="Image"
+                            className="mx-3"
+                          />
+                        </td>
                       ) : (
                         <td className="border px-2 py-2  text-gray-500 dark:text-white">
                           <input
