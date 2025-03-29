@@ -2,6 +2,8 @@
 import { useState, BaseSyntheticEvent, useEffect } from "react";
 import type { NextPage } from "next";
 import Container from "@/components/Container";
+import { colourOptions } from "@/components/data";
+
 import {
   useQuery,
   QueryClient,
@@ -21,17 +23,6 @@ import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
 
 const DATABASEURL = process.env.NEXT_PUBLIC_API_URL;
-
-const notify = () =>
-  toast.custom((t) => (
-    <div
-      className={`bg-white px-6 py-4 shadow-md rounded-full ${
-        t.visible ? "animate-enter" : "animate-leave"
-      }`}
-    >
-      Toast successfully 👋
-    </div>
-  ));
 
 type Inputs = {
   alive: string;
@@ -135,6 +126,14 @@ const AnimalsCardQuery: NextPage = () => {
         <div className="container mx-auto px-20 text-gray-600 text-2xl font-bold">
           Query List Animals{" "}
         </div>
+        <Select
+          defaultValue={[colourOptions[2], colourOptions[3]]}
+          isMulti
+          name="colors"
+          options={colourOptions}
+          className="basic-multi-select"
+          classNamePrefix="select"
+        />
 
         <div className="flex mb-4">
           <div className="w-1/2 p-2 text-center bg-green-400">

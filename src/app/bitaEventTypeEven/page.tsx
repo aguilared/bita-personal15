@@ -7,18 +7,7 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import fetchClient from "../../services/fetchClient1";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  Typography,
-} from "@mui/material";
-import Link from "next/link";
-import { Interweave } from "interweave";
-import dayjs from "dayjs";
 import BitaEventList from "@/components/BitaEventList";
 import Select from "react-select";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
@@ -48,8 +37,6 @@ export default function App() {
     </QueryClientProvider>
   );
 }
-
-const ENDPOINT = process.env.NEXT_PUBLIC_API_URL + "bitacora/tipo_event/";
 
 function Example() {
   const {
@@ -84,7 +71,7 @@ function Example() {
   const [datafilter, setDatafilter] = useState([]);
 
   const ENDPOINT = process.env.NEXT_PUBLIC_API_URL + "bitacora/eventsId/";
-
+  console.log("TipoEvent,,", typeEvents1);
   //const records = data.slice(startIndex, lastIndex);
   async function fetchBitacoras({
     page,
@@ -180,6 +167,9 @@ function Example() {
                 };
                 return (
                   <Select
+                    className="basic-single"
+                    classNamePrefix="select"
+                    isClearable={true}
                     inputRef={ref}
                     defaultValue={{
                       label: "Selecc. Tipo Event. Search",

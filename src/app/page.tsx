@@ -7,6 +7,8 @@ import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
 import { Interweave } from "interweave";
 import { useInView } from "react-intersection-observer";
+import Select from "react-select";
+import { colourOptions } from "@/components/data";
 
 import {
   useInfiniteQuery,
@@ -94,6 +96,16 @@ const BitaEventsCard: NextPage = () => {
   return (
     <div className="py-3">
       <div className="mx-auto px-4">
+        <div className="flex items-center justify-between">
+          <Select
+            options={colourOptions}
+            className="w-1/2"
+            placeholder="Filter by Event Type"
+            isMulti
+            isSearchable
+          />
+        </div>
+
         <h1 className="text-gray-900 dark:text-white text-2xl font-bold">
           List Bitacoras Events.
         </h1>

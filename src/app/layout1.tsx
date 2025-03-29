@@ -12,7 +12,6 @@ import { EventsProvider } from "@/context/EventState";
 import * as Menubar from "@radix-ui/react-menubar";
 import { ChevronRightIcon, CaretDownIcon } from "@radix-ui/react-icons";
 import Image from "next/image";
-import { colourOptions } from "@/components/data";
 
 const font = Nunito({
   subsets: ["latin"],

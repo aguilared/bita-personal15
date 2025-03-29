@@ -121,7 +121,9 @@ const BitaEvents = (props: any): JSX.Element => {
   console.log("ID", ID);
 
   const { isBitacora, loadBitacora, bitacora } = useBitacora(); //to Global
-  const { typeEvents1 } = useTypeEvents1(); //
+  const { typeEvents1 }: { typeEvents1?: { value: number; label: string }[] } =
+    useTypeEvents1() || {};
+  const typeEvents1Array = Array.isArray(typeEvents1) ? typeEvents1 : [];
   const [eventId, setEventId] = useState("");
   const { eventsId } = useEventsId(eventId); //
 
@@ -609,7 +611,7 @@ const BitaEvents = (props: any): JSX.Element => {
         <Box sx={{ ...style, width: 560 }}>
           <form
             id="create-form"
-            className="w-full max-w-lg  bg-gray-200 shadow-md rounded"
+            className="w-full max-w-lg  bg-gray-600 shadow-md rounded"
             onSubmit={handleCreateFormSubmit(onSubmit)}
           >
             <Typography id="modal-modal-title" variant="h6" component="h2">
@@ -629,17 +631,25 @@ const BitaEvents = (props: any): JSX.Element => {
                 render={({ field: { onChange, value, name, ref } }) => {
                   return (
                     <Select
+                      className="basic-single"
+                      classNamePrefix="select"
                       inputRef={ref}
                       defaultValue={{ label: "Seleccione..", value: 0 }}
                       options={typeEvents1}
-                      value={typeEvents1.find(
+                      value={(typeEvents1 ?? []).find(
                         (c: { value: number }) => c.value === value
                       )}
                       name={name}
                       onChange={(val) => {
-                        onChange(val.value);
-                        setEventId(val.value);
-                        handleOnChange("tipo_event_id", val.value);
+                        if (val) {
+                          onChange(val.value);
+                        }
+                        if (val) {
+                          setEventId(String(val.value));
+                        }
+                        if (val) {
+                          handleOnChange("tipo_event_id", String(val.value));
+                        }
                       }}
                     />
                   );
@@ -666,6 +676,8 @@ const BitaEvents = (props: any): JSX.Element => {
                 render={({ field: { onChange, value, name, ref } }) => {
                   return (
                     <Select
+                      className="basic-single"
+                      classNamePrefix="select"
                       inputRef={ref}
                       options={eventsId}
                       value={eventsId.find((c) => c.value === value)}
@@ -698,6 +710,8 @@ const BitaEvents = (props: any): JSX.Element => {
                 rules={{ required: true }}
                 render={({ field: { onChange, onBlur, value, ref } }) => (
                   <WYSIWYGEditor
+                    style={{ height: "400px" }}
+                    name="description"
                     onChange={onChange} // send value to hook form
                     onBlur={onBlur} // notify when input is touched/blur
                     selected={value}
@@ -720,7 +734,7 @@ const BitaEvents = (props: any): JSX.Element => {
                 Fecha Evento
               </label>
               <input
-                className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-2"
+                className="appearance-none block w-full text-gray-600 border border-grey-lighter rounded py-3 px-2"
                 type="text"
                 placeholder="Date Event"
                 name="event_date"
