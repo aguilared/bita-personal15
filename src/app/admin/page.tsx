@@ -86,7 +86,7 @@ export default function App() {
   );
 }
 const Bitacoras = (): React.JSX.Element => {
-  const [intervalMs] = React.useState(1000);
+  const [intervalMs] = React.useState(10000);
 
   const router = useRouter();
 
@@ -104,7 +104,7 @@ const Bitacoras = (): React.JSX.Element => {
     queryKey: ["Bitacorass"],
     queryFn: async (): Promise<Inputs[]> => {
       const data = await axios.get(`${DATABASEURL}bitacora`);
-      return data.data;
+      return data.data as Inputs[];
     },
     refetchInterval: intervalMs,
   });
@@ -232,11 +232,9 @@ const Bitacoras = (): React.JSX.Element => {
     try {
       await fetch("/api/bitacora/delete/" + bitacoraSeleccionada.id);
       refetch();
-      toast.custom((t) => (
+      toast.custom((t: { visible: boolean }) => (
         <div
-          className={`bg-white px-6 py-4 shadow-md rounded-full ${
-            t.visible ? "animate-enter" : "animate-leave"
-          }`}
+          className={`bg-white px-6 py-4 shadow-md rounded-full ${t.visible ? "animate-enter" : "animate-leave"}`}
         >
           Deleted successfully 👋
         </div>
@@ -244,11 +242,10 @@ const Bitacoras = (): React.JSX.Element => {
 
       setModalDelete(false);
     } catch (error) {
-      toast.custom((t) => (
+      toast.custom((t: { visible: boolean }) => (
         <div
-          className={`bg-white px-6 py-4 shadow-md rounded-full ${
-            t.visible ? "animate-enter" : "animate-leave"
-          }`}
+          className={`bg-white px-6 py-4 shadow-md rounded-full ${t.visible ? "animate-enter" : "animate-leave"
+            }`}
         >
           Not Deleted successfully 👋
         </div>
@@ -274,7 +271,9 @@ const Bitacoras = (): React.JSX.Element => {
     setDatafilter(newData);
   };
 
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
     <Container>
@@ -334,13 +333,9 @@ const Bitacoras = (): React.JSX.Element => {
           </Button>
         </div>
       </div>
-      {isLoading ? (
-        <div className="fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900" />
-        </div>
-      ) : null}
-      {datafilter && datafilter?.length > 0
-        ? datafilter?.map((bitacora: any) => (
+      <>
+        {datafilter && datafilter?.length > 0
+          ? datafilter?.map((bitacora: any) => (
             <div
               className="flex rounded mb-1 shadow bg-slate-100 dark:bg-slate-800"
               key={bitacora.id}
@@ -370,7 +365,7 @@ const Bitacoras = (): React.JSX.Element => {
                         fill="#000000"
                       >
                         <path d="M0 0h24v24H0z" fill="none" />
-                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73-4.39-6-7.5-11-7.5s-9.27-3.11-11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5-5-2.24-5-5-5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
                       </svg>
                     </button>
                   </a>
@@ -417,7 +412,7 @@ const Bitacoras = (): React.JSX.Element => {
                     strokeLinejoin="round"
                     className="feather feather-edit"
                   >
-                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0-2 2h14a2 2 0 0 0 2-2v-7" />
                     <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                   </svg>
                 </button>
@@ -457,7 +452,8 @@ const Bitacoras = (): React.JSX.Element => {
               </div>
             </div>
           ))
-        : null}
+          : null}
+      </>
       <Modal
         sx={{ overflowY: "scroll" }}
         disableScrollLock={false}

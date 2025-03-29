@@ -115,7 +115,7 @@ const BitaEvents = (props: any): JSX.Element => {
 
   const params = useSearchParams();
   const ID = params?.get("id");
-  const [intervalMs, setIntervalMs] = useState(1000);
+  const [intervalMs, setIntervalMs] = useState(10000);
 
   console.log("PARAMS", params);
   console.log("ID", ID);
@@ -325,9 +325,8 @@ const BitaEvents = (props: any): JSX.Element => {
       refetch();
       toast.custom((t) => (
         <div
-          className={`bg-white px-6 py-4 shadow-md rounded-full ${
-            t.visible ? "animate-enter" : "animate-leave"
-          }`}
+          className={`bg-white px-6 py-4 shadow-md rounded-full ${t.visible ? "animate-enter" : "animate-leave"
+            }`}
         >
           Deleted successfully 👋
         </div>
@@ -337,9 +336,8 @@ const BitaEvents = (props: any): JSX.Element => {
     } catch (error) {
       toast.custom((t) => (
         <div
-          className={`bg-white px-6 py-4 shadow-md rounded-full ${
-            t.visible ? "animate-enter" : "animate-leave"
-          }`}
+          className={`bg-white px-6 py-4 shadow-md rounded-full ${t.visible ? "animate-enter" : "animate-leave"
+            }`}
         >
           Not Deleted successfully 👋
         </div>
