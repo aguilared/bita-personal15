@@ -456,7 +456,7 @@ const Animals = (): React.JSX.Element => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={{ ...style, width: 400 }}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography id="modal-modal-title">
             Add Animal{" "}
             <button
               className="
@@ -474,7 +474,7 @@ const Animals = (): React.JSX.Element => {
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <form
               name="create"
-              className="w-full max-w-lg  bg-gray-400 shadow-md rounded"
+              className="w-full max-w-lg  bg-gray-600 shadow-md rounded"
             >
               <div className="md:w-11/12 px-3 mb-6 md:mb-0">
                 <label
@@ -484,7 +484,7 @@ const Animals = (): React.JSX.Element => {
                   Nombre
                 </label>
                 <input
-                  className="appearance-none block w-full border border-grey-lighter rounded py-3 px-2"
+                  className="appearance-none block w-full border text-gray-600 rounded py-3 px-2"
                   type="text"
                   placeholder="Name"
                   defaultValue={animalAdd.name}
@@ -509,7 +509,7 @@ const Animals = (): React.JSX.Element => {
                   Nacimiento
                 </label>
                 <input
-                  className="appearance-none block w-full border border-grey-lighter rounded py-3 px-2"
+                  className="appearance-none block w-full border text-gray-600 rounded py-3 px-2"
                   type="text"
                   placeholder="Date Event"
                   defaultValue={animalAdd.birthdate}
@@ -634,7 +634,7 @@ const Animals = (): React.JSX.Element => {
                   Nombre Madre
                 </label>
                 <input
-                  className="appearance-none block w-full border border-grey-lighter rounded py-3 px-2"
+                  className="appearance-none block w-full border text-gray-600 rounded py-3 px-2"
                   type="text"
                   placeholder="Madre"
                   defaultValue={animalAdd.mother}
@@ -659,7 +659,7 @@ const Animals = (): React.JSX.Element => {
                   Hierro
                 </label>
                 <input
-                  className="appearance-none block w-full bg-grey-lighter border border-grey-lighter rounded py-2 px-2 p-1 h-4"
+                  className="appearance-none block w-full border text-gray-600 rounded py-2 px-2 p-1 h-4"
                   placeholder="hierro"
                   defaultValue={animalAdd.hierro}
                   {...register("hierro", {
@@ -682,7 +682,7 @@ const Animals = (): React.JSX.Element => {
                   Tipo parto
                 </label>
                 <input
-                  className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+                  className="appearance-none block w-full border text-gray-600 rounded py-3 px-4"
                   placeholder="tipopart"
                   defaultValue={animalAdd.tipopart}
                   {...register("tipopart", {
@@ -698,7 +698,7 @@ const Animals = (): React.JSX.Element => {
               </div>
               <div className="md:w-11/12 px-3 mb-6 md:mb-0">
                 <label
-                  className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                  className="block uppercase tracking-wide text-gray-600 text-xs font-bold mb-2"
                   htmlFor="info"
                 >
                   Infos
@@ -706,7 +706,7 @@ const Animals = (): React.JSX.Element => {
                 <textarea
                   cols={100}
                   rows={6}
-                  className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+                  className="appearance-none block w-full border text-gray-600 rounded py-3 px-4"
                   placeholder="info"
                   defaultValue={animalAdd.info}
                   {...register("info", {
@@ -750,8 +750,13 @@ const Animals = (): React.JSX.Element => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={{ ...style, width: 400 }}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Edit Animall {animalSeleccionada.id} {animalSeleccionada.name}
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            className="text-grey-800"
+          >
+            Edit Animal {animalSeleccionada.id} {animalSeleccionada.name}
             <button
               className="
                     p-1

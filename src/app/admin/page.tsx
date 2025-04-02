@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Box, Button, Modal, Typography, debounce } from "@mui/material";
+import { Box, Button, Modal, Typography, ThemeProvider } from "@mui/material";
 
 import Container from "@/components/Container";
 import useUser from "@/hooks/useUser";
@@ -234,7 +234,9 @@ const Bitacoras = (): React.JSX.Element => {
       refetch();
       toast.custom((t: { visible: boolean }) => (
         <div
-          className={`bg-white px-6 py-4 shadow-md rounded-full ${t.visible ? "animate-enter" : "animate-leave"}`}
+          className={`bg-white px-6 py-4 shadow-md rounded-full ${
+            t.visible ? "animate-enter" : "animate-leave"
+          }`}
         >
           Deleted successfully 👋
         </div>
@@ -244,8 +246,9 @@ const Bitacoras = (): React.JSX.Element => {
     } catch (error) {
       toast.custom((t: { visible: boolean }) => (
         <div
-          className={`bg-white px-6 py-4 shadow-md rounded-full ${t.visible ? "animate-enter" : "animate-leave"
-            }`}
+          className={`bg-white px-6 py-4 shadow-md rounded-full ${
+            t.visible ? "animate-enter" : "animate-leave"
+          }`}
         >
           Not Deleted successfully 👋
         </div>
@@ -277,8 +280,18 @@ const Bitacoras = (): React.JSX.Element => {
 
   return (
     <Container>
+      <ThemeProvider
+        theme={{
+          palette: {
+            primary: {
+              main: "#007FFF",
+              dark: "#0066CC",
+            },
+          },
+        }}
+      ></ThemeProvider>
       <div className="flex rounded items-center justify-between flex-wrap bg-gray-500">
-        <div className="flex-grow text-left text-gray-100 px-3 py-1 m-2 ">
+        <div className="flex-grow text-left text-gray-100   dark:bg-slate-800 px-3 py-1 m-2 ">
           {" Admin Bitacoras"}
         </div>
         <div>
@@ -289,7 +302,7 @@ const Bitacoras = (): React.JSX.Element => {
             }}
           >
             <input
-              className="rounded py-2 px-4"
+              className="rounded py-2 px-4 text-gray-600"
               type="text"
               placeholder="Search"
               defaultValue=""
@@ -336,122 +349,124 @@ const Bitacoras = (): React.JSX.Element => {
       <>
         {datafilter && datafilter?.length > 0
           ? datafilter?.map((bitacora: any) => (
-            <div
-              className="flex rounded mb-1 shadow bg-slate-100 dark:bg-slate-800"
-              key={bitacora.id}
-            >
-              <div className="w-4/5 inline-block text-gray-900 dark:text-white text-left px-1 py-0 m-0">
-                ({bitacora._count.bita_events})&nbsp;
-                {bitacora.id} &nbsp;
-                {convertDate(bitacora.bitacora_date)} &nbsp;
-                {bitacora.author.name} &nbsp;
-              </div>
-              <div className="w-1/5 inline-block text-gray-700 text-right px-1 py-1 m-0">
-                <Link
-                  href={`bita_events/4?id=${encodeURIComponent(bitacora.id)}`}
-                  passHref
-                  legacyBehavior
-                >
-                  <a
+              <div
+                className="flex rounded mb-1 shadow bg-slate-100 dark:bg-slate-800"
+                key={bitacora.id}
+              >
+                <div className="w-4/5 inline-block text-gray-900 dark:text-white text-left px-1 py-0 m-0">
+                  ({bitacora._count.bita_events})&nbsp;
+                  {bitacora.id} &nbsp;
+                  {convertDate(bitacora.bitacora_date)} &nbsp;
+                  {bitacora.author.name} &nbsp;
+                </div>
+                <div className="w-1/5 inline-block text-gray-700 text-right px-1 py-1 m-0">
+                  <Link
                     href={`bita_events/4?id=${encodeURIComponent(bitacora.id)}`}
-                    target="_blank"
+                    passHref
+                    legacyBehavior
                   >
-                    <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold mr-1 py-1 px-1 rounded-full inline-flex items-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="24px"
-                        viewBox="0 0 24 24"
-                        width="24px"
-                        fill="#000000"
-                      >
-                        <path d="M0 0h24v24H0z" fill="none" />
-                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73-4.39-6-7.5-11-7.5s-9.27-3.11-11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5-5-2.24-5-5-5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
-                      </svg>
-                    </button>
-                  </a>
-                </Link>
-              </div>
-              <div className="inline-block text-gray-700 text-right px-1 py-1 m-0">
-                <button
-                  onClick={() => seleccionarBitacoraD(bitacora, "Delete")}
-                  className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-0 mr-1 rounded-full inline-flex items-center"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="feather feather-trash-2"
+                    <a
+                      href={`bita_events/4?id=${encodeURIComponent(
+                        bitacora.id
+                      )}`}
+                      target="_blank"
+                    >
+                      <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold mr-1 py-1 px-1 rounded-full inline-flex items-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24px"
+                          viewBox="0 0 24 24"
+                          width="24px"
+                          fill="#000000"
+                        >
+                          <path d="M0 0h24v24H0z" fill="none" />
+                          <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73-4.39-6-7.5-11-7.5s-9.27-3.11-11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5-5-2.24-5-5-5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+                        </svg>
+                      </button>
+                    </a>
+                  </Link>
+                </div>
+                <div className="inline-block text-gray-700 text-right px-1 py-1 m-0">
+                  <button
+                    onClick={() => seleccionarBitacoraD(bitacora, "Delete")}
+                    className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-0 mr-1 rounded-full inline-flex items-center"
                   >
-                    <polyline points="3 6 5 6 21 6" />
-                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                    <line x1="10" y1="11" x2="10" y2="17" />
-                    <line x1="14" y1="11" x2="14" y2="17" />
-                  </svg>
-                </button>
-              </div>
-              <div className="inline-block text-gray-700 text-right px-1 py-1 m-0">
-                <button
-                  onClick={() => seleccionarBitacoraE(bitacora, "Edit")}
-                  className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-0 mr-1 rounded-full inline-flex items-center"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="feather feather-edit"
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="feather feather-trash-2"
+                    >
+                      <polyline points="3 6 5 6 21 6" />
+                      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                      <line x1="10" y1="11" x2="10" y2="17" />
+                      <line x1="14" y1="11" x2="14" y2="17" />
+                    </svg>
+                  </button>
+                </div>
+                <div className="inline-block text-gray-700 text-right px-1 py-1 m-0">
+                  <button
+                    onClick={() => seleccionarBitacoraE(bitacora, "Edit")}
+                    className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-0 mr-1 rounded-full inline-flex items-center"
                   >
-                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0-2 2h14a2 2 0 0 0 2-2v-7" />
-                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                  </svg>
-                </button>
-              </div>{" "}
-              <div className="w-1/5 inline-block text-gray-700 text-right px-1 py-1 m-0">
-                <Link
-                  href={`admin/bita_events/4?id=${encodeURIComponent(
-                    bitacora.id
-                  )}`}
-                  passHref
-                  legacyBehavior
-                >
-                  <a
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="feather feather-edit"
+                    >
+                      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0-2 2h14a2 2 0 0 0 2-2v-7" />
+                      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                    </svg>
+                  </button>
+                </div>{" "}
+                <div className="w-1/5 inline-block text-gray-700 text-right px-1 py-1 m-0">
+                  <Link
                     href={`admin/bita_events/4?id=${encodeURIComponent(
                       bitacora.id
                     )}`}
-                    target="_blank"
+                    passHref
+                    legacyBehavior
                   >
-                    <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold mr-1 py-1 px-1 rounded-full inline-flex items-center">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="24px"
-                        viewBox="0 0 24 24"
-                        width="24px"
-                        fill="#000000"
-                      >
-                        <path
-                          clipRule="evenodd"
-                          d="M0 0h24v24H0z"
-                          fill="none"
-                        />
-                        <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z" />
-                      </svg>
-                    </button>
-                  </a>
-                </Link>
+                    <a
+                      href={`admin/bita_events/4?id=${encodeURIComponent(
+                        bitacora.id
+                      )}`}
+                      target="_blank"
+                    >
+                      <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold mr-1 py-1 px-1 rounded-full inline-flex items-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24px"
+                          viewBox="0 0 24 24"
+                          width="24px"
+                          fill="#000000"
+                        >
+                          <path
+                            clipRule="evenodd"
+                            d="M0 0h24v24H0z"
+                            fill="none"
+                          />
+                          <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z" />
+                        </svg>
+                      </button>
+                    </a>
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))
+            ))
           : null}
       </>
       <Modal
@@ -462,7 +477,17 @@ const Bitacoras = (): React.JSX.Element => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={{ ...style, width: 400 }}>
+        <Box
+          sx={{
+            width: 400,
+            height: 100,
+            borderRadius: 1,
+            bgcolor: "primary.main",
+            "&:hover": {
+              bgcolor: "primary.dark",
+            },
+          }}
+        >
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Create Bitacora
             <button

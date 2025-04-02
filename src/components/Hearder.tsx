@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import * as Menubar from '@radix-ui/react-menubar'; // Ensure this is the correct library for Menubar
-import { CaretDownIcon, ChevronRightIcon } from '@radix-ui/react-icons'; // Import CaretDownIcon and ChevronRightIcon from Radix UI icons
+import Link from "next/link";
+import Image from "next/image";
+import * as Menubar from "@radix-ui/react-menubar"; // Ensure this is the correct library for Menubar
+import { CaretDownIcon, ChevronRightIcon } from "@radix-ui/react-icons"; // Import CaretDownIcon and ChevronRightIcon from Radix UI icons
 import Switcher from "@/components/Switcher";
 
 interface HeaderProps {
@@ -12,13 +12,9 @@ interface HeaderProps {
   center?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({
-  title,
-  subtitle,
-  center
-}) => {
+const Header: React.FC<HeaderProps> = ({ title, subtitle, center }) => {
   return (
-    <div className={center ? 'text-center' : 'text-start'}>
+    <div className={center ? "text-center" : "text-start"}>
       <div className="rounded sm:p-3 md:py-3 lg:px-3 py-3 px-4 bg-gray-200 dark:bg-black">
         <div className="grid grid-cols-3 gap-4">
           <div className="grid grid-cols-1 gap-4">
@@ -133,19 +129,13 @@ const Header: React.FC<HeaderProps> = ({
                       >
                         <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
                         <Menubar.Item className="text-[16px] leading-none text-gray-700 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
-                          <Link
-                            href="/animals/animalscard/"
-                            target="_blank"
-                          >
+                          <Link href="/animals/animalscard/" target="_blank">
                             Listado
                           </Link>
                         </Menubar.Item>
                         <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
                         <Menubar.Item className="text-[16px] leading-none text-gray-700 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
-                          <Link
-                            href="/animals/animalsOwners/"
-                            target="_blank"
-                          >
+                          <Link href="/animals/animalsOwners/" target="_blank">
                             SearchOwner
                           </Link>
                         </Menubar.Item>
@@ -186,23 +176,17 @@ const Header: React.FC<HeaderProps> = ({
                       >
                         <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
                         <Menubar.Item className="text-[16px] leading-none text-gray-700 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
-                          <Link href="/bitaEventWordEvent/">
-                            DescriWord
-                          </Link>
+                          <Link href="/bitaEventWordEvent/">DescriWord</Link>
                         </Menubar.Item>
                         <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
 
                         <Menubar.Item className="text-[16px] leading-none text-gray-700 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
-                          <Link href="/bitaEventPageType/">
-                            TypeEvent
-                          </Link>
+                          <Link href="/bitaEventPageType/">TypeEvent</Link>
                         </Menubar.Item>
                         <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
 
                         <Menubar.Item className="text-[16px] leading-none text-violet11 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
-                          <Link href="/bitaEventTypeEven/">
-                            TypeEventEvent
-                          </Link>
+                          <Link href="/bitaEventTypeEven/">TypeEventEvent</Link>
                         </Menubar.Item>
                         <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
                       </Menubar.SubContent>
@@ -225,9 +209,7 @@ const Header: React.FC<HeaderProps> = ({
                       >
                         <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
                         <Menubar.Item className="text-[16px] leading-none text-gray-600 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
-                          <Link href="/animals/animalscard/">
-                            Listado
-                          </Link>
+                          <Link href="/animals/animalscard/">Listado</Link>
                         </Menubar.Item>
                         <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
 
@@ -286,6 +268,6 @@ const Header: React.FC<HeaderProps> = ({
       </div>
     </div>
   );
-}
+};
 
 export default Header;

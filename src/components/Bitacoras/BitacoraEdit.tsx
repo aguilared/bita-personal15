@@ -57,7 +57,7 @@ const BitacoraEdit = (props: any): JSX.Element => {
           Fecha Bitacora
         </label>
         <input
-          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+          className="appearance-none block w-full  text-gray-900 dark:text-white border rounded py-3 px-4"
           type="text"
           placeholder="Gonzalez"
           name="bitacora_date"

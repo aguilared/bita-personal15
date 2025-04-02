@@ -18,7 +18,7 @@ const BitacoraCreate = (props: any): JSX.Element => {
   return (
     <form
       name="create"
-      className="w-full max-w-lg  bg-slate-100 dark:bg-slate-800 shadow-md rounded"
+      className="w-full max-w-lg  bg-gray-600 bg-slate-100 dark:bg-slate-800 shadow-md rounded"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="md:w-1/2 px-3 mb-6 md:mb-0 ">
@@ -29,7 +29,7 @@ const BitacoraCreate = (props: any): JSX.Element => {
           Author
         </label>
         <input
-          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+          className="appearance-none block w-full  text-gray-900 dark:text-white border rounded py-3 px-4"
           type="number"
           placeholder="Gonzalez"
           name="author_id"
@@ -46,13 +46,13 @@ const BitacoraCreate = (props: any): JSX.Element => {
 
       <div className="md:w-1/2 px-3 mb-6 md:mb-0">
         <label
-          className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-          htmlFor="bitacora_date"
+          className="block uppercase tracking-wide  text-gray-900 dark:text-white text-xs font-bold mb-2"
+          htmlFor="author_id"
         >
           Fecha Bitacora
         </label>
         <input
-          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+          className="appearance-none block w-full  text-gray-900 dark:text-white border rounded py-3 px-4"
           type="text"
           placeholder="Gonzalez"
           name="bitacora_date"

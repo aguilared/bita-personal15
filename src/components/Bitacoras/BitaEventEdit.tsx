@@ -59,15 +59,24 @@ const BitaEventEdit = (props: any): JSX.Element => {
   return (
     <form
       name="edit-form"
-      className="w-full max-w-lg  bg-gray-200 shadow-md rounded"
+      className="w-full max-w-lg  bg-gray-600 shadow-md rounded"
       onSubmit={handleSubmit(onSubmitE)}
     >
       <div className="md:w-11/12 px-3 mb-6 md:mb-0">
         <label
-          className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+          className="block uppercase tracking-wide text-xs font-bold mb-2"
           htmlFor="id"
         >
-          Tipos Eventst
+          Edit Event: {bitacoraSeleccionada2.id}
+        </label>
+      </div>
+
+      <div className="md:w-11/12 px-3 mb-6 md:mb-0">
+        <label
+          className="block uppercase tracking-wide text-xs font-bold mb-2"
+          htmlFor="id"
+        >
+          Tipos Events
         </label>
         <Controller
           name="tipo_event_id"
@@ -101,7 +110,7 @@ const BitaEventEdit = (props: any): JSX.Element => {
 
       <div className="md:w-11/12 px-3 mb-6 md:mb-0">
         <label
-          className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+          className="block uppercase tracking-wide text-xs font-bold mb-2"
           htmlFor="events_id"
         >
           Event
@@ -133,7 +142,7 @@ const BitaEventEdit = (props: any): JSX.Element => {
 
       <div className="md:w-11/12 px-3 mb-6 md:mb-0">
         <label
-          className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+          className="block uppercase tracking-wide text-xs font-bold mb-2"
           htmlFor="description"
         >
           Descripcion evento
@@ -160,13 +169,13 @@ const BitaEventEdit = (props: any): JSX.Element => {
 
       <div className="md:w-11/12 px-3 mb-6 md:mb-0">
         <label
-          className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+          className="block uppercase tracking-wide text-xs font-bold mb-2"
           htmlFor="event_date"
         >
           Fecha Evento
         </label>
         <input
-          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+          className="appearance-none block w-full text-gray-600 border border-grey-lighter rounded py-3 px-4"
           type="text"
           placeholder="Date Event"
           name="event_date"

@@ -56,7 +56,7 @@ const AnimalEdit = (props: any): React.JSX.Element => {
           Nombre
         </label>
         <input
-          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+          className="appearance-none block w-full text-gray-600 border border-grey-lighter rounded py-3 px-4"
           placeholder="Name"
           defaultValue={animalSeleccionada2.name}
           {...registerEditField("name", {
@@ -74,7 +74,7 @@ const AnimalEdit = (props: any): React.JSX.Element => {
           Nacimiento
         </label>
         <input
-          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+          className="appearance-none block w-full border text-gray-600 rounded py-3 px-4"
           placeholder="birthdate"
           defaultValue={animalSeleccionada2.birthdate}
           {...registerEditField("birthdate", {
@@ -123,7 +123,7 @@ const AnimalEdit = (props: any): React.JSX.Element => {
 
       <div className="md:w-11/12 px-3 mb-6 md:mb-0">
         <label
-          className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+          className="block uppercase tracking-wide text-grey-darker  text-xs font-bold mb-2"
           htmlFor="owner_id"
         >
           Dueno
@@ -160,7 +160,7 @@ const AnimalEdit = (props: any): React.JSX.Element => {
 
       <div className="md:w-11/12 px-3 mb-6 md:mb-0">
         <label
-          className="block uppercase tracking-wide text-xs font-bold mb-2"
+          className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
           htmlFor="mother_id"
         >
           Madre.{animalSeleccionada2.mother_id}
@@ -204,7 +204,7 @@ const AnimalEdit = (props: any): React.JSX.Element => {
           Madre
         </label>
         <input
-          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+          className="appearance-none block w-full border text-gray-600 rounded py-3 px-4"
           placeholder="mother"
           defaultValue={animalSeleccionada2.mother}
           {...registerEditField("mother", {
@@ -226,7 +226,7 @@ const AnimalEdit = (props: any): React.JSX.Element => {
           Hierro
         </label>
         <input
-          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+          className="appearance-none block w-full border text-gray-600 rounded py-3 px-4"
           placeholder="hierro"
           defaultValue={animalSeleccionada2.hierro}
           {...registerEditField("hierro", {
@@ -248,7 +248,7 @@ const AnimalEdit = (props: any): React.JSX.Element => {
           Tipo partos
         </label>
         <input
-          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+          className="appearance-none block w-full border text-gray-600 rounded py-3 px-4"
           placeholder="tipopart"
           defaultValue={animalSeleccionada2.tipopart}
           {...registerEditField("tipopart", {
@@ -295,7 +295,7 @@ const AnimalEdit = (props: any): React.JSX.Element => {
         <textarea
           cols={100}
           rows={6}
-          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+          className="appearance-none block w-full border text-gray-600 rounded py-3 px-4"
           placeholder="info"
           defaultValue={animalSeleccionada2.info}
           {...registerEditField("info", {

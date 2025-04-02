@@ -1,14 +1,8 @@
 "use client";
 import { useEffect, useState, Suspense } from "react";
 import dayjs from "dayjs";
-import { Interweave } from "interweave";
-import Card from "@mui/material/Card";
-
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import { useSearchParams } from "next/navigation";
 
-import Image from "next/image";
 import {
   useQuery,
   QueryClient,
@@ -17,8 +11,6 @@ import {
 } from "@tanstack/react-query";
 import axios from "axios";
 
-import Select from "react-select";
-//import WYSIWYGEditor from "@/styles/WYSIWYG";
 import WYSIWYGEditor from "./WYSIWYG";
 
 import { Editor } from "react-draft-wysiwyg";

@@ -18,9 +18,8 @@ import dayjs from "dayjs";
 import axios from "axios";
 import Select from "react-select";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { useOwners } from "../../../hooks/useOwners";
+import { useOwners } from "@/hooks/useOwners";
 import Image from "next/image";
-import { styleText } from "util";
 const DATABASEURL = process.env.NEXT_PUBLIC_API_URL;
 
 type Inputs = {
@@ -145,20 +144,11 @@ const AnimalsCardQuery: NextPage = () => {
   };
 
   return (
-    <Container>
-      <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient}>
+      <div className="rounded sm:p-3 md:py-3 lg:px-3 py-3 px-4 bg-gray-200 dark:bg-black">
         <div className="container mx-auto px-20 text-gray-600 text-2xl font-bold">
           Query List Animals{" "}
         </div>
-        <Select
-          styles={bg}
-          defaultValue={[colourOptions[2], colourOptions[3]]}
-          isMulti
-          name="colors"
-          options={colourOptions}
-          className="basic-multi-select"
-          classNamePrefix="select"
-        />
 
         <div className="flex mb-4">
           <div className="w-1/2 p-2 text-center bg-green-400">
@@ -306,8 +296,8 @@ const AnimalsCardQuery: NextPage = () => {
             </div>
           )}
         </div>
-      </QueryClientProvider>
-    </Container>
+      </div>
+    </QueryClientProvider>
   );
 };
 

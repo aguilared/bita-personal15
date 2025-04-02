@@ -325,8 +325,9 @@ const BitaEvents = (props: any): JSX.Element => {
       refetch();
       toast.custom((t) => (
         <div
-          className={`bg-white px-6 py-4 shadow-md rounded-full ${t.visible ? "animate-enter" : "animate-leave"
-            }`}
+          className={`bg-white px-6 py-4 shadow-md rounded-full ${
+            t.visible ? "animate-enter" : "animate-leave"
+          }`}
         >
           Deleted successfully 👋
         </div>
@@ -336,8 +337,9 @@ const BitaEvents = (props: any): JSX.Element => {
     } catch (error) {
       toast.custom((t) => (
         <div
-          className={`bg-white px-6 py-4 shadow-md rounded-full ${t.visible ? "animate-enter" : "animate-leave"
-            }`}
+          className={`bg-white px-6 py-4 shadow-md rounded-full ${
+            t.visible ? "animate-enter" : "animate-leave"
+          }`}
         >
           Not Deleted successfully 👋
         </div>
@@ -726,13 +728,13 @@ const BitaEvents = (props: any): JSX.Element => {
 
             <div className="md:w-11/12 px-3 mb-6 md:mb-0">
               <label
-                className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                className="block uppercase tracking-wide text-xs font-bold mb-2"
                 htmlFor="event_date"
               >
                 Fecha Evento
               </label>
               <input
-                className="appearance-none block w-full text-gray-600 border border-grey-lighter rounded py-3 px-2"
+                className="appearance-none block w-full text-gray-600 border rounded py-3 px-2"
                 type="text"
                 placeholder="Date Event"
                 name="event_date"
