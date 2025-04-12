@@ -21,18 +21,18 @@ const EventEdit = (props: any): JSX.Element => {
   return (
     <form
       name="editForm"
-      className="w-full max-w-lg  bg-slate-100 dark:bg-slate-800 shadow-md rounded"
+      className="w-full max-w-lg  bg-gray-600 shadow-md rounded"
       onSubmit={handleSubmit(onSubmitE)}
     >
       <div className="md:w-11/12 px-3 mb-6 md:mb-0">
         <label
-          className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1"
+          className="block uppercase tracking-wide  text-gray-800 dark:text-white text-xs font-bold mb-1"
           htmlFor="description"
         >
-          Event
+          Events
         </label>
         <input
-          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+          className="appearance-none block w-full bg-grey-lighter  text-gray-600 dark:text-white border border-grey-lighter rounded py-3 px-4"
           placeholder="TipoEvento"
           defaultValue={eventSeleccionada && eventSeleccionada.description}
           {...register("description", {
@@ -47,13 +47,13 @@ const EventEdit = (props: any): JSX.Element => {
 
       <div className="md:w-11/12 px-3 mb-6 md:mb-0">
         <label
-          className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1"
+          className="block uppercase tracking-wide text-gray-200 text-xs font-bold mb-1"
           htmlFor="updated_at"
         >
           Fecha Tipo Event
         </label>
         <input
-          className="appearance-none block w-full border border-grey-lighter rounded py-3 px-4"
+          className="appearance-none block w-full border text-gray-800 dark:text-white rounded py-3 px-4"
           type="text"
           placeholder="fechaUpdated"
           defaultValue={eventSeleccionada && eventSeleccionada.updated_at}
@@ -67,7 +67,7 @@ const EventEdit = (props: any): JSX.Element => {
 
       <div className="invisible md:invisible md:w-1/2 px-3 mb-6 md:mb-0">
         <input
-          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+          className="appearance-none block w-full bg-grey-lighter border border-grey-lighter rounded py-3 px-4"
           type="number"
           defaultValue={eventSeleccionada && eventSeleccionada.id}
           {...register("id", {
@@ -78,7 +78,7 @@ const EventEdit = (props: any): JSX.Element => {
           onChange={(e) => handleOnChangeE("id", e.target.value)}
         />
         <input
-          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+          className="appearance-none block w-full bg-grey-lighter border border-grey-lighter rounded py-3 px-4"
           type="number"
           defaultValue={eventSeleccionada && eventSeleccionada.tipo_event_id}
           {...register("tipo_event_id", {

@@ -24,9 +24,10 @@ const HearderTipoEvents: React.FC<Props> = ({ totalEvents }) => {
   //console.log("EventoHeader", totalEvents);
   return (
     <div className="flex rounded items-center justify-between flex-wrap bg-gray-500">
-      <div className="flex-grow text-left text-gray-100 px-3 py-1 m-2 ">
+      <div className="flex-grow text-left text-gray-600 dark:text-white px-3 py-1 m-2 ">
         {" Admin Tipo Events"}
       </div>
+
       <div className="flex-grow text-right px-3 py-1 m-2 text-gray-100">
         <Button color="success" variant="contained" onClick={modalCreateOpen}>
           <svg

@@ -14,17 +14,17 @@ const HeaderEvent: React.FC<Props> = ({
   totalEvents,
 }) => {
   const convertDate = (date: any) => {
-    let d = dayjs(date).format("DD-MM-YYYY");
+    const d = dayjs(date).format("DD-MM-YYYY");
     return d;
   };
   //console.log("EventoHeader", totalEvents);
   return (
-    <div className="flex justify-between p-1">
+    <div className="flex justify-between p-1 bg-slate-100 dark:bg-slate-800">
       <div>
-        <h3 className="text-2xl tahoma font-extrabold tracking-widest text-gray-500">
-          TipoEvent and yours Eventss
+        <h3 className="text-2xl font-extrabold tracking-widest text-gray-600 dark:text-white ">
+          TipoEvent and yours Events.
         </h3>
-        <h3 className="text-2xl tahoma font-extrabold tracking-widest text-gray-500">
+        <h3 className="text-2xl font-extrabold tracking-widest text-gray-600 dark:text-white ">
           Id:{eventid}, Total Events:{totalEvents}
         </h3>
       </div>
@@ -45,8 +45,12 @@ const HeaderEvent: React.FC<Props> = ({
                 d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
               />
             </svg>
-            <span className="text-sm">Tipo Evento</span>
-            <span className="text-sm">{tipoEvent}</span>
+            <span className="text-sm text-gray-600 dark:text-white">
+              Tipo Evento
+            </span>
+            <span className="text-sm  text-gray-600 dark:text-white">
+              {tipoEvent}
+            </span>
           </li>
           <li className="flex flex-col p-2 border-l-2 border-indigo-200">
             <svg
@@ -69,7 +73,9 @@ const HeaderEvent: React.FC<Props> = ({
                 d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
               />
             </svg>
-            <span className="text-sm">{convertDate(eventDate)}</span>
+            <span className="text-sm  text-gray-600 dark:text-white">
+              {convertDate(eventDate)}
+            </span>
           </li>
         </ul>
       </div>

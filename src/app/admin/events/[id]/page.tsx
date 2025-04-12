@@ -17,7 +17,6 @@ import { useEventsId } from "@/hooks/useEventsId";
 import getTypeEventsId from "@/services/getTypeEventsId";
 import Button from "@/components/ButtonAdd";
 import HeaderEventss from "@/components/HearderEventss";
-import EventCreate from "@/components/events/EventCreate";
 import EventEdit from "@/components/events/EventEdit";
 
 import {
@@ -248,7 +247,7 @@ const TipoEventsEventss = (props: any): JSX.Element => {
 
   return (
     <Container>
-      <div className="flex rounded items-center justify-between flex-wrap bg-gray-100 p-2">
+      <div className="flex rounded items-center justify-between flex-wrap bg-slate-100 dark:bg-slate-800 p-2">
         {isLoading ? (
           <div className="fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
             <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900" />
@@ -268,22 +267,22 @@ const TipoEventsEventss = (props: any): JSX.Element => {
 
             <div className="flex justify-center p-4">
               <div className="border-b border-gray-200 shadow">
-                <table className="shadow-lg bg-white table-auto">
+                <table className="lg:table-auto shadow-lg  bg-slate-100 dark:bg-slate-800">
                   <thead>
                     <tr>
-                      <th className="bg-blue-100 border text-left px-8 py-4">
+                      <th className=" text-gray-500 dark:text-white border text-left px-8 py-4">
                         Renglon/Id
                       </th>
-                      <th className="bg-blue-100 border text-left px-8 py-4">
+                      <th className=" text-gray-500 dark:text-white border text-left px-8 py-4">
                         Tipo Evento
                       </th>
-                      <th className="bg-blue-100 border text-left px-8 py-4">
+                      <th className=" text-gray-500 dark:text-white border text-left px-8 py-4">
                         Description Event
                       </th>
-                      <th className="bg-blue-100 border text-left px-8 py-4">
+                      <th className=" text-gray-500 dark:text-white border text-left px-8 py-4">
                         Date Event
                       </th>
-                      <th className="bg-blue-100 border text-left px-8 py-4">
+                      <th className=" text-gray-500 dark:text-white border text-left px-8 py-4">
                         <div>
                           <Button onClick={modalCreateOpen} />
                         </div>
@@ -296,25 +295,25 @@ const TipoEventsEventss = (props: any): JSX.Element => {
                       <>
                         <tbody key={key}>
                           <tr key={key}>
-                            <td className="border px-8 py-4">
+                            <td className="border px-8 py-4  text-gray-500 dark:text-white">
                               {key + 1} {event.id}
                             </td>
-                            <td className="border px-8 py-4">
+                            <td className="border px-8 py-4  text-gray-500 dark:text-white">
                               {event.tipo_event_id}
                             </td>
-                            <td className="border px-8 py-4">
+                            <td className="border px-8 py-4  text-gray-500 dark:text-white">
                               {event.description}
                             </td>
-                            <td className="border px-8 py-4">
+                            <td className="border px-8 py-4  text-gray-500 dark:text-white">
                               {convertDate(event.updated_at)}
                             </td>
                             <td className="border px-8 py-4">
-                              <div className="inline-block text-gray-700 text-right px-1 py-1 m-0">
+                              <div className="inline-block  text-gray-500 dark:text-white text-right px-1 py-1 m-0">
                                 <button
                                   onClick={() =>
                                     seleccionarEvent(event, "Delete")
                                   }
-                                  className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-0 mr-1 rounded-full inline-flex items-center"
+                                  className="bg-gray-300 hover:bg-gray-400  text-gray-500 dark:text-white font-semibold py-1 px-0 mr-1 rounded-full inline-flex items-center"
                                 >
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -335,12 +334,12 @@ const TipoEventsEventss = (props: any): JSX.Element => {
                                   </svg>
                                 </button>
                               </div>
-                              <div className="inline-block text-gray-700 text-right px-1 py-1 m-0">
+                              <div className="inline-block  text-gray-500 dark:text-white text-right px-1 py-1 m-0">
                                 <button
                                   onClick={() =>
                                     seleccionarEventE(event, "Edit")
                                   }
-                                  className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-0 mr-1 rounded-full inline-flex items-center"
+                                  className="bg-gray-300 hover:bg-gray-400  text-gray-500 dark:text-white font-semibold py-1 px-0 mr-1 rounded-full inline-flex items-center"
                                 >
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -389,7 +388,12 @@ const TipoEventsEventss = (props: any): JSX.Element => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={{ ...style, width: 400 }}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            className="text-gray-800 dark:text-white"
+          >
             Create Evento
             <button
               className="
@@ -409,15 +413,15 @@ const TipoEventsEventss = (props: any): JSX.Element => {
             className="w-full max-w-lg  bg-gray-400 shadow-md rounded"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="md:w-11/12 px-3 mb-6 md:mb-0">
+            <div className="md:w-11/12 px-3 mb-6 md:mb-0 text-gray-600 dark:text-white">
               <label
-                className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                className="block uppercase tracking-wide text-gray-600  text-xs font-bold mb-2"
                 htmlFor="description"
               >
                 Event
               </label>
               <input
-                className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+                className="appearance-none block w-full text-gray-600 dark:text-white border border-grey-lighter rounded py-3 px-4"
                 placeholder="TipoEvento"
                 defaultValue={eventAdd.description}
                 {...register("description", {
@@ -481,7 +485,7 @@ const TipoEventsEventss = (props: any): JSX.Element => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={{ ...style, width: 400 }}>
+        <Box sx={{ ...style, width: 600 }}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Edit Event ID: {eventSeleccionada && eventSeleccionada?.id}
             <button
