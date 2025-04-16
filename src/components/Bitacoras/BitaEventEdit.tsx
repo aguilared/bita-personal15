@@ -28,9 +28,6 @@ const BitaEventEdit = (props: any): JSX.Element => {
     setEventId,
     onClose,
   } = props;
-  console.log("BBitacoraSeleccionada2", bitacoraSeleccionada2);
-  console.log("typeEvents1", typeEvents1);
-  console.log("EventsId", eventsId);
 
   const editFormDefaultValues: DefaultValues<EditFormValues> = {
     tipo_event_id: bitacoraSeleccionada2.tipo_event_id,
@@ -86,14 +83,11 @@ const BitaEventEdit = (props: any): JSX.Element => {
               (c) => c.value === bitacoraSeleccionada2.tipo_event_id
             );
             console.log("CurrentSelection", currentSelection);
-            const handleSelectChange = (
-              selectedOption: tipo_event_id | null
-            ) => {
-              onChange(selectedOption?.value);
-            };
+
             return (
               <Select
-                inputRef={ref}
+                className="search-line"
+                ref={ref}
                 options={typeEvents1}
                 defaultValue={currentSelection}
                 name={name}
