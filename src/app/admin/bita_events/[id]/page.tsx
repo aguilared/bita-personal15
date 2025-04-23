@@ -7,7 +7,8 @@ import {
   SubmitHandler,
   DefaultValues,
 } from "react-hook-form";
-import Select from "react-select";
+import Select, { StylesConfig } from "react-select";
+
 import { Box, debounce, IconButton, Modal, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import Container from "@/components/Container";
@@ -65,6 +66,17 @@ const style = {
   },
 };
 
+const customStyles: StylesConfig<{ label: string; value: number }, false> = {
+  option: (base, state) => ({
+    ...base,
+    fontSize: 16,
+    color: "blue",
+    backgroundColor: state.isSelected ? "lightblue" : "white", // Change background color for selected options
+    "&:hover": {
+      backgroundColor: "lightgray",
+    },
+  }),
+};
 interface CreateFormValues {
   id: number;
   bitacora_id: number;
@@ -633,13 +645,14 @@ const BitaEvents = (props: any): JSX.Element => {
                     <Select
                       className="basic-single"
                       classNamePrefix="select"
-                      inputRef={ref}
+                      ref={ref}
                       defaultValue={{ label: "Seleccione..", value: 0 }}
                       options={typeEvents1}
                       value={(typeEvents1 ?? []).find(
                         (c: { value: number }) => c.value === value
                       )}
                       name={name}
+                      styles={customStyles}
                       onChange={(val) => {
                         if (val) {
                           onChange(val.value);
@@ -682,6 +695,7 @@ const BitaEvents = (props: any): JSX.Element => {
                       options={eventsId}
                       value={eventsId.find((c) => c.value === value)}
                       name={name}
+                      styles={customStyles}
                       onChange={(val) => {
                         onChange(val.value);
                         handleOnChange("events_id", val.value);

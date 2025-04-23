@@ -16,11 +16,12 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
 import axios from "axios";
-import Select from "react-select";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { useOwners } from "../../../hooks/useOwners";
 import Image from "next/image";
 import { styleText } from "util";
+import Select, { StylesConfig } from "react-select";
+
 const DATABASEURL = process.env.NEXT_PUBLIC_API_URL;
 
 type Inputs = {
@@ -47,6 +48,19 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+const customStyles: StylesConfig<{ label: string; value: number }, false> = {
+  option: (base, state) => ({
+    ...base,
+    fontSize: 16,
+    color: "blue",
+    backgroundColor: state.isSelected ? "lightblue" : "white", // Change background color for selected options
+    "&:hover": {
+      backgroundColor: "lightgray",
+    },
+  }),
+};
+
 const convertDate = (date: any) => {
   return dayjs(date).format("DD/MM/YYYY");
 };
@@ -75,31 +89,6 @@ const AnimalsCardQuery: NextPage = () => {
       return data.data;
     },
   });
-
-  console.log("ColourOption", colourOptions);
-  const bg = {
-    container: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isFocused ? "black" : "#ffffff",
-      styleText: {
-        ...provided.styleText,
-        border: "1px solid #ccc",
-        borderRadius: "4px",
-        marginBottom: "8px",
-      },
-    }),
-    control: (provided, state) => ({
-      ...provided,
-      backgroundColor: "black",
-      border: state.isFocused ? "1px solid blue" : "1px solid #ccc",
-      borderRadius: "4px",
-      boxShadow: state.isFocused ? "0 0 0 1px blue" : null,
-      "&:hover": {
-        borderColor: "blue",
-      },
-    }),
-    // ... (otros estilos como se definieron anteriormente)
-  };
 
   useEffect(() => {
     if (status === "success") {
@@ -150,15 +139,6 @@ const AnimalsCardQuery: NextPage = () => {
         <div className="container mx-auto px-20 text-gray-600 text-2xl font-bold">
           Query List Animals{" "}
         </div>
-        <Select
-          styles={bg}
-          defaultValue={[colourOptions[2], colourOptions[3]]}
-          isMulti
-          name="colors"
-          options={colourOptions}
-          className="basic-multi-select"
-          classNamePrefix="select"
-        />
 
         <div className="flex mb-4">
           <div className="w-1/2 p-2 text-center bg-green-400">
@@ -173,6 +153,8 @@ const AnimalsCardQuery: NextPage = () => {
                     defaultValue={{ label: "Seleccione..", value: 0 }}
                     options={owners}
                     name={name}
+                    styles={customStyles}
+                    placeholder="Select a owner"
                     onChange={(val?) => {
                       console.log("Valuee Selected", val);
                       onChange(val!.value);

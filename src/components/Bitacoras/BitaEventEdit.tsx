@@ -5,7 +5,7 @@ import {
   SubmitHandler,
   DefaultValues,
 } from "react-hook-form";
-import Select from "react-select";
+import Select, { StylesConfig } from "react-select";
 import WYSIWYGEditor from "./WYSIWYG";
 interface EditFormValues {
   id: number;
@@ -28,6 +28,18 @@ const BitaEventEdit = (props: any): JSX.Element => {
     setEventId,
     onClose,
   } = props;
+
+  const customStyles: StylesConfig<{ label: string; value: number }, false> = {
+    option: (base, state) => ({
+      ...base,
+      fontSize: 14,
+      color: "blue",
+      backgroundColor: state.isSelected ? "lightblue" : "white", // Change background color for selected options
+      "&:hover": {
+        backgroundColor: "lightgray",
+      },
+    }),
+  };
 
   const editFormDefaultValues: DefaultValues<EditFormValues> = {
     tipo_event_id: bitacoraSeleccionada2.tipo_event_id,
@@ -91,6 +103,9 @@ const BitaEventEdit = (props: any): JSX.Element => {
                 options={typeEvents1}
                 defaultValue={currentSelection}
                 name={name}
+                styles={customStyles}
+                placeholder="Select a type of event"
+                isSearchable={true}
                 onChange={(val) => {
                   onChange(val.value);
                   setEventId(val.value);
@@ -120,10 +135,13 @@ const BitaEventEdit = (props: any): JSX.Element => {
 
             return (
               <Select
-                inputRef={ref}
+                ref={ref}
                 options={eventsId}
                 defaultValue={currentSelection3}
                 name={name}
+                styles={customStyles}
+                placeholder="Select an event"
+                isSearchable={true}
                 onChange={(val) => {
                   onChange(val.value);
                   handleOnChange("events_id", val.value);

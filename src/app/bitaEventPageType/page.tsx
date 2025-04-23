@@ -9,12 +9,23 @@ import {
 } from "@tanstack/react-query";
 import fetchClient from "@/services/fetchClient1";
 import BitaEventList from "@/components/BitaEventList";
-import Select from "react-select";
-import { useForm, Controller, SubmitHandler } from "react-hook-form";
+import Select, { StylesConfig } from "react-select";
+import { useForm, Controller } from "react-hook-form";
 import { useTypeEvents1 } from "@/hooks/useTypeEvents1";
 import axios from "axios";
 
 const queryClient = new QueryClient();
+const customStyles: StylesConfig<{ label: string; value: number }, false> = {
+  option: (base, state) => ({
+    ...base,
+    fontSize: 16,
+    color: "blue",
+    backgroundColor: state.isSelected ? "lightblue" : "white", // Change background color for selected options
+    "&:hover": {
+      backgroundColor: "lightgray",
+    },
+  }),
+};
 
 type ResultData = {
   count: number;
@@ -168,9 +179,11 @@ function Example() {
                     }}
                     options={typeEvents1}
                     name={name}
+                    styles={customStyles}
+                    classNamePrefix="select"
                     onChange={(val) => {
                       onChange(val?.value);
-                      setTipo_event_id(val?.value);
+                      setTipo_event_id(val?.value ?? 0);
                       handleOnChange("tipo_event_id", val?.value);
                     }}
                     onBlur={() => searchs()}
