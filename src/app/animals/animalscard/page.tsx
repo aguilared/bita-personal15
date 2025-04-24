@@ -162,7 +162,7 @@ const Animalss = (): React.JSX.Element => {
     <Container>
       <QueryClientProvider client={queryClient}>
         <div className="flex rounded items-center justify-between flex-wrap bg-gray-500">
-          <div className="flex-grow text-left text-gray-100 px-3 py-1 m-2 ">
+          <div className="flex-grow text-left  text-gray-100   dark:bg-slate-800 px-3 py-1 m-2 ">
             {" List Animals Live Deaths"}
           </div>
         </div>
@@ -185,10 +185,10 @@ const Animalss = (): React.JSX.Element => {
                 info: string;
               }) => (
                 <div
-                  className="flex rounded items-left bg-gray-100 mb-1 shadow"
+                  className="flex rounded items-left  dark:bg-slate-800 mb-1 shadow"
                   key={animal.id}
                 >
-                  <div className="inline-block text-gray-700 text-left px-1 py-0 m-0">
+                  <div className="inline-block text-left px-1 py-0 m-0">
                     <a
                       href={"/static/images/" + `${animal.id}` + ".jpg"}
                       target={"_blank"}
@@ -204,7 +204,7 @@ const Animalss = (): React.JSX.Element => {
                     </a>
                   </div>
 
-                  <div className="w-4/5 inline-block text-gray-700 text-left text-base px-1 py-0 m-0">
+                  <div className="w-4/5 inline-block dark:text-gray-100 text-left text-base px-1 py-0 m-0">
                     ID= {animal.id} &nbsp;
                     {animal.clase.id}&nbsp; {animal.clase.description}:&nbsp;
                     <b> {animal.name}</b>, &nbsp; Dueno=

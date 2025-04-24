@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className={font.className}>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <ThemeProvider theme={theme}>
-            <Header />
+            <Header title="Welcome to Bitacora Personal" />
             {children}
             <Footer />
           </ThemeProvider>

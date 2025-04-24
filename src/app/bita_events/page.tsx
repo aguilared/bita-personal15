@@ -99,8 +99,8 @@ const BitaEventsCard: NextPage = () => {
 
   return (
     <div className="py-3">
-      <div className="mx-auto px-4">
-        <h1 className="text-gray-900 dark:text-white text-2xl font-bold">
+      <div className="mx-auto px-4  bg-gray-500">
+        <h1 className="text-gray-100  dark:bg-slate-800 text-2xl font-bold">
           List Bitacoras Events.
         </h1>
       </div>
@@ -109,15 +109,16 @@ const BitaEventsCard: NextPage = () => {
           <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900" />
         </div>
       ) : null}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 dark:bg-slate-800">
         {data && data.pages.length > 0
           ? data.pages.map((group, i) => (
               <Fragment key={group.results[0]?.id}>
                 {group?.results.map((event) => (
                   <Card
                     key={event.id}
-                    sx={{ maxWidth: 545, bgcolor: "neutral.900" }}
+                    sx={{ maxWidth: 545, bgcolor: "neutral.500" }}
                     color="neutral"
+                    className="dark:bg-slate-800 dark:text-gray-100"
                   >
                     {event.image! ? (
                       <a
@@ -137,7 +138,7 @@ const BitaEventsCard: NextPage = () => {
                     )}
                     <Typography variant="body1">
                       <a
-                        className="bg-blue-200 rounded underline hover:underline hover:underline-offset-4"
+                        className="bg-blue-300 rounded underline hover:underline hover:underline-offset-4"
                         href={`bita_events/4?id=${encodeURIComponent(
                           event.bitacora_id
                         )}`}
@@ -151,7 +152,7 @@ const BitaEventsCard: NextPage = () => {
                     </Typography>
                     <Typography variant="body1">
                       <a
-                        className="bg-blue-200 rounded underline hover:underline hover:underline-offset-4"
+                        className="bg-blue-300 rounded underline hover:underline hover:underline-offset-4"
                         href={`bita_event/4?id=${encodeURIComponent(event.id)}`}
                         target={"_blank"}
                         rel="noreferrer"
@@ -166,11 +167,7 @@ const BitaEventsCard: NextPage = () => {
                         ", " +
                         `${event.event.description}`}
                     </Typography>
-                    <Typography
-                      variant="h6"
-                      color="text.secondary"
-                      component="div"
-                    >
+                    <Typography variant="body1" component="div">
                       <Interweave content={event.description} />
                     </Typography>
                     <Typography
