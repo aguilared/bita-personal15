@@ -68,18 +68,9 @@ const BitaEventEdit = (props: any): JSX.Element => {
   return (
     <form
       name="edit-form"
-      className="w-full max-w-lg  bg-gray-600 shadow-md rounded"
+      className="w-full max-w-lg  bg-gray-200 dark:bg-slate-800 dark:text-gray-100  shadow-md rounded"
       onSubmit={handleSubmit(onSubmitE)}
     >
-      <div className="md:w-11/12 px-3 mb-6 md:mb-0">
-        <label
-          className="block uppercase tracking-wide text-xs font-bold mb-2"
-          htmlFor="id"
-        >
-          Edit Event: {bitacoraSeleccionada2.id}
-        </label>
-      </div>
-
       <div className="md:w-11/12 px-3 mb-6 md:mb-0">
         <label
           className="block uppercase tracking-wide text-xs font-bold mb-2"

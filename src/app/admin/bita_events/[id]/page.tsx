@@ -315,7 +315,6 @@ const BitaEvents = (props: any): JSX.Element => {
       console.log("DATADDEVUELLTA", data);
       console.log("DATADATA0", data.data);
       console.log("variables", variables);
-      const idd = data.data.id;
       ///router.push(`/bitacoras/bita_events/1?id=${encodeURIComponent(idd)}`);
       modalEditClose();
     },
@@ -623,7 +622,7 @@ const BitaEvents = (props: any): JSX.Element => {
         <Box sx={{ ...style, width: 560 }}>
           <form
             id="create-form"
-            className="w-full max-w-lg  bg-gray-600 shadow-md rounded"
+            className="w-full max-w-lg bg-gray-200 dark:bg-slate-800 dark:text-gray-100 shadow-md rounded"
             onSubmit={handleCreateFormSubmit(onSubmit)}
           >
             <Typography id="modal-modal-title" variant="h6" component="h2">
@@ -729,7 +728,7 @@ const BitaEvents = (props: any): JSX.Element => {
                     onChange={onChange} // send value to hook form
                     onBlur={onBlur} // notify when input is touched/blur
                     selected={value}
-                    rows={144}
+                    rows={14}
                   />
                 )}
               />

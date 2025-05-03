@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
-
+import Heading from "@/components/Heading";
 // Your main component
 const MyPageWithHook = () => {
   // 1. Create the ref
@@ -9,7 +9,7 @@ const MyPageWithHook = () => {
 
   // 3. Configure the hook, passing the ref's current value via the content option
   const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
+    contentRef: componentRef,
     documentTitle: "My-Document", // Optional
   });
 
@@ -21,6 +21,8 @@ const MyPageWithHook = () => {
         ref={componentRef}
         style={{ padding: "20px", border: "1px dashed blue" }}
       >
+        <Heading title="Query List Animalsss" subtitle="Vacas" />
+
         <h1>Printable Section</h1>
         <p>This content will be printed when using the hook.</p>
       </div>
