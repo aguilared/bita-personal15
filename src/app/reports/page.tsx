@@ -2,6 +2,8 @@
 import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import Heading from "@/components/Heading";
+import Animals from "@/components/Animals/animals";
+
 // Your main component
 const MyPageWithHook = () => {
   // 1. Create the ref
@@ -17,20 +19,20 @@ const MyPageWithHook = () => {
     <div>
       {/* The actual content to print */}
       {/* 2. Attach the ref here */}
+      <button onClick={handlePrint}>Print Section using Hooks</button>
       <div
         ref={componentRef}
         style={{ padding: "20px", border: "1px dashed blue" }}
       >
-        <Heading title="Query List Animalsss" subtitle="Vacas" />
+        <Heading title="Query List Animalsss" subtitle="Animals" />
 
-        <h1>Printable Section</h1>
-        <p>This content will be printed when using the hook.</p>
+        <Animals />
       </div>
 
       <hr />
 
       {/* Print Trigger Button */}
-      <button onClick={handlePrint}>Print Section using Hook</button>
+      <button onClick={handlePrint}>Print Section using Hookss</button>
 
       {/* Other page content */}
       <p>This part of the page will not be printed.</p>
