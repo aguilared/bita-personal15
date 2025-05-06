@@ -13,6 +13,15 @@ const MyPageWithHook = () => {
   const handlePrint = useReactToPrint({
     contentRef: componentRef,
     documentTitle: "My-Document", // Optional
+    onBeforePrint: async () => {
+      console.log("Antes de obtener el contenido para imprimir...");
+      // Aquí podrías poner lógica para esperar a que Animals cargue todo
+      // O un simple (pero arriesgado) retardo:
+      await new Promise((resolve) => setTimeout(resolve, 20000)); // Espera 1 segundo
+    },
+    onAfterPrint: () => {
+      console.log("Impresión terminada.");
+    }
   });
 
   return (

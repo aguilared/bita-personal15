@@ -1,8 +1,6 @@
 "use client";
 import React, { useState, BaseSyntheticEvent } from "react";
 import Link from "next/link";
-import { IconButton } from "@mui/material";
-import StreetviewRoundedIcon from "@mui/icons-material/ThreeDRotation";
 import Container from "@/components/Container";
 
 import {
@@ -47,8 +45,8 @@ const Animalss = (): React.JSX.Element => {
     queryKey: ["Animalsss"],
     queryFn: async (): Promise<any[]> => {
       const response = await axios.get(`${DATABASEURL}animals`);
-      return response.data;
-      return data.data;
+      return response.data as any[];
+      //return data.data;
     },
   });
 
@@ -79,15 +77,6 @@ const Animalss = (): React.JSX.Element => {
     tipopart: "",
     updated_at: "2022-01-03 11:07",
   });
-
-  const [modalViewHist, setModalViewHist] = useState(false);
-  const [modalInsertar, setModalInsertar] = useState(false);
-  const [modalEliminar, setModalEliminar] = useState(false);
-  const [modalEditar, setModalEditar] = useState(false);
-  const toggleViewHist = () => setModalViewHist(!modalViewHist);
-  const toggle = () => setModalInsertar(!modalInsertar);
-  const toggleEliminar = () => setModalEliminar(!modalEliminar);
-  const toggleEditar = () => setModalEditar(!modalEditar);
 
   const [animalSeleccionada, setAnimalSeleccionada] = useState({
     id: "",
@@ -123,12 +112,7 @@ const Animalss = (): React.JSX.Element => {
     updated_at: "",
   });
 
-  const seleccionarAnimal = (elemento: any, caso: any) => {
-    setAnimalSeleccionada(elemento);
-    console.log("ELEMENTO Eliminar o Editar", elemento);
-    console.log("CASO Eliminar o Editar", caso);
-    caso === "Editar" ? setModalEditar(true) : setModalEliminar(true);
-  };
+
   // to viewHist
   const seleccionarAnimal1 = (elemento: any, caso: any) => {
     setAnimalSeleccionada1(elemento);
@@ -166,111 +150,78 @@ const Animalss = (): React.JSX.Element => {
             {" List Animals Live Deaths"}
           </div>
         </div>
-        {isLoading ? (
-          <div className="fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900" />
-          </div>
-        ) : null}
+
         {data && data.length > 0
           ? data.map(
-              (animal: {
-                id: string;
-                clase: { id: string; description: string };
-                name: string;
-                owner: { name: string };
-                birthdate: string;
-                live: boolean;
-                mother: string;
-                mother_id: string;
-                info: string;
-              }) => (
-                <div
-                  className="flex rounded items-left  dark:bg-slate-800 mb-1 shadow"
-                  key={animal.id}
-                >
-                  <div className="inline-block text-left px-1 py-0 m-0">
-                    <a
-                      href={"/static/images/" + `${animal.id}` + ".jpg"}
-                      target={"_blank"}
-                      rel="noreferrer"
-                    >
-                      <Image
-                        onClick={() => seleccionarAnimal1(animal, "Mostrar")}
-                        src={"/static/images/" + `${animal.id}` + ".jpg"}
-                        alt="my Image"
-                        width="212"
-                        height="188"
-                      />
-                    </a>
-                  </div>
+            (animal: {
+              id: string;
+              clase: { id: string; description: string };
+              name: string;
+              owner: { name: string };
+              birthdate: string;
+              live: boolean;
+              mother: string;
+              mother_id: string;
+              info: string;
+            }) => (
+              <div
+                className="flex rounded items-left  dark:bg-slate-800 mb-1 shadow"
+                key={animal.id}
+              >
+                <div className="inline-block text-left px-1 py-0 m-0">
 
-                  <div className="w-4/5 inline-block dark:text-gray-100 text-left text-base px-1 py-0 m-0">
-                    ID= {animal.id} &nbsp;
-                    {animal.clase.id}&nbsp; {animal.clase.description}:&nbsp;
-                    <b> {animal.name}</b>, &nbsp; Dueno=
-                    {animal.owner.name}. &nbsp; <br />
-                    Nacimiento=
-                    {convertDate(animal.birthdate)}, Live:
-                    {animal.live! ? (
-                      <input
-                        type="checkbox"
-                        checked
-                        placeholder="Live"
-                        onChange={() => console.log("change")}
-                        className="mx-3"
-                      />
-                    ) : (
-                      <input
-                        type="checkbox"
-                        placeholder="Live"
-                        className="mx-3"
-                      />
-                    )}{" "}
-                    <br />
-                    Tipo animal: <b>{animal.clase.description}</b> <br />
-                    Madre: {animal.mother},{" "}
-                    <a
-                      className="bg-blue-200 rounded underline hover:underline hover:underline-offset-4"
-                      href={`/animals/animal/4?id=${encodeURIComponent(
-                        animal.mother_id
-                      )}`}
-                      target={"_blank"}
-                      rel="noreferrer"
-                    >
-                      {" "}
-                      motherID:&nbsp; {animal.mother_id},{" "}
-                    </a>{" "}
-                    <br />
-                    Info= {animal.info} &nbsp;
-                    <br />
-                  </div>
-                  <td className="border px-2 py-2  text-gray-500 dark:text-white">
-                    <Link
-                      href={`/animals/animal/1?id=${encodeURIComponent(
-                        animal.id
-                      )}`}
-                      passHref
-                      legacyBehavior
-                    >
-                      <a target="_blank">
-                        <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold mr-1 py-1 px-1 rounded-full inline-flex items-center">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            height="24px"
-                            viewBox="0 0 24 24"
-                            width="24px"
-                            fill="#000000"
-                          >
-                            <path d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
-                          </svg>
-                        </button>
-                      </a>
-                    </Link>
-                  </td>
+                  <Image
+                    src={"/static/images/" + `${animal.id}` + ".jpg"}
+                    alt="my Image"
+                    width="212"
+                    height="188"
+                  />
                 </div>
-              )
+
+                <div className="w-4/5 inline-block dark:text-gray-100 text-left text-base px-1 py-0 m-0">
+                  ID= {animal.id} &nbsp;
+                  {animal.clase.id}&nbsp; {animal.clase.description}:&nbsp;
+                  <b> {animal.name}</b>, &nbsp; Dueno=
+                  {animal.owner.name}. &nbsp; <br />
+                  Nacimiento=
+                  {convertDate(animal.birthdate)}, Live:
+                  {animal.live! ? (
+                    <input
+                      type="checkbox"
+                      checked
+                      placeholder="Live"
+                      onChange={() => console.log("change")}
+                      className="mx-3"
+                    />
+                  ) : (
+                    <input
+                      type="checkbox"
+                      placeholder="Live"
+                      className="mx-3"
+                    />
+                  )}{" "}
+                  <br />
+                  Tipo animal: <b>{animal.clase.description}</b> <br />
+                  Madre: {animal.mother},{" "}
+                  <a
+                    className="bg-blue-200 rounded underline hover:underline hover:underline-offset-4"
+                    href={`/animals/animal/4?id=${encodeURIComponent(
+                      animal.mother_id
+                    )}`}
+                    target={"_blank"}
+                    rel="noreferrer"
+                  >
+                    {" "}
+                    motherID:&nbsp; {animal.mother_id},{" "}
+                  </a>{" "}
+                  <br />
+                  Info= {animal.info} &nbsp;
+                  <br />
+                </div>
+
+              </div>
             )
+          )
           : null}
       </QueryClientProvider>
     </Container>
