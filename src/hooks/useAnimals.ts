@@ -28,6 +28,7 @@ async function fetchAnimals({
 }
 
 export default function useAnimals(page: number) {
+
   return useInfiniteQuery({
     queryKey: ["todosanimals"],
 
@@ -37,5 +38,10 @@ export default function useAnimals(page: number) {
 
       return animalspage;
     },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => lastPage?.next,
+    getPreviousPageParam: (firstPage, allPages) => firstPage?.previous,
+
   });
 }
+
