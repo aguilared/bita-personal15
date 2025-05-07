@@ -21,7 +21,7 @@ const MyPageWithHook = () => {
     },
     onAfterPrint: () => {
       console.log("Impresión terminada.");
-    }
+    },
   });
 
   return (
@@ -33,7 +33,10 @@ const MyPageWithHook = () => {
         ref={componentRef}
         style={{ padding: "20px", border: "1px dashed blue" }}
       >
-        <Heading title="Query List Animalsss" subtitle="Animals" />
+        <Heading
+          title="Gonzalera Ranch Inventario de Animales"
+          subtitle="Owners: Angel, Arquimedes, Jose Antonio, Petrica, Yoel, Milagros"
+        />
 
         <Animals />
       </div>
