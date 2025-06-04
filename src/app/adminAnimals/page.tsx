@@ -340,7 +340,15 @@ const Animals = (): React.JSX.Element => {
               </div>
 
               <div className="w-4/5 inline-block text-gray-700 text-left text-base px-1 py-0 m-0">
-                ID= {animal.id} &nbsp;
+                <a
+                  className="bg-blue-200 rounded underline hover:underline hover:underline-offset-4"
+                  href={`/animals/animal/4?id=${encodeURIComponent(animal.id)}`}
+                  target={"_blank"}
+                  rel="noreferrer"
+                >
+                  {" "}
+                  ID:&nbsp; {animal.id},{" "}
+                </a>{" "}
                 {animal.clase.id}&nbsp; {animal.clase.description}:&nbsp;
                 <b> {animal.name}</b>, &nbsp; Dueno=
                 {animal.owner.name}. &nbsp; <br />

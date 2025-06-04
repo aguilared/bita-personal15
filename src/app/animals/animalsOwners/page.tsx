@@ -222,7 +222,8 @@ const AnimalsCardQuery: NextPage = () => {
                 <CardContent>
                   <Typography align="left" component="div">
                     <a
-                      href={`/animals/animalId/${encodeURIComponent(
+                      className="bg-blue-200 rounded underline hover:underline hover:underline-offset-4"
+                      href={`/animals/animal/4?id=${encodeURIComponent(
                         animal.id
                       )}`}
                       target={"_blank"}
