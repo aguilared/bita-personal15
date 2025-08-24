@@ -4,7 +4,7 @@ const apiUrl = DATABASEURL + "animals/vacas";
 export default async function getVacas() {
   try {
     const resp = await axios.get(apiUrl);
-    //console.log("RESPP", resp);
+    console.log("VACASSS", resp);
     return resp.data;
   } catch (error) {
     console.log("ERRORP", error);
