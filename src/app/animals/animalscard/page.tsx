@@ -250,7 +250,6 @@ const Animalss = (): React.JSX.Element => {
                         animal.id
                       )}`}
                       passHref
-                      legacyBehavior
                     >
                       <a target="_blank">
                         <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold mr-1 py-1 px-1 rounded-full inline-flex items-center">
