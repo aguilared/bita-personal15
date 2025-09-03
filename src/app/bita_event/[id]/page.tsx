@@ -75,13 +75,15 @@ const BitaEventCard = (): React.JSX.Element => {
     process.env.NEXT_PUBLIC_API_URL + "bitacora/event_id/" + params?.get("id");
   console.log("ENDPOINT ", ENDPOINT);
 
+  const eventId = params?.get("id");
   const { data, isLoading, status, isError } = useQuery<BitacoraEventData>({
-    queryKey: ["EventId"],
+    queryKey: ["EventId", eventId],
     queryFn: async () => {
-      const data = await axios.get(`${ENDPOINT}`);
-      return data.data;
+      const response = await axios.get(`${ENDPOINT}`);
+      return response.data as BitacoraEventData;
     },
     refetchInterval: intervalMs,
+    enabled: !!eventId,
   });
 
   useEffect(() => {

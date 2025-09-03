@@ -52,13 +52,12 @@ type Inputs = {
   updated_at: string;
 };
 
-const dateAnimal = new Date();
+const dateAnimal: Date = new Date();
 
-const convertDate = (dateTo: any) => {
-  const d = dayjs(dateTo).format("DD-MM-YYYY");
-  return d;
+const convertDate = (dateTo: string | number | Date) => {
+  return dayjs(dateTo).format("DD-MM-YYYY");
 };
-const convertDate1 = (date: any) => {
+const convertDate1 = (date: string | number | Date) => {
   return dayjs(date).format("YYYY/MM/DD hh:mm");
 };
 
