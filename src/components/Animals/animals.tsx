@@ -55,7 +55,9 @@ const Animalss = (): React.JSX.Element => {
         info: string;
       }>
     > => {
-      const response = await axios.get(`${DATABASEURL}animals`);
+      const response = await axios.get(
+        `${DATABASEURL}animals/rawQueryAnimalsLive`
+      );
       return response.data as Array<{
         id: string;
         clase: { id: string; description: string };
