@@ -67,6 +67,7 @@ const BitaEventsCard: NextPage = () => {
     tipo_event_id?: number;
   }): Promise<ResultData> {
     const url = `${process.env.NEXT_PUBLIC_API_URL}bitacora/events/bita_events_paginated?offset=${pageParam}&limit=9`;
+    console.log("URL", url);
 
     const request = await fetchClient.get<ResultData>(url);
     console.log("Requestttt", request);
