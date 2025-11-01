@@ -19,7 +19,6 @@ import axios from "axios";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { useOwners } from "../../../hooks/useOwners";
 import Image from "next/image";
-import { styleText } from "util";
 import Select, { StylesConfig } from "react-select";
 
 const DATABASEURL = process.env.NEXT_PUBLIC_API_URL;
