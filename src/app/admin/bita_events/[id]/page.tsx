@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useContext, useCallback } from "react";
+import { useEffect, useState, useContext, useCallback, useId } from "react";
 import { useSearchParams } from "next/navigation";
 import {
   useForm,
@@ -131,7 +131,7 @@ const BitaEvents = (props: any): JSX.Element => {
 
   console.log("PARAMS", params);
   console.log("ID", ID);
-
+  const idd = useId();
   const { isBitacora, loadBitacora, bitacora } = useBitacora(); //to Global
   const { typeEvents1 }: { typeEvents1?: { value: number; label: string }[] } =
     useTypeEvents1() || {};
@@ -619,6 +619,7 @@ const BitaEvents = (props: any): JSX.Element => {
                       classNamePrefix="select"
                       ref={ref}
                       defaultValue={{ label: "Seleccione..", value: 0 }}
+                      instanceId={idd} // <-- **Agrega esto**
                       options={typeEvents1}
                       value={(typeEvents1 ?? []).find(
                         (c: { value: number }) => c.value === value
@@ -663,14 +664,21 @@ const BitaEvents = (props: any): JSX.Element => {
                     <Select
                       className="basic-single"
                       classNamePrefix="select"
-                      inputRef={ref}
-                      options={eventsId}
-                      value={eventsId.find((c) => c.value === value)}
+                      ref={ref}
+                      options={Array.isArray(eventsId) ? eventsId : []}
+                      instanceId={idd} // <-- **Agrega esto**
+                      value={(Array.isArray(eventsId) ? eventsId : []).find(
+                        (c: any) => c.value === value
+                      )}
                       name={name}
                       styles={customStyles}
-                      onChange={(val) => {
-                        onChange(val.value);
-                        handleOnChange("events_id", val.value);
+                      onChange={(val: any) => {
+                        if (val) {
+                          onChange(val.value);
+                          handleOnChange("events_id", val.value);
+                        } else {
+                          onChange(null);
+                        }
                       }}
                     />
                   );
