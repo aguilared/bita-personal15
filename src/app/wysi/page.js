@@ -1,6 +1,6 @@
 // **IMPORTANTE: ESTE CÓDIGO ES UN ESQUEMA Y PUEDE NO FUNCIONAR DIRECTAMENTE.**
 // **NO SE RECOMIENDA USARLO EN PRODUCCIÓN.**
-
+'use client';
 import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -48,7 +48,7 @@ export default function AlertDialog() {
         Abrir Modal
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Editor con Popup "Integrado"</DialogTitle>
+        <DialogTitle>Editor con Popup &quot;Integrado&quot;</DialogTitle>
         <DialogContent>
           <div style={{ position: "relative" }}>
             {" "}

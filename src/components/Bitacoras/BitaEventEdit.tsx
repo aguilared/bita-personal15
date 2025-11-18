@@ -154,7 +154,7 @@ const BitaEventEdit = (props: any): JSX.Element => {
           name="description"
           control={control}
           rules={{ required: true }}
-          render={({ field: { onChange, onBlur, value, ref } }) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <WYSIWYGEditor
               onChange={onChange} // send value to hook form
               onBlur={onBlur} // notify when input is touched/blur
