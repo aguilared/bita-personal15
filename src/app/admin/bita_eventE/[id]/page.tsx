@@ -23,7 +23,7 @@ import Select, { StylesConfig } from "react-select";
 
 type OptionType = { label: string; value: number; isDisabled?: boolean };
 
-//import "../../../../globals.css";
+import "../../../globals.css";
 
 // Define la estructura del formulario de edición
 interface EditFormValues {

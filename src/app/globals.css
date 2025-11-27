@@ -15,3 +15,26 @@
     text-wrap: balance;
   }
 }
+
+/* Estilos para los enlaces dentro del contenido del editor */
+.editor-class a {
+  color: #3b82f6; /* Un color azul estándar, ajusta si quieres */
+  text-decoration: underline; /* Subraya el texto del enlace */
+  cursor: pointer; /* Cambia el cursor a una mano */
+}
+
+/* Opcional: Un estilo al pasar el ratón */
+.editor-class a:hover {
+  color: #1d4ed8; /* Un azul más oscuro al pasar el ratón */
+}
+
+.description-content a {
+  /* Estilo principal del enlace */
+  color: blue !important; /* Fuerza el color azul */
+  text-decoration: underline !important; /* Fuerza el subrayado */
+}
+
+.description-content a:hover {
+  /* Estilo al pasar el mouse */
+  color: darkblue !important;
+}

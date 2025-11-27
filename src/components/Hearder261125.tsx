@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle, center }) => {
                 style={{ objectFit: "cover" }}
               />
               <span className="sm:inline-block font-semibold text-xl tracking-tight px-4 ">
-                Bitacora Aguila
+                Bitacora Personal Aguila
               </span>
             </div>
           </div>
@@ -243,7 +243,7 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle, center }) => {
 
       <div className="sm:p-3 md:py-3 lg:px-3 py-3 px-4 bg-white dark:bg-black divide-y">
         <header>
-          <div className="grid grid-cols-5 gap-4">
+          <div className="grid grid-cols-4 gap-4">
             <div className="flex items-center flex-shrink-0 mr-6  text-gray-900 dark:text-white">
               <Image
                 src={"/static/images/logo3.jpg"}
@@ -253,10 +253,10 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle, center }) => {
                 style={{ objectFit: "cover" }}
               />
               <span className="sm:inline-block font-semibold text-xl tracking-tight px-4 ">
-                Bitacora Aguila2
+                Bitacora Personal Aguila2
               </span>
             </div>
-            <nav className="text-sm space-x-6 text-gray-900 dark:text-white">
+            <nav className="text-base font-medium space-x-6 text-gray-900 dark:text-white">
               <Link
                 className="font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50  md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
                 href="/bita_events/"
@@ -268,6 +268,7 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle, center }) => {
               <Link href="/bitaEventWordEvent/">PaginateWord</Link>
               <Link href="/bitaEventPageType/">PagiType</Link>
               <Link href="/bitaEventTypeEven/">PagiTypeEvent</Link>
+              <Link href="/bitaEvent/">InfiBitaEvents</Link>
               <Link href="/adminAnimals/">AdminAnimals</Link>
             </nav>
           </div>

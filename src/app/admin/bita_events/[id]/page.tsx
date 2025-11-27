@@ -180,11 +180,13 @@ const BitaEvents = (props: any): JSX.Element => {
     });
   }, [setTotalEvents, events, bitacora]);
 
-  const { data, isLoading, refetch } = useQuery({
+  const { data, isLoading, refetch } = useQuery<EditFormValues[]>({
     queryKey: ["BitacoraEvents"],
     queryFn: async () => {
-      const data = await axios.get(`${DATABASEURL}bitacora/events/admin/${ID}`);
-      return data.data;
+      const response = await axios.get(
+        `${DATABASEURL}bitacora/events/admin/${ID}`
+      );
+      return response.data;
     },
     refetchInterval: intervalMs,
   });
@@ -390,198 +392,232 @@ const BitaEvents = (props: any): JSX.Element => {
               <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900" />
             </div>
           ) : null}
-          <table className="lg:table-auto shadow-lg  bg-slate-100 dark:bg-slate-800">
-            <thead>
-              <tr>
-                <th className=" text-gray-500 dark:text-white border text-left px-2 py-2">
-                  Item/Id
-                </th>
-                <th className=" text-gray-500 dark:text-white border text-left px-2 py-2">
-                  Tipo Evento
-                </th>
-                <th className=" text-gray-500 dark:text-white border text-left px-2 py-2">
-                  Evento
-                </th>
-                <th className=" text-gray-500 dark:text-white border text-left px-2 py-2">
-                  Description Event
-                </th>
-                <th className=" text-gray-500 dark:text-white border text-left px-2 py-2">
-                  Date Event
-                </th>
-                <th className=" text-gray-500 dark:text-white border text-left px-2 py-2">
-                  Image
-                </th>
-                <th className=" text-gray-500 dark:text-white border text-left px-2 py-2">
-                  <div>
-                    <button
-                      onClick={modalCreateOpen}
-                      className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-0 mr-1 rounded-full inline-flex items-center"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        height="24px"
-                        viewBox="0 0 24 24"
-                        width="24px"
-                        fill="#434343"
-                      >
-                        <path d="M0 0h24v24H0z" fill="none" />
-                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-                      </svg>
-                    </button>
-                  </div>
-                </th>
-              </tr>
-            </thead>
-
-            {data && data?.length ? (
-              <>
-                {data.map((event: any, key: any) => (
-                  <tbody key={key}>
-                    <tr key={key}>
-                      <td className="border px-2 py-2  text-gray-500 dark:text-white">
-                        {key + 1}/{event.id}
-                        <IconButton
-                          onClick={() => seleccionarBitacora1(event, "Mostrar")}
-                        ></IconButton>
-                        {event.image && (
-                          <a
-                            href={"/static/images/" + `${event.id}` + ".jpg"}
-                            target={"_blank"}
-                            rel="noreferrer"
-                          >
-                            <Image
-                              onClick={() =>
-                                seleccionarBitacora1(event, "Mostrar")
-                              }
-                              src={"/static/images/" + `${event.id}` + ".jpg"}
-                              alt=""
-                              width="60"
-                              height="50"
-                            />
-                          </a>
-                        )}
-                      </td>
-                      <td className="border px-2 py-2  text-gray-500 dark:text-white">
-                        {event.tipo_event_id}
-                      </td>
-                      <td className="border px-2 py-2  text-gray-500 dark:text-white">
-                        {event.events_id}
-                      </td>
-                      <td className="border px-2 py-2  text-gray-500 dark:text-white">
-                        {event.description}
-                      </td>
-                      <td className="border px-2 py-2  text-gray-500 dark:text-white">
-                        {convertDate(event.event_date)}
-                      </td>
-                      {event.image! ? (
-                        <td className="border px-2 py-2  text-gray-500 dark:text-white">
-                          <input
-                            type="checkbox"
-                            checked
-                            placeholder="Image"
-                            className="mx-3"
-                            onChange={handleOnChange1}
-                          />
-                        </td>
-                      ) : (
-                        <td className="border px-2 py-2  text-gray-500 dark:text-white">
-                          <input
-                            type="checkbox"
-                            placeholder="Image"
-                            className="mx-3"
-                          />
-                        </td>
-                      )}
-
-                      <td className="border px-2 py-2  text-gray-500 dark:text-white">
-                        <Link
-                          href={`/bita_event/1?id=${encodeURIComponent(
-                            event.id
-                          )}`}
-                          passHref
-                          target="_blank"
-                        >
-                          <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold mr-1 py-1 px-1 rounded-full inline-flex items-center">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              height="24px"
-                              viewBox="0 0 24 24"
-                              width="24px"
-                              fill="#000000"
-                            >
-                              <path d="M0 0h24v24H0z" fill="none" />
-                              <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
-                            </svg>
-                          </button>
-                        </Link>
-                      </td>
-
-                      <td className="border px-2 py-2  text-gray-500 dark:text-white">
-                        <div className="inline-block text-gray-700 text-right px-1 py-1 m-0">
-                          <button
-                            onClick={() =>
-                              seleccionarBitacoraD(event, "Delete")
-                            }
-                            className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-0 mr-1 rounded-full inline-flex items-center"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              className="feather feather-trash-2"
-                            >
-                              <polyline points="3 6 5 6 21 6" />
-                              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                              <line x1="10" y1="11" x2="10" y2="17" />
-                              <line x1="14" y1="11" x2="14" y2="17" />
-                            </svg>
-                          </button>
-                        </div>
-                        <div className="inline-block text-gray-700 text-right px-1 py-1 m-0">
-                          <button
-                            onClick={() =>
-                              seleccionarBitacoraE(event, "Editar")
-                            }
-                            className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-0 mr-1 rounded-full inline-flex items-center"
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              className="feather feather-edit"
-                            >
-                              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                            </svg>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                ))}
-              </>
-            ) : (
+          <div className="grid grid-cols-1">
+            <table className="table-auto md:table-fixed shadow-lg  bg-slate-100 dark:bg-slate-800">
               <thead>
                 <tr>
-                  <td className="text-center bg-gray-100 text-gray-500 py-5">
-                    No data eventss
-                  </td>
+                  <th className=" text-gray-500 dark:text-white border text-left px-2 py-2">
+                    Item/Id
+                  </th>
+                  <th className=" text-gray-500 dark:text-white border text-left px-2 py-2">
+                    Tipo Evento
+                  </th>
+                  <th className=" text-gray-500 dark:text-white border text-left px-2 py-2">
+                    Evento
+                  </th>
+                  <th className=" text-gray-500 dark:text-white border text-left px-2 py-2">
+                    Description Event
+                  </th>
+                  <th className=" text-gray-500 dark:text-white border text-left px-2 py-2">
+                    Date Event
+                  </th>
+                  <th className=" text-gray-500 dark:text-white border text-left px-2 py-2">
+                    Image
+                  </th>
+                  <th className=" text-gray-500 dark:text-white border text-left px-2 py-2">
+                    <div>
+                      <button
+                        onClick={modalCreateOpen}
+                        className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-0 mr-1 rounded-full inline-flex items-center"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="24px"
+                          viewBox="0 0 24 24"
+                          width="24px"
+                          fill="#434343"
+                        >
+                          <path d="M0 0h24v24H0z" fill="none" />
+                          <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                        </svg>
+                      </button>
+                    </div>
+                  </th>
+                  <th className=" text-gray-500 dark:text-white border text-left px-2 py-2">
+                    Actions
+                  </th>
                 </tr>
               </thead>
-            )}
-          </table>
+
+              {Array.isArray(data) && data.length > 0 ? (
+                <>
+                  {data.map((event: any, key: any) => (
+                    <tbody key={key}>
+                      <tr key={key}>
+                        <td className="border px-2 py-2  text-gray-500 dark:text-white">
+                          {key + 1}/{event.id}
+                          <IconButton
+                            onClick={() =>
+                              seleccionarBitacora1(event, "Mostrar")
+                            }
+                          ></IconButton>
+                          {event.image && (
+                            <a
+                              href={"/static/images/" + `${event.id}` + ".jpg"}
+                              target={"_blank"}
+                              rel="noreferrer"
+                            >
+                              <Image
+                                onClick={() =>
+                                  seleccionarBitacora1(event, "Mostrar")
+                                }
+                                src={"/static/images/" + `${event.id}` + ".jpg"}
+                                alt=""
+                                width="60"
+                                height="50"
+                              />
+                            </a>
+                          )}
+                        </td>
+                        <td className="border px-2 py-2  text-gray-500 dark:text-white">
+                          {event.tipo_event_id}
+                        </td>
+                        <td className="border px-2 py-2  text-gray-500 dark:text-white">
+                          {event.events_id}
+                        </td>
+                        <td className="border px-2 py-2  text-gray-500 dark:text-white">
+                          {event.description}
+                        </td>
+                        <td className="border px-2 py-2  text-gray-500 dark:text-white">
+                          {convertDate(event.event_date)}
+                        </td>
+                        {event.image! ? (
+                          <td className="border px-2 py-2  text-gray-500 dark:text-white">
+                            <input
+                              type="checkbox"
+                              checked
+                              placeholder="Image"
+                              className="mx-3"
+                              onChange={handleOnChange1}
+                            />
+                          </td>
+                        ) : (
+                          <td className="border px-2 py-2  text-gray-500 dark:text-white">
+                            <input
+                              type="checkbox"
+                              placeholder="Image"
+                              className="mx-3"
+                            />
+                          </td>
+                        )}
+
+                        <td className="border px-2 py-2  text-gray-500 dark:text-white">
+                          <Link
+                            href={`/bita_event/1?id=${encodeURIComponent(
+                              event.id
+                            )}`}
+                            passHref
+                            target="_blank"
+                          >
+                            <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold mr-1 py-1 px-1 rounded-full inline-flex items-center">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                height="24px"
+                                viewBox="0 0 24 24"
+                                width="24px"
+                                fill="#000000"
+                              >
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+                              </svg>
+                            </button>
+                          </Link>
+                        </td>
+
+                        <td className="border px-2 py-2  text-gray-500 dark:text-white">
+                          <div className="inline-block text-gray-700 text-right px-1 py-1 m-0">
+                            <button
+                              onClick={() =>
+                                seleccionarBitacoraD(event, "Delete")
+                              }
+                              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-0 mr-1 rounded-full inline-flex items-center"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="feather feather-trash-2"
+                              >
+                                <polyline points="3 6 5 6 21 6" />
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                <line x1="10" y1="11" x2="10" y2="17" />
+                                <line x1="14" y1="11" x2="14" y2="17" />
+                              </svg>
+                            </button>
+                          </div>
+                          <div className="inline-block text-gray-700 text-right px-1 py-1 m-0">
+                            <button
+                              onClick={() =>
+                                seleccionarBitacoraE(event, "Editar")
+                              }
+                              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-1 px-0 mr-1 rounded-full inline-flex items-center"
+                            >
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="feather feather-edit"
+                              >
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                              </svg>
+                            </button>
+                          </div>
+                          <td className="border px-2 py-2  text-gray-500 dark:text-white">
+                            <Link
+                              href={`/admin/bita_eventE/1?id=${encodeURIComponent(
+                                event.id
+                              )}`}
+                              passHref
+                              target="_blank"
+                            >
+                              <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold mr-1 py-1 px-1 rounded-full inline-flex items-center">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  className="feather feather-edit"
+                                >
+                                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                </svg>
+                              </button>
+                            </Link>
+                          </td>
+                        </td>
+                      </tr>
+                    </tbody>
+                  ))}
+                </>
+              ) : (
+                <thead>
+                  <tr>
+                    <td className="text-center bg-gray-100 text-gray-500 py-5">
+                      No data eventss
+                    </td>
+                  </tr>
+                </thead>
+              )}
+            </table>
+          </div>
         </div>
       </div>
       <Modal

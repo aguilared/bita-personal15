@@ -65,7 +65,7 @@ const AddBlog = () => {
             <h4 className="card-title">New Code Snippet</h4>
             <form autoComplete="off">
               <div className="form-group">
-                <label htmlFor="title">Title</label>
+                <label htmlFor="title">Formulario itle</label>
                 <input
                   id="title"
                   type="text"

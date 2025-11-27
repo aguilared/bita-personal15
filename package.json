@@ -43,6 +43,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/axios": "^0.9.36",
+    "@types/draftjs-to-html": "^0.8.4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

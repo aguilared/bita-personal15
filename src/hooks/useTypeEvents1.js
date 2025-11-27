@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import getTypeEvents from "../services/getTypeEvents";
+import getTypeEvents from "@/services/getTypeEvents";
 
 export function useTypeEvents1() {
   const [typeEvents1, setTypeEvents1] = useState({});
+  //console.log("usetypeEvents1")
   useEffect(
     function () {
       let options = [{ value: 0, label: "Seleccione" }];

@@ -2,11 +2,6 @@
 import React, { useState, useCallback } from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 
-import { Editor } from "react-draft-wysiwyg";
-import { EditorState } from "draft-js";
-import { stateToHTML } from "draft-js-export-html";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-
 // NOTA IMPORTANTE: Se han eliminado las importaciones de react-draft-wysiwyg, draft-js y
 // draft-js-export-html ya que no pudieron ser resueltas en el entorno de compilación.
 // Se ha sustituido el componente Editor por un <textarea> nativo.
@@ -16,7 +11,6 @@ interface FormData {
   nombreUsuario: string;
   rol: "" | "administrador" | "editor" | "lector";
   description: string; // Campo para el texto de la descripción
-  description2: string; // Campo para el texto de la descripción
 }
 
 interface RolOption {
@@ -76,17 +70,12 @@ const EditFormModal = ({ isOpen, onClose }) => {
     },
     [onClose]
   );
-  const [editorState, setEditorState] = React.useState(() =>
-    EditorState.createEmpty()
-  );
+
   if (!isOpen) return null;
 
   return (
     // Backdrop Oscuro (Capa que cubre toda la pantalla)
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-75 backdrop-blur-sm transition-opacity duration-300 "
-      style={{ zIndex: 3000 }}
-    >
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-75 backdrop-blur-sm transition-opacity duration-300">
       {/* Tarjeta del formulario (Modal) */}
       <div className="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-100">
         <div className="flex justify-between items-start mb-6">
@@ -201,29 +190,6 @@ const EditFormModal = ({ isOpen, onClose }) => {
                 )}
               />
             </div>
-          </div>
-
-          <div className="mt-6" style={{ zIndex: 9000 }}>
-            <label htmlFor="description2" className={labelBaseClasses}>
-              Descripción de Evento (Texto Simple)
-            </label>
-            <Controller
-              name="description2"
-              control={control}
-              render={({ field }) => (
-                <Editor
-                  editorState={editorState}
-                  onEditorStateChange={setEditorState}
-                  wrapperClassName="wrapper-class"
-                  editorClassName="editor-class"
-                  toolbarClassName="toolbar-class"
-                  onBlur={() => field.onBlur()} // Important for validation
-                  onChange={() =>
-                    field.onChange(stateToHTML(editorState.getCurrentContent()))
-                  }
-                />
-              )}
-            />
           </div>
 
           {/* --- CAMPO 3: TEXTAREA (Reemplazo del Editor Enriquecido) --- */}

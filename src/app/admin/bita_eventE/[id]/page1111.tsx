@@ -17,6 +17,15 @@ import {
 } from "@tanstack/react-query";
 import axios from "axios";
 import ImagenSegura from "@/components/ImagenSegura";
+import BitaEventEdit11 from "@/components/Bitacoras/BitaEventEdit11";
+import {
+  useForm,
+  Controller,
+  SubmitHandler,
+  DefaultValues,
+} from "react-hook-form";
+import { useTypeEvents1 } from "@/hooks/useTypeEvents1";
+import { useEventsId } from "@/hooks/useEventsId";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,6 +37,36 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+interface EditFormValues {
+  id: number;
+  bitacora_id: number;
+  tipo_event_id: number;
+  events_id: number;
+  description: string;
+  event_date: string;
+  image: boolean;
+}
+
+type BitacoraEventData = {
+  bitacora_id: string;
+  event_date: string;
+  events_id: number;
+  tipo_event: number;
+  bitacora: {
+    author: {
+      name: string;
+    };
+  };
+  tipoEvent: {
+    description: string;
+  };
+  event: {
+    description: string;
+  };
+  description: string;
+  image: boolean;
+};
 
 const convertDate1 = (date: string | Date) => {
   const d = dayjs(date).format("D-M-YY h:mm");
@@ -42,40 +81,31 @@ export default function App() {
   );
 }
 
-type BitacoraEventData = {
-  bitacora_id: string;
-  event_date: string;
-  bitacora: {
-    author: {
-      name: string;
-    };
-  };
-  tipoEvent: {
-    description: string;
-  };
-  event: {
-    description: string;
-  };
-  description: string;
-};
-
 const BitaEventCard = (): React.JSX.Element => {
   const params = useSearchParams();
   const componentRef = useRef(null);
+  const dateBitacora = new Date();
 
-  const [bitacora_id, setBitacora_id] = useState("");
-  const [bitacoraDate, setBitacoraDate] = useState("");
-  const [author, setAuthor] = useState("");
+  const { typeEvents1 }: { typeEvents1?: { value: number; label: string }[] } =
+    useTypeEvents1() || {};
+
+  const [bitacora_id, setBitacoraId] = useState(0);
   const [description, setDescription] = useState("");
-  const [tipoevent, setTipoEvent] = useState("");
-  const [event, setEvent] = useState("");
-  const [intervalMs, setIntervalMs] = useState(1000);
+  const [tipo_event_id, setTipoEventId] = useState(0);
+  const [tipo_event_descri, setTipoEventDescri] = useState("");
+  const [eventId, setEventId] = useState("");
+  const { eventsId } = useEventsId(eventId); //
 
+  const [events_descri, setEventsDescri] = useState("");
+  const [event_date, setEventDate] = useState("");
+  const [image, setImage] = useState(false);
+  const [intervalMs, setIntervalMs] = useState(1000);
   const ENDPOINT =
     process.env.NEXT_PUBLIC_API_URL + "bitacora/event_id/" + params?.get("id");
   console.log("ENDPOINT ", ENDPOINT);
 
   const eventId = params?.get("id");
+
   const { data, isLoading, status, isError } = useQuery<BitacoraEventData>({
     queryKey: ["EventId", eventId],
     queryFn: async () => {
@@ -90,15 +120,34 @@ const BitaEventCard = (): React.JSX.Element => {
     if (status === "success") {
       console.log("====================================");
       console.log("renders");
-      console.log("====================================");
-      setBitacora_id(data.bitacora_id);
-      setBitacoraDate(data.event_date);
-      setAuthor(data.bitacora.author.name);
-      setTipoEvent(data.tipoEvent.description);
-      setEvent(data.event.description);
+      console.log("Data", data);
+      setBitacoraId(data.bitacora_id);
+      setEventDate(data.event_date);
+      setTipoEventDescri(data.tipoEvent.description);
+      setTipoEventId(data.tipo_event_id);
+      setEventId(data.events_id);
+      setEventsDescri(data.event.description);
       setDescription(data.description);
+      setImage(data.image);
     }
   }, [data, status]);
+
+  const editFormDefaultValues: DefaultValues<EditFormValues> = {
+    tipo_event_id: tipo_event_id,
+    events_id: events_id,
+    description: description,
+    event_date: event_date,
+    image: image,
+  };
+
+  const {
+    register: registerEditField,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<EditFormValues>({
+    defaultValues: editFormDefaultValues,
+  });
 
   const handlePrint = useReactToPrint({
     contentRef: componentRef,
@@ -113,6 +162,53 @@ const BitaEventCard = (): React.JSX.Element => {
       console.log("Impresión terminada.");
     },
   });
+
+  const onSubmitE: SubmitHandler<EditFormValues> = (data) => {
+    const parsedata = {
+      id: Number(data.id),
+      bitacora_id: Number(data.bitacora_id),
+      tipo_event_id: Number(data.tipo_event_id),
+      events_id: Number(data.events_id),
+      description: data.description,
+      event_date: new Date(data.event_date),
+      image: new Boolean(data.image),
+    };
+    console.log("ParseDataEdit", parsedata);
+    //createPostMutationE.mutate(parsedata);
+  };
+
+  const [bitacoraAdd, setBitacoraAdd] = useState({
+    bitacora_id: Number(params?.get("id")),
+    tipo_event_id: 1,
+    events_id: 1,
+    description: "Dolor en ...",
+    event_date: convertDate1(dateBitacora),
+    image: "true",
+  });
+
+  const handleOnChange = (bitacoraKey: string, value: string) => {
+    console.log("BitacoraKey1", bitacoraKey);
+    console.log("BitacoraKeyValue1", value);
+    setBitacoraAdd({ ...bitacoraAdd, [bitacoraKey]: value });
+  };
+
+  const [bitacoraE, setBitacoraE] = useState({
+    id: 1,
+    bitacora_id: Number(params?.get("id")),
+    tipo_event_id: 1,
+    events_id: 1,
+    description: "Dolor en..",
+    event_date: "2022-01-01 11:07",
+    image: "false",
+  });
+
+  const handleOnChangeE = (bitacoraKey: any, value: any) => {
+    console.log("BitacoraKeyE", bitacoraKey);
+    console.log("BitacoraKeyValueE", value);
+    setBitacoraE({ ...bitacoraE, [bitacoraKey]: value });
+  };
+
+  const handleChange = (e: any) => console.log(e);
 
   if (isLoading) {
     return (
@@ -172,9 +268,7 @@ const BitaEventCard = (): React.JSX.Element => {
                 {data.event.description}
               </Typography>
               <Typography variant="h6" color="textSecondary" component="h2">
-                <div className="description-content">
-                  <Interweave content={data.description} />
-                </div>
+                <Interweave content={data.description} />
               </Typography>
             </CardContent>
             <div className="container max-w-4xl m-auto px-4 mt-0">
@@ -210,6 +304,18 @@ const BitaEventCard = (): React.JSX.Element => {
           </Card>{" "}
         </div>
       </div>
+      <BitaEventEdit11
+        tipo_event_id={tipo_event_id}
+        events_id={events_id}
+        description={description}
+        event_date={event_date}
+        eventsId={eventsId}
+        image={image}
+        onSubmitE={onSubmitE}
+        handleOnChangeE={handleOnChangeE}
+        handleOnChange={handleOnChange}
+        handleChange={handleChange}
+      />
     </div>
   );
 };

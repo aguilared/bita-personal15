@@ -19,11 +19,24 @@ import fetchClient from "@/services/fetchClient1";
 import Container from "@/components/Container";
 import { Button, CardActions } from "@mui/material";
 
+// Define a more complete Bitacora type based on usage in the component
+interface EventBitacora {
+  id: number;
+  description: string;
+  tipoEvent: {
+    description: string;
+  };
+  event: {
+    description: string;
+  };
+  // Add any other properties from the API response that are used
+}
+
 type ResultData = {
   count: number;
-  next: number;
-  previous: number;
-  results: Bitacora[];
+  next: number | null; // 'next' can be null if there are no more pages
+  previous: number | null; // 'previous' can be null if there are no previous pages
+  results: EventBitacora[]; // Use the more specific EventBitacora type
 };
 
 const convertDate = (date: any) => {
@@ -66,24 +79,11 @@ const BitaEventsCard: NextPage = () => {
     isLoading,
   } = useBitacoras();
   console.log("Datall", data); */
-
-  /*const { isPending, error, data, isFetching } = useQuery({
-    queryKey: ["repoData"],
-    queryFn: () =>
-      axios.get("http://localhost:3000/api/animals").then((res) => res.data),
-  }); */
-
-  const fetchPage = async ({ pageParam = 0 }) => {
-    return await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}bitacora/events/bita_events_paginated?offset=${pageParam}&limit=9`
-    ).then((res) => res.json()); //Should be of type Page
-  };
-
   async function fetchBitacoras({
-    pageParam = 0,
+    pageParam, // pageParam is always provided by useInfiniteQuery, no default needed
     tipo_event_id,
   }: {
-    pageParam?: number;
+    pageParam: number; // Ensure pageParam is a number
     tipo_event_id?: number;
   }): Promise<ResultData> {
     const url = `${process.env.NEXT_PUBLIC_API_URL}bitacora/events/bita_events_paginated?offset=${pageParam}&limit=9`;
@@ -105,41 +105,38 @@ const BitaEventsCard: NextPage = () => {
     ...result
   } = useInfiniteQuery({
     queryKey: ["listbitacoras"],
-    queryFn: ({ pageParam }) => fetchBitacoras(pageParam),
-    initialPageParam: 1,
+    // Pass pageParam as an object to match fetchBitacoras signature
+    queryFn: ({ pageParam }) =>
+      fetchBitacoras({ pageParam: pageParam as number }),
+    initialPageParam: 0, // Start with offset 0 for the first page
 
-    getNextPageParam: (lastPage, allPages, lastPageParam, allPageParams) =>
-      lastPage.nextCursor,
-    getPreviousPageParam: (
-      firstPage,
-      allPages,
-      firstPageParam,
-      allPageParams
-    ) => firstPage.prevCursor,
+    // Use lastPage.next as the next offset, or undefined if no more pages
+    getNextPageParam: (lastPage) => lastPage.next ?? undefined,
+    // Use firstPage.previous as the previous offset, or undefined if no previous pages
+    getPreviousPageParam: (firstPage) => firstPage.previous ?? undefined,
   });
+
+  // The useEffect block from lines 115-121 was incorrectly structured
+  // and has been removed as its properties belong to useInfiniteQuery.
 
   useEffect(() => {
     if (inView) {
       fetchNextPage();
     }
   }, [inView]);
-  console.log("DATA", data);
+
   return (
     <Container>
-      <div className="flex-grow text-left text-gray-100 px-3 py-1 m-2 ">
-        {" Admin Bitacoras"}
-      </div>
-      <div className="flex-grow text-right px-3 py-1 m-2 text-gray-100">
-        <Button color="success" variant="contained">
-          Add
-        </Button>
-      </div>
-
       {data &&
         data.pages.map((group, i) => (
           <Fragment key={i}>
-            {group?.results.map((event) => (
-              <div className="grid grid-flow-col grid-rows-1 grid-cols-3 gap-8">
+            {/* 'group.results' is guaranteed to be an array by ResultData type, so '?' is not needed here */}
+            {group.results.map((event) => (
+              // Add a unique 'key' prop for each mapped element
+              <div
+                key={event.id}
+                className="grid grid-flow-col grid-rows-1 grid-cols-3 gap-8"
+              >
                 <div>
                   <Card sx={{ maxWidth: 345 }}>
                     <CardMedia
@@ -165,6 +162,9 @@ const BitaEventsCard: NextPage = () => {
                     </CardActions>
                   </Card>
                 </div>
+                {/* This second card block appears to be a duplicate.
+                    If it's intended to be distinct or conditionally rendered, please adjust.
+                    For now, it's kept as-is to resolve type errors. */}
                 <div>
                   <Card sx={{ maxWidth: 345 }}>
                     <CardMedia
@@ -206,8 +206,8 @@ const BitaEventsCard: NextPage = () => {
           {isFetchingNextPage
             ? "Loading more..."
             : hasNextPage
-              ? "Load Newer"
-              : "Nothing more to load"}
+            ? "Load Newer"
+            : "Nothing more to load"}
         </button>
       </div>
     </Container>
