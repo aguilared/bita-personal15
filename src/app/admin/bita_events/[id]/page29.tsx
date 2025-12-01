@@ -441,11 +441,33 @@ const BitaEvents = (props: any): JSX.Element => {
 
               {Array.isArray(data) && data.length > 0 ? (
                 <>
-                  {data.map((event: EditFormValues, key: number) => (
-                    <tbody key={event.id}>
-                      <tr key={event.id}>
+                  {data.map((event: any, key: any) => (
+                    <tbody key={key}>
+                      <tr key={key}>
                         <td className="border px-2 py-2  text-gray-500 dark:text-white">
                           {key + 1}/{event.id}
+                          <IconButton
+                            onClick={() =>
+                              seleccionarBitacora1(event, "Mostrar")
+                            }
+                          ></IconButton>
+                          {event.image && (
+                            <a
+                              href={"/static/images/" + `${event.id}` + ".jpg"}
+                              target={"_blank"}
+                              rel="noreferrer"
+                            >
+                              <Image
+                                onClick={() =>
+                                  seleccionarBitacora1(event, "Mostrar")
+                                }
+                                src={"/static/images/" + `${event.id}` + ".jpg"}
+                                alt=""
+                                width="60"
+                                height="50"
+                              />
+                            </a>
+                          )}
                         </td>
                         <td className="border px-2 py-2  text-gray-500 dark:text-white">
                           {event.tipo_event_id}
@@ -459,23 +481,25 @@ const BitaEvents = (props: any): JSX.Element => {
                         <td className="border px-2 py-2  text-gray-500 dark:text-white">
                           {convertDate(event.event_date)}
                         </td>
-                        <td className="border px-2 py-2  text-gray-500 dark:text-white">
-                          <a
-                            href={"/static/images/" + `${event.id}` + ".jpg"}
-                            target={"_blank"}
-                            rel="noreferrer"
-                          >
-                            <Image
-                              onClick={() =>
-                                seleccionarBitacora1(event, "Mostrar")
-                              }
-                              src={"/static/images/" + `${event.id}` + ".jpg"}
-                              alt=""
-                              width="60"
-                              height="50"
+                        {event.image! ? (
+                          <td className="border px-2 py-2  text-gray-500 dark:text-white">
+                            <input
+                              type="checkbox"
+                              checked
+                              placeholder="Image"
+                              className="mx-3"
+                              onChange={handleOnChange1}
                             />
-                          </a>
-                        </td>
+                          </td>
+                        ) : (
+                          <td className="border px-2 py-2  text-gray-500 dark:text-white">
+                            <input
+                              type="checkbox"
+                              placeholder="Image"
+                              className="mx-3"
+                            />
+                          </td>
+                        )}
 
                         <td className="border px-2 py-2  text-gray-500 dark:text-white">
                           <Link
