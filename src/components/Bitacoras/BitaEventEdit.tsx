@@ -352,11 +352,10 @@ const EditForm: React.FC = () => {
                                         text-white 
                                         bg-indigo-600 hover:bg-indigo-700 
                                         shadow-md hover:shadow-lg
-                                        ${
-                                          isSubmitting
-                                            ? "opacity-70 cursor-not-allowed"
-                                            : ""
-                                        }`}
+                                        ${isSubmitting
+                  ? "opacity-70 cursor-not-allowed"
+                  : ""
+                }`}
               disabled={isSubmitting}
             >
               {isSubmitting ? "Guardando..." : "Guardar Cambios"}
