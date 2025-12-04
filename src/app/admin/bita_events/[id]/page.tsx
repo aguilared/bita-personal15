@@ -550,8 +550,6 @@ const BitaEvents = (props: any): JSX.Element => {
                                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                               </svg>
                             </button>
-                          </div>
-                          <td className="border px-2 py-2  text-gray-500 dark:text-white">
                             <Link
                               href={`/admin/bita_eventE/1?id=${encodeURIComponent(
                                 event.id
@@ -577,7 +575,7 @@ const BitaEvents = (props: any): JSX.Element => {
                                 </svg>
                               </button>
                             </Link>
-                          </td>
+                          </div>
                         </td>
                       </tr>
                     </tbody>
