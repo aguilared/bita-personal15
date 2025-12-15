@@ -37,8 +37,8 @@ const ImagenSegura = ({ src, alt, width, height, ...props }) => {
     <Image
       src={src}
       alt={alt}
-      width={width || 1920 / 2} // Ancho por defecto
-      height={height || 1280 / 2} // Alto por defecto
+      width={(1920 / 2) * 0.75} // Reducción del 25%
+      height={(1280 / 2) * 0.75} // Reducción del 25%
       onError={handleError} // ¡Esta es la clave!
       {...props} // Pasa cualquier otra prop como style, className, etc.
     />
