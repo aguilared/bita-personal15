@@ -72,7 +72,7 @@ const BitaEventCard = (props: any): JSX.Element => {
           </Typography>{" "}
           <Typography variant="h6" component="h2">
             Owner: {owner}
-            {}
+            { }
           </Typography>{" "}
           <Typography variant="h6" component="h2">
             Nacimiento: {birthdate}, Live?:
@@ -115,8 +115,8 @@ const BitaEventCard = (props: any): JSX.Element => {
             <Image
               src={"/static/images/" + `${id}` + ".jpg"}
               alt={`${id}` + ".jpg"}
-              width={1920 / 2}
-              height={1280 / 2}
+              width={(1920 / 2) * 0.75} // Reducción del 25%
+              height={(1280 / 2) * 0.75} // Reducción del 25%
               style={{
                 objectFit: "cover", // cover, contain, none
               }}
@@ -132,8 +132,8 @@ const BitaEventCard = (props: any): JSX.Element => {
             <Image
               src={"/static/images/" + `${id}` + "_1.jpg"}
               alt="Image"
-              width={1920 / 2}
-              height={1280 / 2}
+              width={(1920 / 2) * 0.75} // Reducción del 25%
+              height={(1280 / 2) * 0.75} // Reducción del 25%
             />
           </a>
         </div>
@@ -141,8 +141,8 @@ const BitaEventCard = (props: any): JSX.Element => {
           <Image
             src={"/static/images/" + `${id}` + "_2.jpg"}
             alt="Image"
-            width={1920 / 2}
-            height={1280 / 2}
+            width={(1920 / 2) * 0.75} // Reducción del 25%
+            height={(1280 / 2) * 0.75} // Reducción del 25%
           />
         </div>
       </Card>
