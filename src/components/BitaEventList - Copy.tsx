@@ -1,4 +1,4 @@
-import { SortBy, type User } from "@/app/types";
+import { SortBy, type User } from "../app/types.d";
 import {
   Card,
   CardContent,
@@ -9,36 +9,26 @@ import {
 import { Interweave } from "interweave";
 import dayjs from "dayjs";
 
-interface Bitaevent {
-  id: string | number;
-  image?: string | null;
-  bitacora_id: string | number;
-  bitacora: {
-    bitacora_date: string | Date;
-  };
-  tipoEvent: {
-    description: string;
-  };
-  event: {
-    description: string;
-  };
-  description: string;
-}
-
 interface Props {
   changeSorting: (sort: SortBy) => void;
   deleteUser: (email: string) => void;
   showColors: boolean;
-  bitaevents: Bitaevent;
+  bitaevents: Bitaevents[];
+  key: number;
 }
 
 const convertDate = (date: any) => {
   return dayjs(date).format("DD/MM/YYYY hh:mm");
 };
 
-const BitaEventList: React.FC<Props> = ({ bitaevents }) => {
+const BitaEventList: React.FC<Props> = ({ bitaevents, key }) => {
   return (
-    <Card sx={{ maxWidth: 545, bgcolor: "neutral.900" }} color="neutral">
+    <Card
+      key={key}
+      sx={{ maxWidth: 545, bgcolor: "neutral.900" }}
+      color="neutral"
+      invertedColors
+    >
       {bitaevents.image! ? (
         <a
           href={"/static/images/" + `${bitaevents.id}` + ".jpg"}

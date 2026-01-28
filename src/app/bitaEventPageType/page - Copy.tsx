@@ -12,6 +12,7 @@ import BitaEventList from "@/components/BitaEventList";
 import Select, { StylesConfig } from "react-select";
 import { useForm, Controller } from "react-hook-form";
 import { useTypeEvents1 } from "@/hooks/useTypeEvents1";
+import axios from "axios";
 
 const queryClient = new QueryClient();
 const customStyles: StylesConfig<{ label: string; value: number }, false> = {
@@ -33,23 +34,13 @@ type ResultData = {
   results: {
     id: number;
     name: string;
-    bitacora_id: number;
-    bitacora: { id: number; name: string; bitacora_date: string | Date }; // Assuming a basic structure for bitacora
-    tipoEvent: { id: number; name: string; description: string }; // Include description to match Bitaevent shape
-    event: {
-      description: string;
-    };
-    description: string;
-    // Add other properties of Bitaevent here
+    // Add other properties of Bitacora here
   }[];
 };
-
-type EventTypeOption = { label: string; value: number };
 
 export type Inputs = {
   name: string;
   url: string;
-  tipo_event_id: number;
 };
 
 export default function App() {
@@ -59,6 +50,8 @@ export default function App() {
     </QueryClientProvider>
   );
 }
+
+const ENDPOINT = process.env.NEXT_PUBLIC_API_URL + "bitacora/tipo_event/";
 
 function Example() {
   const {
@@ -72,9 +65,9 @@ function Example() {
   const [tipo_event_id, setTipo_event_id] = useState(1);
   const [bitacoraSearch, setBitacoraSearch] = useState(0);
 
-  const handleOnChange = (_ownerKey: string, value: number | undefined) => {
+  const handleOnChange = (ownerKey, value) => {
     console.log("valueOnChangeAdd", value);
-    setBitacoraSearch(value ?? 0);
+    setBitacoraSearch(value);
     console.log("BitacoraSearch", bitacoraSearch);
     //return setDatafilter(newData);
   };
@@ -87,9 +80,7 @@ function Example() {
   const nbPerPage = 9;
   const lastIndex = currentPage * nbPerPage;
   const startIndex = lastIndex - nbPerPage;
-  const [datafilter, setDatafilter] = useState<ResultData | undefined>(
-    undefined
-  );
+  const [datafilter, setDatafilter] = useState([]);
 
   //const records = data.slice(startIndex, lastIndex);
   async function fetchBitacoras({
@@ -118,7 +109,7 @@ function Example() {
       refetchInterval: intervalMs,
     });
 
-  const numberOfPages = Math.ceil((data?.count ?? 0) / nbPerPage);
+  const numberOfPages = Math.ceil(data?.count / nbPerPage);
 
   // Prefetch the next page!
   React.useEffect(() => {
@@ -145,9 +136,18 @@ function Example() {
 
     const value = bitacoraSearch;
     console.log("ValueSearchvvvvv", value);
-    if (!value) {
+    if (!value || value === "") {
       return setDatafilter(data); //retorna a la data original
     }
+
+    const getData = async () => {
+      const result = await axios.get(`${ENDPOINT}${value}`);
+      const resp = result.data;
+      console.log("DATA44", resp);
+      setDatafilter(resp);
+      //setLoading(false);
+    };
+    //getData();
   };
 
   return (
@@ -166,24 +166,18 @@ function Example() {
               render={({ field: { onChange, value, name, ref } }) => {
                 //console.log("CurrentSelection", currentSelection);
                 const handleSelectChange = (
-                  selectedOption: EventTypeOption | null
+                  selectedOption: tipo_event_id | null
                 ) => {
                   onChange(selectedOption?.value);
                 };
-                console.log("Tipoevent1", typeEvents1);
                 return (
-                  <Select<EventTypeOption, false>
-                    ref={ref as any}
-                    value={
-                      // Verificamos si realmente es un array antes de operar
-                      Array.isArray(typeEvents1)
-                        ? typeEvents1.find((opt) => opt.value === value) || {
-                            label: "Selecc...",
-                            value: 0,
-                          }
-                        : { label: "Selecc. Tipo Event. Search", value: 0 }
-                    }
-                    options={(typeEvents1 ?? []) as EventTypeOption[]}
+                  <Select
+                    inputRef={ref}
+                    defaultValue={{
+                      label: "Selecc. Tipo Event. Search",
+                      value: 0,
+                    }}
+                    options={typeEvents1}
                     name={name}
                     styles={customStyles}
                     classNamePrefix="select"
@@ -205,28 +199,18 @@ function Example() {
           <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900" />
         </div>
       ) : null}
-      {(() => {
-        if (status === "pending") {
-          return <div>Loading...</div>;
-        }
-        if (status === "error") {
-          return <div>Error: {error.message}</div>;
-        }
-        // Assuming status is 'success' or similar when not pending/error
-        return (
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {data?.results.map((event) => (
-              <BitaEventList
-                bitaevents={event}
-                key={event.id}
-                changeSorting={() => {}} // Placeholder for a sorting function
-                deleteUser={() => {}} // Placeholder for a user deletion function
-                showColors={false} // Placeholder for a boolean value
-              />
+      {status === "pending" ? (
+        <div>Loading...</div>
+      ) : status === "error" ? (
+        <div>Error: {error.message}</div>
+      ) : (
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {data &&
+            data.results.map((event, i) => (
+              <BitaEventList bitaevents={event} key={i} />
             ))}
-          </div>
-        );
-      })()}
+        </div>
+      )}
       <div>
         Current Page: {page}, tipe_event: {tipo_event_id}
       </div>
@@ -270,7 +254,7 @@ function Example() {
               <svg
                 stroke="currentColor"
                 fill="currentColor"
-                strokeWidth="0"
+                stroke-width="0"
                 viewBox="0 0 20 20"
                 className="w-5 h-5"
                 aria-hidden="true"
@@ -279,9 +263,9 @@ function Example() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fillRule="evenodd"
+                  fill-rule="evenodd"
                   d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                  clipRule="evenodd"
+                  clip-rule="evenodd"
                 ></path>
               </svg>
             </button>
@@ -293,7 +277,7 @@ function Example() {
               <svg
                 stroke="currentColor"
                 fill="currentColor"
-                strokeWidth="0"
+                stroke-width="0"
                 viewBox="0 0 576 512"
                 height="1em"
                 width="1em"
@@ -316,7 +300,7 @@ function Example() {
               <svg
                 stroke="currentColor"
                 fill="currentColor"
-                strokeWidth="0"
+                stroke-width="0"
                 viewBox="0 0 20 20"
                 className="w-5 h-5"
                 aria-hidden="true"
@@ -325,9 +309,9 @@ function Example() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fillRule="evenodd"
+                  fill-rule="evenodd"
                   d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clipRule="evenodd"
+                  clip-rule="evenodd"
                 ></path>
               </svg>
             </button>
@@ -344,7 +328,7 @@ function Example() {
               <svg
                 stroke="currentColor"
                 fill="currentColor"
-                strokeWidth="0"
+                stroke-width="0"
                 viewBox="0 0 20 20"
                 className="w-5 h-5"
                 aria-hidden="true"
@@ -353,9 +337,9 @@ function Example() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fillRule="evenodd"
+                  fill-rule="evenodd"
                   d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clipRule="evenodd"
+                  clip-rule="evenodd"
                 ></path>
               </svg>
             </button>
