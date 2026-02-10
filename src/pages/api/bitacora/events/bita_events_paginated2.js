@@ -14,13 +14,6 @@ export default async function handle1(req, res) {
     }
 
     const count = await prisma.bitaEvents.count();
-    // Obtener conteo por tipo de evento
-    const counts = await prisma.bitaEvents.groupBy({
-      by: ["tipo_event_id"],
-      _count: {
-        tipo_event_id: true,
-      },
-    });
 
     // Consultamos los datos una sola vez
     const results = await prisma.bitaEvents.findMany({
@@ -63,13 +56,13 @@ export default async function handle1(req, res) {
 
     return res.status(200).json({
       count,
-      counts,
       results,
       // Devolvemos el número exacto que debe enviar el cliente en la próxima llamada
-      next: hasNext ? nextOffset : null,
+      next: hasNext ? nextOffset : null, 
       previous: offset > 0 ? Math.max(0, offset - limit) : null,
       currentCountPerPage: results.length,
     });
+
   } catch (err) {
     console.error("Error en API:", err);
     return res.status(500).json({ error: "Internal Server Error" });

@@ -1,3 +1,5 @@
+"use server";
+
 export async function getBitacoraEvents(
   offsetParam: number = 0,
   search: string = "",
