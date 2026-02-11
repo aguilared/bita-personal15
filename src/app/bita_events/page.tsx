@@ -203,7 +203,6 @@ const BitaEventsList = () => {
       >
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 min-h-screen">
           {/* Si está cargando por primera vez o refrescando, mostramos 6 esqueletos */}
-          {console.log("Data", data)}
           {(isLoading || isRefetching) && !isFetchingNextPage
             ? Array.from(new Array(6)).map((_, index) => (
                 <EventSkeleton key={index} />
