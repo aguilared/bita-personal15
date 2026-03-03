@@ -132,6 +132,7 @@ const Animals = (): React.JSX.Element => {
     clase_id: 1,
     hierro: "Si",
     info: "Hierro ... y .. Color ..., Cachos. ...",
+    live: "true",
     mother: "",
     mother_id: 0,
     name: "",
@@ -165,6 +166,7 @@ const Animals = (): React.JSX.Element => {
       clase_id: Number(animalAdd.clase_id),
       hierro: animalAdd.hierro,
       info: animalAdd.info,
+      live: animalAdd.live,
       mother: animalAdd.mother,
       mother_id: animalAdd.mother_id,
       name: animalAdd.name,
@@ -184,6 +186,7 @@ const Animals = (): React.JSX.Element => {
 
       setModalCreate(false);
     } catch (error) {
+      console.log("ERRRORR", error);
       toast.success("Animal not created successfully");
       console.log(error);
     }
@@ -270,7 +273,7 @@ const Animals = (): React.JSX.Element => {
   const eliminar = async () => {
     try {
       const result = await fetch(
-        "/api/animals/delete/" + animalSeleccionada.id
+        "/api/animals/delete/" + animalSeleccionada.id,
       );
       refetch();
       toast.custom((t) => (
@@ -370,7 +373,7 @@ const Animals = (): React.JSX.Element => {
                 <a
                   className="bg-blue-200 rounded underline hover:underline hover:underline-offset-4"
                   href={`/animals/animal/4?id=${encodeURIComponent(
-                    animal.mother_id
+                    animal.mother_id,
                   )}`}
                   target={"_blank"}
                   rel="noreferrer"
