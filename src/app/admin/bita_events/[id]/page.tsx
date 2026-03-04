@@ -184,7 +184,7 @@ const BitaEvents = (props: any): JSX.Element => {
     queryKey: ["BitacoraEvents"],
     queryFn: async () => {
       const response = await axios.get(
-        `${DATABASEURL}bitacora/events/admin/${ID}`
+        `${DATABASEURL}bitacora/events/admin/${ID}`,
       );
       return response.data;
     },
@@ -332,7 +332,7 @@ const BitaEvents = (props: any): JSX.Element => {
   const eliminar = async () => {
     try {
       const result = await fetch(
-        "/api/bitacora/events/delete/" + bitacoraSeleccionada.id
+        "/api/bitacora/events/delete/" + bitacoraSeleccionada.id,
       );
 
       refetch();
@@ -480,7 +480,7 @@ const BitaEvents = (props: any): JSX.Element => {
                         <td className="border px-2 py-2  text-gray-500 dark:text-white">
                           <Link
                             href={`/bita_event/1?id=${encodeURIComponent(
-                              event.id
+                              event.id,
                             )}`}
                             passHref
                             target="_blank"
@@ -552,7 +552,7 @@ const BitaEvents = (props: any): JSX.Element => {
                             </button>
                             <Link
                               href={`/admin/bita_eventE/1?id=${encodeURIComponent(
-                                event.id
+                                event.id,
                               )}`}
                               passHref
                               target="_blank"
@@ -632,7 +632,7 @@ const BitaEvents = (props: any): JSX.Element => {
                       instanceId={idd} // <-- **Agrega esto**
                       options={typeEvents1}
                       value={(typeEvents1 ?? []).find(
-                        (c: { value: number }) => c.value === value
+                        (c: { value: number }) => c.value === value,
                       )}
                       name={name}
                       styles={customStyles}
@@ -678,7 +678,7 @@ const BitaEvents = (props: any): JSX.Element => {
                       options={Array.isArray(eventsId) ? eventsId : []}
                       instanceId={idd} // <-- **Agrega esto**
                       value={(Array.isArray(eventsId) ? eventsId : []).find(
-                        (c: any) => c.value === value
+                        (c: any) => c.value === value,
                       )}
                       name={name}
                       styles={customStyles}

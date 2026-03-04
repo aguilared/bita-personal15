@@ -1,6 +1,18 @@
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import Select from "react-select";
+import Select, { StylesConfig } from "react-select";
+
+const customStyles: StylesConfig<{ label: string; value: number }, false> = {
+  option: (base, state) => ({
+    ...base,
+    fontSize: 16,
+    color: "blue",
+    backgroundColor: state.isSelected ? "lightblue" : "white", // Change background color for selected options
+    "&:hover": {
+      backgroundColor: "lightgray",
+    },
+  }),
+};
 
 type Inputs = {
   alive: string;
@@ -46,7 +58,7 @@ const AnimalEdit = (props: any): React.JSX.Element => {
     <form
       name="edit"
       onSubmit={onSubmitE}
-      className="w-full max-w-lg  bg-gray-400 shadow-md rounded"
+      className="w-full max-w-lg   bg-gray-200 dark:bg-slate-800 dark:text-gray-100 shadow-md rounded"
     >
       <div className="md:w-11/12 px-3 mb-6 md:mb-0">
         <label
@@ -97,12 +109,15 @@ const AnimalEdit = (props: any): React.JSX.Element => {
           rules={{ required: true }}
           render={({ field: { onChange, value, name, ref } }) => {
             const currentSelection = clases.find(
-              (c: any) => c.value === animalSeleccionada2.clase_id
+              (c: any) => c.value === animalSeleccionada2.clase_id,
             );
             //console.log("CurrentSelection", currentSelection);
 
             return (
               <Select
+                className="basic-single"
+                classNamePrefix="select"
+                styles={customStyles}
                 options={clases}
                 defaultValue={currentSelection}
                 name={name}
@@ -134,12 +149,15 @@ const AnimalEdit = (props: any): React.JSX.Element => {
           rules={{ required: true }}
           render={({ field: { onChange, value, name, ref } }) => {
             const currentSelection = owners.find(
-              (c: any) => c.value === animalSeleccionada2.owner_id
+              (c: any) => c.value === animalSeleccionada2.owner_id,
             );
             //console.log("CurrentSelection", currentSelection);
 
             return (
               <Select
+                className="basic-single"
+                classNamePrefix="select"
+                styles={customStyles}
                 options={owners}
                 defaultValue={currentSelection}
                 name={name}
@@ -171,12 +189,15 @@ const AnimalEdit = (props: any): React.JSX.Element => {
           rules={{ required: true }}
           render={({ field: { onChange, value, name, ref } }) => {
             const currentSelection = vacas.find(
-              (c: any) => c.value === animalSeleccionada2.mother_id
+              (c: any) => c.value === animalSeleccionada2.mother_id,
             );
             console.log("CurrentSelectionMother", currentSelection);
 
             return (
               <Select
+                className="basic-single"
+                classNamePrefix="select"
+                styles={customStyles}
                 defaultValue={currentSelection}
                 options={vacas}
                 value={vacas.find((c) => c.value === value)}
@@ -267,7 +288,6 @@ const AnimalEdit = (props: any): React.JSX.Element => {
         <input
           type="checkbox"
           id="live"
-          name="live"
           defaultValue={isLive}
           checked={isLive}
           {...registerEditField("live", {

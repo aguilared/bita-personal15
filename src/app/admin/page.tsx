@@ -352,7 +352,7 @@ const Bitacoras = (): React.JSX.Element => {
               <div className="w-1/5 inline-block text-gray-700 text-right px-1 py-1 m-0">
                 <Link
                   href={`admin/bita_events/4?id=${encodeURIComponent(
-                    bitacora.id
+                    bitacora.id,
                   )}`}
                   passHref
                   target="_blank"
@@ -374,6 +374,7 @@ const Bitacoras = (): React.JSX.Element => {
             </div>
           ))
         : null}
+
       <Modal
         sx={{ overflowY: "scroll" }}
         disableScrollLock={false}
@@ -442,6 +443,7 @@ const Bitacoras = (): React.JSX.Element => {
           />
         </Box>
       </Modal>
+
       <Modal
         sx={{ overflowY: "scroll" }}
         disableScrollLock={false}

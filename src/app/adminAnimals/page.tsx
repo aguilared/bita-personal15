@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { Box, Button, Modal, Typography } from "@mui/material";
 import Container from "@/components/Container";
 import { Controller, useForm } from "react-hook-form";
-import Select from "react-select";
 import useUser from "@/hooks/useUser";
 import {
   useQuery,
@@ -22,6 +21,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import Link from "next/link";
+import Select, { StylesConfig } from "react-select";
 
 const DATABASEURL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -35,6 +35,18 @@ const queryClient = new QueryClient({
     },
   },
 });
+
+const customStyles: StylesConfig<{ label: string; value: number }, false> = {
+  option: (base, state) => ({
+    ...base,
+    fontSize: 16,
+    color: "blue",
+    backgroundColor: state.isSelected ? "lightblue" : "white", // Change background color for selected options
+    "&:hover": {
+      backgroundColor: "lightgray",
+    },
+  }),
+};
 
 type Inputs = {
   alive: string;
@@ -84,8 +96,6 @@ const style = {
 };
 
 const Animals = (): React.JSX.Element => {
-  const router = useRouter();
-
   const { isUser } = useUser();
 
   useEffect(() => {
@@ -166,7 +176,7 @@ const Animals = (): React.JSX.Element => {
       clase_id: Number(animalAdd.clase_id),
       hierro: animalAdd.hierro,
       info: animalAdd.info,
-      live: animalAdd.live,
+      live: Boolean(animalAdd.live),
       mother: animalAdd.mother,
       mother_id: animalAdd.mother_id,
       name: animalAdd.name,
@@ -468,17 +478,17 @@ const Animals = (): React.JSX.Element => {
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             <form
               name="create"
-              className="w-full max-w-lg  bg-gray-600 shadow-md rounded"
+              className="w-full max-w-lg   bg-gray-200 dark:bg-slate-800 dark:text-gray-100 shadow-md rounded"
             >
-              <div className="md:w-11/12 px-3 mb-6 md:mb-0">
+              <div className="md:w-11/12 px-3 mb-4 md:mb-0">
                 <label
-                  className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                  className="block uppercase tracking-wide  text-gray-900 dark:text-white text-xs font-bold mb-0"
                   htmlFor="Name"
                 >
                   Nombre
                 </label>
                 <input
-                  className="appearance-none block w-full border text-gray-600 rounded py-3 px-2"
+                  className="appearance-none block w-full border text-gray-600 rounded py-3 px-2 mb-2 mt-0"
                   type="text"
                   placeholder="Name"
                   defaultValue={animalAdd.name}
@@ -497,13 +507,13 @@ const Animals = (): React.JSX.Element => {
               </div>
               <div className="md:w-11/12 px-3 mb-6 md:mb-0">
                 <label
-                  className="block uppercase tracking-wide text-xs font-bold mb-2"
+                  className="block uppercase tracking-wide text-xs font-bold mb-0 mt-0"
                   htmlFor="birthdate"
                 >
                   Nacimiento
                 </label>
                 <input
-                  className="appearance-none block w-full border text-gray-600 rounded py-3 px-2"
+                  className="appearance-none block w-full border text-gray-600 rounded py-3 px-2 mb-2 mt-0"
                   type="text"
                   placeholder="Date Event"
                   defaultValue={animalAdd.birthdate}
@@ -523,7 +533,7 @@ const Animals = (): React.JSX.Element => {
 
               <div className="md:w-11/12 px-3 mb-6 md:mb-0">
                 <label
-                  className="block uppercase tracking-wide text-xs font-bold mb-2"
+                  className="block uppercase tracking-wide text-xs font-bold mb-0"
                   htmlFor="owner_id"
                 >
                   Dueno
@@ -535,6 +545,9 @@ const Animals = (): React.JSX.Element => {
                   render={({ field: { onChange, value, name, ref } }) => {
                     return (
                       <Select
+                        className="basic-single"
+                        classNamePrefix="select"
+                        styles={customStyles}
                         defaultValue={{ label: "Seleccione..", value: 0 }}
                         options={owners}
                         value={owners.find((c) => c.value === value)}
@@ -554,9 +567,9 @@ const Animals = (): React.JSX.Element => {
                 )}
               </div>
 
-              <div className="md:w-11/12 px-3 mb-6 md:mb-0">
+              <div className="md:w-11/12 px-3 mb-4 mt-2 md:mb-0">
                 <label
-                  className="block uppercase tracking-wide text-xs font-bold mb-2"
+                  className="block uppercase tracking-wide text-xs font-bold mt-0"
                   htmlFor="clase_id"
                 >
                   Clase Animal
@@ -568,6 +581,9 @@ const Animals = (): React.JSX.Element => {
                   render={({ field: { onChange, value, name, ref } }) => {
                     return (
                       <Select
+                        className="basic-single"
+                        classNamePrefix="select"
+                        styles={customStyles}
                         defaultValue={{ label: "Seleccione..", value: 0 }}
                         options={clases}
                         value={clases.find((c) => c.value === value)}
@@ -587,9 +603,9 @@ const Animals = (): React.JSX.Element => {
                 )}
               </div>
 
-              <div className="md:w-11/12 px-3 mb-6 md:mb-0">
+              <div className="md:w-11/12 px-3 mt-2 md:mb-0">
                 <label
-                  className="block uppercase tracking-wide text-xs font-bold mb-2"
+                  className="block uppercase tracking-wide text-xs font-bold mb-0"
                   htmlFor="mother_id"
                 >
                   Madre
@@ -601,6 +617,9 @@ const Animals = (): React.JSX.Element => {
                   render={({ field: { onChange, value, name, ref } }) => {
                     return (
                       <Select
+                        className="basic-single"
+                        classNamePrefix="select"
+                        styles={customStyles}
                         defaultValue={{ label: "Seleccione..", value: 0 }}
                         options={vacas}
                         value={vacas.find((c) => c.value === value)}
@@ -620,15 +639,15 @@ const Animals = (): React.JSX.Element => {
                 )}
               </div>
 
-              <div className="md:w-11/12 px-3 mb-6 md:mb-0">
+              <div className="md:w-11/12 px-3 mt-2 md:mb-0">
                 <label
-                  className="block uppercase tracking-wide text-xs font-bold mb-2"
+                  className="block uppercase tracking-wide text-xs font-bold mb-0"
                   htmlFor="mother"
                 >
                   Nombre Madre
                 </label>
                 <input
-                  className="appearance-none block w-full border text-gray-600 rounded py-3 px-2"
+                  className="appearance-none block w-full border text-gray-600 rounded mb-0 px-2"
                   type="text"
                   placeholder="Madre"
                   defaultValue={animalAdd.mother}
@@ -645,15 +664,16 @@ const Animals = (): React.JSX.Element => {
                   </span>
                 )}
               </div>
-              <div className="md:w-11/12 px-3 py-3mb-6 md:mb-0">
+
+              <div className="md:w-11/12 px-3 py-3mb-6 mt-2 md:mb-0">
                 <label
-                  className="block uppercase tracking-wide text-xs font-bold mb-2 py-1"
+                  className="block uppercase tracking-wide text-xs font-bold mb-0 py-1"
                   htmlFor="hierro"
                 >
                   Hierro
                 </label>
                 <input
-                  className="appearance-none block w-full border text-gray-600 rounded py-2 px-2 p-1 h-4"
+                  className="appearance-none block w-full border text-gray-600 rounded py-2 mt-0 px-2 p-1 h-4"
                   placeholder="hierro"
                   defaultValue={animalAdd.hierro}
                   {...register("hierro", {
@@ -668,15 +688,15 @@ const Animals = (): React.JSX.Element => {
                 )}
               </div>
 
-              <div className="md:w-11/12 px-3 mb-6 md:mb-0">
+              <div className="md:w-11/12 px-3 mt-2 md:mb-0">
                 <label
-                  className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+                  className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-0"
                   htmlFor="tipopart"
                 >
                   Tipo parto
                 </label>
                 <input
-                  className="appearance-none block w-full border text-gray-600 rounded py-3 px-4"
+                  className="appearance-none block w-full border text-gray-600 rounded py-3 px-4 mb-0"
                   placeholder="tipopart"
                   defaultValue={animalAdd.tipopart}
                   {...register("tipopart", {
@@ -690,9 +710,9 @@ const Animals = (): React.JSX.Element => {
                   </span>
                 )}
               </div>
-              <div className="md:w-11/12 px-3 mb-6 md:mb-0">
+              <div className="md:w-11/12 px-3 mt-2 md:mb-0">
                 <label
-                  className="block uppercase tracking-wide text-gray-600 text-xs font-bold mb-2"
+                  className="block uppercase tracking-wide text-gray-600 mb-0 text-xs font-bold "
                   htmlFor="info"
                 >
                   Infos
@@ -700,7 +720,7 @@ const Animals = (): React.JSX.Element => {
                 <textarea
                   cols={100}
                   rows={6}
-                  className="appearance-none block w-full border text-gray-600 rounded py-3 px-4"
+                  className="appearance-none block w-full border mt-0 text-gray-600 rounded py-3 px-4"
                   placeholder="info"
                   defaultValue={animalAdd.info}
                   {...register("info", {
@@ -713,6 +733,21 @@ const Animals = (): React.JSX.Element => {
                     {errors.info.message}
                   </span>
                 )}
+              </div>
+
+              <div className="md:w-11/12 px-3 mt-2 md:mb-0 flex items-center ">
+                <span>Live</span>
+                <input
+                  type="checkbox"
+                  id="live"
+                  checked={true}
+                  defaultValue={animalAdd.live}
+                  {...register("live", {
+                    required: true,
+                  })}
+                  onChange={() => {}}
+                  className="ml-2"
+                />
               </div>
 
               <br></br>

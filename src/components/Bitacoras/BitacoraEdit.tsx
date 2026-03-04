@@ -51,13 +51,13 @@ const BitacoraEdit = (props: any): JSX.Element => {
 
       <div className="md:w-11/12 px-3 mb-6 md:mb-0">
         <label
-          className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+          className="block uppercase tracking-wide  text-gray-900 dark:text-white text-xs font-bold mb-2"
           htmlFor="bitacora_date"
         >
           Fecha Bitacora
         </label>
         <input
-          className="appearance-none block w-full  text-gray-900 dark:text-white border rounded py-3 px-4"
+          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
           type="text"
           placeholder="Gonzalez"
           name="bitacora_date"

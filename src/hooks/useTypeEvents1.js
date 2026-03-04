@@ -8,7 +8,7 @@ export function useTypeEvents1() {
     function () {
       let options = [{ value: 0, label: "Seleccione" }];
       getTypeEvents().then((typeEvent) => {
-        console.log("typeEventss", typeEvent);
+        //console.log("typeEventss", typeEvent);
         typeEvent.forEach((option) => {
           let row = {};
           row.value = option.id;
@@ -16,7 +16,7 @@ export function useTypeEvents1() {
           row.isDisabled = false;
           options.push(row);
         });
-        console.log("Options", options);
+        //console.log("Options", options);
         setTypeEvents1(options);
       });
     },
