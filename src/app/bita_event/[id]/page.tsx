@@ -153,10 +153,10 @@ const BitaEventCard = (): React.JSX.Element => {
           ref={componentRef}
           style={{ padding: "20px", border: "1px dashed blue" }}
         >
-          <Card sx={{ maxWidth: 745, bgcolor: "neutral.900" }} color="neutral">
+          <Card sx={{ maxWidth: 945, bgcolor: "neutral.900" }} color="neutral">
             <CardContent sx={{ flex: "1 0 auto" }}>
               <div>
-                <h3 className="text-2xl tahoma font-extrabold tracking-widest text-gray-500">
+                <h3 className="text-2xl font-extrabold tracking-widest text-gray-500">
                   Evento de una Bitacora.
                 </h3>
               </div>
