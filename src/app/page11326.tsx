@@ -140,7 +140,9 @@ const BitaEventsList = () => {
     <div className="py-3">
       {/* Encabezado fijo o sticky si lo deseas */}
       <div className="mx-auto px-4 py-2 bg-slate-700 rounded-lg mb-6">
-        <h1 className="text-gray-100 text-2xl font-bold">Bitacora Events</h1>
+        <h1 className="text-gray-100 text-2xl font-bold">
+          Bitacora Events Explorer
+        </h1>
       </div>
       {/* --- INPUT DE BÚSQUEDA --- */}
       <div className="mx-auto px-4 mb-6">
@@ -251,7 +253,6 @@ const BitaEventsList = () => {
                             )}
                           </a>
                         </Typography>
-
                         <Typography
                           variant="subtitle1"
                           fontWeight="bold"
@@ -260,15 +261,9 @@ const BitaEventsList = () => {
                           {event.tipoEvent.description} /{" "}
                           {event.event.description}
                         </Typography>
-                        <Typography
-                          variant="h6"
-                          color="textSecondary"
-                          component="h2"
-                        >
-                          <div className="description-content">
-                            <Interweave content={event.description} />
-                          </div>
-                        </Typography>
+                        <Box className="text-base text-gray-600 mt-2">
+                          <Interweave content={event.description} />
+                        </Box>
                       </CardContent>
                     </Card>
                   ))}
