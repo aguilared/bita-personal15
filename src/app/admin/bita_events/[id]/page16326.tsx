@@ -612,18 +612,11 @@ const BitaEvents = (props: any): JSX.Element => {
               Add Evento A Bitacora {params?.get("id")}
             </Typography>
             <div className="md:w-11/12 px-3 mb-6 md:mb-0">
-              <a
-                className="bg-gray-300 hover:bg-gray-400 text-gray-800 underline font-semibold mr-1 py-1 px-1 rounded-full inline-flex items-center"
-                href={`/admin/tipo_events`}
-                target="_blank"
-              >
-                Add+Tipo new
-              </a>
               <label
                 className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                 htmlFor="tipo_event_id"
               >
-                Tipos Events{" "}
+                Tipos Events
               </label>
               <Controller
                 name="tipo_event_id"
