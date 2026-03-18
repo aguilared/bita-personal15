@@ -672,6 +672,13 @@ const BitaEvents = (props: any): JSX.Element => {
               >
                 Event
               </label>
+              <a
+                className="bg-gray-300 hover:bg-gray-400 text-gray-800 underline font-semibold mr-1 py-1 px-1 rounded-full inline-flex items-center"
+                href={`/admin/events/4?id=${eventId}`}
+                target="_blank"
+              >
+                Add+Event new
+              </a>
               <Controller
                 name="events_id"
                 control={control}
