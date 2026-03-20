@@ -63,22 +63,46 @@ const BitaEventEdit = (props: any): JSX.Element => {
       onSubmit={handleSubmit(onSubmitE)}
     >
       <div className="md:w-11/12 px-3 mb-6 md:mb-0">
-        <label
-          className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-          htmlFor="id"
-        >
-          Tipos Eventst
-        </label>
+        <div className="flex justify-between items-center mt-3">
+          <label
+            className="block uppercase tracking-wide text-grey-darker text-xs font-bold"
+            htmlFor="events_id"
+          >
+            Tipos Events{" "}
+          </label>
+
+          <a
+            href={`/admin/tipo_events`}
+            target="_blank"
+            className="group flex items-center gap-1 text-[10px] font-medium text-indigo-600 hover:text-indigo-800 transition-all"
+          >
+            <span className="bg-indigo-50 group-hover:bg-indigo-100 p-0.5 rounded-full transition-colors">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-3 w-3"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </span>
+            <span>Crear Nuevo</span>
+          </a>
+        </div>
         <Controller
           name="tipo_event_id"
           control={control}
           render={({ field: { onChange, value, name, ref } }) => {
             const currentSelection = typeEvents1.find(
-              (c) => c.value === bitacoraSeleccionada2.tipo_event_id
+              (c) => c.value === bitacoraSeleccionada2.tipo_event_id,
             );
             console.log("CurrentSelection", currentSelection);
             const handleSelectChange = (
-              selectedOption: tipo_event_id | null
+              selectedOption: tipo_event_id | null,
             ) => {
               onChange(selectedOption?.value);
             };
@@ -100,18 +124,43 @@ const BitaEventEdit = (props: any): JSX.Element => {
       </div>
 
       <div className="md:w-11/12 px-3 mb-6 md:mb-0">
-        <label
-          className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
-          htmlFor="events_id"
-        >
-          Event
-        </label>
+        <div className="flex items-center justify-between mt-3">
+          <label
+            className="block uppercase tracking-wide text-grey-darker text-xs font-bold"
+            htmlFor="events_id"
+          >
+            Events
+          </label>
+
+          {/* El link ahora parece una acción secundaria limpia */}
+          <a
+            href={`/admin/events/4?id=${bitacoraSeleccionada2.tipo_event_id}`}
+            target="_blank"
+            className="group flex items-center gap-1 text-[10px] font-medium text-indigo-600 hover:text-indigo-800 transition-all"
+          >
+            <span className="bg-indigo-50 group-hover:bg-indigo-100 p-0.5 rounded-full transition-colors">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-3 w-3"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </span>
+            <span>Crear Nuevo</span>
+          </a>
+        </div>
         <Controller
           name="events_id"
           control={control}
           render={({ field: { onChange, value, name, ref } }) => {
             const currentSelection3 = eventsId.find(
-              (c) => c.value === bitacoraSeleccionada2.events_id
+              (c) => c.value === bitacoraSeleccionada2.events_id,
             );
             console.log("CurrentSelection3", currentSelection3);
 

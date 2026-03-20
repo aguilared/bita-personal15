@@ -19,7 +19,6 @@ import getBitacora from "@/services/getBitacora";
 import { EventsContext } from "@/context/EventState";
 import HeaderBitacora from "@/components/HearderBita";
 import BitaEventEdit from "@/components/Bitacoras/BitaEventEdit";
-import AddResourceButton from "@/components/AddResourceButton";
 import Image from "next/image";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -613,12 +612,36 @@ const BitaEvents = (props: any): JSX.Element => {
               Add Evento A Bitacora {params?.get("id")}
             </Typography>
             <div className="md:w-11/12 px-3 mb-6 md:mb-0">
-              <AddResourceButton
-                label="Tipos Events"
-                href={`/admin/tipo_events`}
-                htmlFor="tipo_event_id"
-                buttonText="Añadir Tipos Events" // Opcional, por defecto dice "Nuevo"
-              />
+              <div className="flex justify-between items-center mt-3">
+                <label
+                  className="block uppercase tracking-wide text-grey-darker text-xs font-bold"
+                  htmlFor="events_id"
+                >
+                  Tipos Events{" "}
+                </label>
+
+                <a
+                  href={`/admin/tipo_events`}
+                  target="_blank"
+                  className="group flex items-center gap-1 text-[10px] font-medium text-indigo-600 hover:text-indigo-800 transition-all"
+                >
+                  <span className="bg-indigo-50 group-hover:bg-indigo-100 p-0.5 rounded-full transition-colors">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-3 w-3"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </span>
+                  <span>Crear Nuevo</span>
+                </a>
+              </div>
               <Controller
                 name="tipo_event_id"
                 control={control}
@@ -660,12 +683,37 @@ const BitaEvents = (props: any): JSX.Element => {
             </div>
 
             <div className="md:w-11/12 px-3 mb-6 md:mb-0">
-              <AddResourceButton
-                label="Events"
-                href={`/admin/events/4?id=${eventId}`}
-                htmlFor="events_id"
-                buttonText="Añadir Eventos" // Opcional, por defecto dice "Nuevo"
-              />
+              <div className="flex items-center justify-between mt-3">
+                <label
+                  className="block uppercase tracking-wide text-grey-darker text-xs font-bold"
+                  htmlFor="events_id"
+                >
+                  Events
+                </label>
+
+                {/* El link ahora parece una acción secundaria limpia */}
+                <a
+                  href={`/admin/events/4?id=${eventId}`}
+                  target="_blank"
+                  className="group flex items-center gap-1 text-[10px] font-medium text-indigo-600 hover:text-indigo-800 transition-all"
+                >
+                  <span className="bg-indigo-50 group-hover:bg-indigo-100 p-0.5 rounded-full transition-colors">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-3 w-3"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </span>
+                  <span>Crear Nuevo</span>
+                </a>
+              </div>
               <Controller
                 name="events_id"
                 control={control}
