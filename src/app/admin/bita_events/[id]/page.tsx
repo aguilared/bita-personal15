@@ -197,10 +197,41 @@ const BitaEvents = (props: any): JSX.Element => {
     register: registerCreateField,
     handleSubmit: handleCreateFormSubmit,
     control,
+    setValue,
     formState: { errors },
   } = useForm<CreateFormValues>({
     defaultValues: createFormDefaultValues,
   });
+
+  const [eventss, setEventss] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchEvents = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/events");
+      const newData = await res.json();
+
+      // 1. Corregir el typo: usa setEventss (o como lo hayas definido)
+      // Pero ojo: el Select de abajo usa 'eventsId' que viene de un hook.
+      // Si quieres que el Select se actualice, debes invalidar la query de ese hook:
+      queryClient.invalidateQueries({ queryKey: ["events", eventId] });
+
+      if (newData.length > eventss.length) {
+        // Corregido el nombre aquí también
+        const newestItem = newData.reduce((prev, current) =>
+          prev.id > current.id ? prev : current,
+        );
+        setValue("events_id", newestItem.id);
+      }
+
+      setEventss(newData);
+    } catch (error) {
+      console.error("Error al refrescar", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const [bitacoraSeleccionada, setBitacoraSeleccionada] = useState({
     id: 1,
@@ -660,6 +691,32 @@ const BitaEvents = (props: any): JSX.Element => {
             </div>
 
             <div className="md:w-11/12 px-3 mb-6 md:mb-0">
+              <div className="md:w-11/12 px-3 mb-2 flex justify-end">
+                {" "}
+                {/* Añadido flex y justify-end */}
+                <button
+                  type="button"
+                  onClick={fetchEvents}
+                  disabled={loading}
+                  className="group flex items-center gap-1 text-[10px] font-semibold text-gray-500 hover:text-green-600 transition-colors"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className={`h-3.5 w-3.5 ${loading ? "animate-spin text-green-600" : "group-hover:rotate-180 transition-transform duration-500"}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                    />
+                  </svg>
+                  <span>{loading ? "Cargando..." : "Refrescar"}</span>
+                </button>
+              </div>
               <AddResourceButton
                 label="Events"
                 href={`/admin/events/4?id=${eventId}`}
