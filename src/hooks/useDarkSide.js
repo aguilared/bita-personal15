@@ -1,19 +1,18 @@
-// Filename - hooks/useDarkSide.js
-"use client"
+// hooks/useDarkSide.js
 import { useState, useEffect } from "react";
 
 export default function useDarkSide() {
-  const [theme, setTheme] = useState(true);
-    const colorTheme = theme === "dark" ? "light" : "dark";
+  const [theme, setTheme] = useState(
+    typeof window !== "undefined" ? localStorage.theme : "light",
+  );
+  const colorTheme = theme === "dark" ? "light" : "dark";
 
   useEffect(() => {
-    localStorage.setItem("theme", theme);
     const root = window.document.documentElement;
     root.classList.remove(colorTheme);
     root.classList.add(theme);
-    if (localStorage.theme == "dark") localStorage.removeItem("theme");
-    else localStorage.setItem("theme", theme);
+    localStorage.setItem("theme", theme);
   }, [theme, colorTheme]);
 
-  return [colorTheme, setTheme, theme];
+  return [colorTheme, setTheme];
 }

@@ -5,7 +5,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 
   // Connection URLs are no longer supported in schema files.
   // Move connection URLs for Migrate to `prisma.config.ts` and pass either

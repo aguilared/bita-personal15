@@ -1,7 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+@import "tailwindcss";
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -15,6 +17,8 @@
     text-wrap: balance;
   }
 }
+
+@variant dark (&:where(.dark, .dark *));
 
 /* Estilos para los enlaces dentro del contenido del editor */
 .editor-class a {
