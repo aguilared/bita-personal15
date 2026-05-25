@@ -29,7 +29,7 @@ const BitacoraCreate = (props: any): JSX.Element => {
           Author
         </label>
         <input
-          className="appearance-none block w-full  text-gray-600 border rounded py-3 px-4"
+          className="appearance-none block w-full border rounded py-3 px-4"
           type="number"
           placeholder="Gonzalez"
           name="author_id"
@@ -52,7 +52,7 @@ const BitacoraCreate = (props: any): JSX.Element => {
           Fecha Bitacora
         </label>
         <input
-          className="appearance-none block w-full  text-gray-600 border rounded py-3 px-4"
+          className="appearance-none block w-full border rounded py-3 px-4"
           type="text"
           placeholder="Gonzalez"
           name="bitacora_date"

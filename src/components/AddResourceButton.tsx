@@ -16,7 +16,7 @@ const AddResourceButton: React.FC<AddResourceButtonProps> = ({
   return (
     <div className="flex justify-between items-center mt-2">
       <label
-        className="block uppercase tracking-wide text-gray-600 text-xs font-bold"
+        className="block uppercase tracking-wide  text-xs font-bold"
         htmlFor={htmlFor}
       >
         {label}

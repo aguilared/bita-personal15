@@ -796,7 +796,7 @@ const BitaEvents = (props: any): JSX.Element => {
                 Fecha Evento
               </label>
               <input
-                className="appearance-none block w-full text-gray-600 border rounded py-3 px-2"
+                className="appearance-none block w-full border rounded py-3 px-2"
                 type="text"
                 placeholder="Date Event"
                 name="event_date"

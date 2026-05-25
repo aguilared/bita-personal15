@@ -115,7 +115,7 @@ const EditForm: React.FC = () => {
   };
 
   const [editorState, setEditorState] = React.useState(() =>
-    EditorState.createEmpty()
+    EditorState.createEmpty(),
   );
 
   const {
@@ -182,7 +182,7 @@ const EditForm: React.FC = () => {
     mutationFn: async (parsedata: MutationData) => {
       const response = await axios.post(
         "/api/bitacora/events/admin/edit",
-        parsedata
+        parsedata,
       );
       return response.data;
     },
@@ -191,7 +191,7 @@ const EditForm: React.FC = () => {
 
       // Redirección exitosa (misma ruta que usas en tu código)
       router.push(
-        `/admin/bita_events/4?id=${encodeURIComponent(variables.bitacora_id)}`
+        `/admin/bita_events/4?id=${encodeURIComponent(variables.bitacora_id)}`,
       );
     },
     onError: (error) => {
@@ -256,7 +256,7 @@ const EditForm: React.FC = () => {
       const contentBlocks = convertFromHTML(htmlDescription);
       const contentState = ContentState.createFromBlockArray(
         contentBlocks.contentBlocks,
-        contentBlocks.entityMap
+        contentBlocks.entityMap,
       );
       setEditorState(EditorState.createWithContent(contentState));
       // Setear el valor HTML en RHF
@@ -311,7 +311,7 @@ const EditForm: React.FC = () => {
               control={control}
               render={({ field: { onChange, value, name, ref } }) => {
                 const eventValuesArray = Object.values(
-                  typeEvents1
+                  typeEvents1,
                 ) as readonly OptionType[];
 
                 const currentSelection =
@@ -356,7 +356,7 @@ const EditForm: React.FC = () => {
               control={control}
               render={({ field: { onChange, value, name, ref } }) => {
                 const eventValuesArray1 = Object.values(
-                  eventsId
+                  eventsId,
                 ) as readonly OptionType[];
 
                 const currentSelection1 =
@@ -399,7 +399,7 @@ const EditForm: React.FC = () => {
                   onEditorStateChange={(newEditorState) => {
                     setEditorState(newEditorState);
                     field.onChange(
-                      stateToHTML(newEditorState.getCurrentContent())
+                      stateToHTML(newEditorState.getCurrentContent()),
                     );
                   }}
                   placeholder="Escribe la descripción aquí..."
@@ -410,7 +410,7 @@ const EditForm: React.FC = () => {
 
           <div className="md:w-11/12 px-3 mb-6 md:mb-0">
             <label
-              className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
+              className="block uppercase tracking-wide text-xs font-bold mb-2"
               htmlFor="event_date"
             >
               Fecha Evento
@@ -421,6 +421,11 @@ const EditForm: React.FC = () => {
               rules={{ required: "This field is required" }}
               render={({ field, fieldState }) => (
                 <TextField
+                  style={{
+                    fontSize: 14,
+                    dark: bg - slate - 800,
+                    dark: text - gray - 100,
+                  }}
                   {...field}
                   error={!!fieldState.error}
                   helperText={
