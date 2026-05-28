@@ -383,7 +383,7 @@ const Bitacoras = (): React.JSX.Element => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={{ ...style, width: 400 }}>
+        <Box sx={{ ...style, width: 460 }}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Create Bitacora
             <button

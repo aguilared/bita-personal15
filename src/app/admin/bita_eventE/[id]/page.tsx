@@ -421,10 +421,17 @@ const EditForm: React.FC = () => {
               rules={{ required: "This field is required" }}
               render={({ field, fieldState }) => (
                 <TextField
-                  style={{
-                    fontSize: 14,
-                    dark: bg - slate - 800,
-                    dark: text - gray - 100,
+                  slotProps={{
+                    root: {
+                      style: {
+                        borderRadius: "8px",
+                        backgroundColor: "#f5f5f5",
+                        height: "40px",
+                      },
+                    },
+                    input: {
+                      style: { padding: "0", margin: "0", height: "100%" },
+                    },
                   }}
                   {...field}
                   error={!!fieldState.error}
