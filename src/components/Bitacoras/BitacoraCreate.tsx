@@ -46,7 +46,7 @@ const BitacoraCreate = (props: any): JSX.Element => {
 
       <div className="md:w-1/2 px-3 mb-6 md:mb-0">
         <label
-          className="block uppercase tracking-wide text-xs font-bold mb-2"
+          className="block w-full 100%  uppercase tracking-wide text-xs font-bold mb-2"
           htmlFor="author_id"
         >
           Fecha Bitacora
