@@ -19,18 +19,20 @@ const BitacoraEdit = (props: any): JSX.Element => {
   return (
     <form
       name="edit"
-      className="w-full max-w-lg  bg-slate-100 dark:bg-slate-800 shadow-md rounded"
+      className="w-full max-w-lg   bg-gray-200 dark:bg-slate-800 dark:text-gray-100 shadow-md rounded"
       onSubmit={handleSubmit(onSubmitE)}
     >
       <div className="md:w-1/2 px-3 mb-6 md:mb-0 ">
         <label
-          className="block uppercase tracking-wide text-xs font-bold mb-2"
+          className="block uppercase tracking-wide  text-gray-900 dark:text-white text-xs font-bold mb-2"
+
           htmlFor="author_id"
         >
           Author
         </label>
         <input
           className="appearance-none block w-full border rounded py-3 px-4"
+          type="number"
           placeholder="Gonzalez"
           name="author_id"
           defaultValue={bitacoraSelected2 && bitacoraSelected2.author_id}
@@ -56,7 +58,7 @@ const BitacoraEdit = (props: any): JSX.Element => {
           Fecha Bitacora
         </label>
         <input
-          className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"
+          className="appearance-none block w-full border rounded py-3 px-4"
           placeholder="Gonzalez"
           name="bitacora_date"
           defaultValue={bitacoraSelected2 && bitacoraSelected2.bitacora_date}
