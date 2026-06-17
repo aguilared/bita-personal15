@@ -51,14 +51,14 @@ export default function RootLayout({
                   </div>
                   <Menubar.Root className="flex text-gray-900 dark:text-white p-[3px]">
                     <Menubar.Menu>
-                      <Menubar.Trigger className="py-2 px-3 outline-none select-none font-medium leading-none rounded text-violet11 text-[16px] flex items-center justify-between gap-[2px] data-[highlighted]:bg-violet4 data-[state=open]:bg-violet4">
-                        Admin
+                      <Menubar.Trigger className="py-2 px-3 outline-none select-none font-medium leading-none rounded text-violet11 text-[16px] flex items-center justify-between gap-0.5 data-highlighted:bg-violet4 data-[state=open]:bg-violet4">
+                        Admins
                         <CaretDownIcon className="CaretDown" aria-hidden />
                       </Menubar.Trigger>
 
                       <Menubar.Portal>
                         <Menubar.Content
-                          className="min-w-[220px] bg-white text-gray-700 rounded-md p-[5px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] [animation-duration:_400ms] [animation-timing-function:_cubic-bezier(0.16,_1,_0.3,_1)] will-change-[transform,opacity]"
+                          className="min-w-55 bg-white text-gray-700 rounded-md p-1.25 shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] [animation-duration:400ms] [animation-timing-function:cubic-bezier(0.16,1,0.3,1)] will-change-[transform,opacity]"
                           align="start"
                           sideOffset={5}
                           alignOffset={-3}
@@ -86,7 +86,7 @@ export default function RootLayout({
 
                     <Menubar.Menu>
                       <Menubar.Trigger className="py-2 px-3 outline-none select-none font-medium leading-none rounded text-violet11 text-[16px] flex items-center justify-between gap-[2px] data-[highlighted]:bg-violet4 data-[state=open]:bg-violet4">
-                        Views
+                        Viewss
                         <CaretDownIcon className="CaretDown" aria-hidden />
                       </Menubar.Trigger>
 
