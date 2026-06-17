@@ -49,7 +49,8 @@ export default function RootLayout({
                       </span>
                     </div>
                   </div>
-                  <Menubar.Root className="flex text-gray-900 dark:text-white p-[3px]">
+                  <Menubar.Root className="flex text-gray-900 dark:text-white p-0.75">
+
                     <Menubar.Menu>
                       <Menubar.Trigger className="py-2 px-3 outline-none select-none font-medium leading-none rounded text-violet11 text-[16px] flex items-center justify-between gap-0.5 data-highlighted:bg-violet4 data-[state=open]:bg-violet4">
                         Admins
@@ -58,24 +59,24 @@ export default function RootLayout({
 
                       <Menubar.Portal>
                         <Menubar.Content
-                          className="min-w-55 bg-white text-gray-700 rounded-md p-1.25 shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] [animation-duration:400ms] [animation-timing-function:cubic-bezier(0.16,1,0.3,1)] will-change-[transform,opacity]"
+                          className="min-w-55 bg-white text-gray-700 rounded-md p-1.25 shadow-[0px_10px_38px_-10px_rgba(22,23,24,0.35),0px_10px_20px_-15px_rgba(22,23,24,0.2)] [animation-duration:400ms] [animation-timing-function:cubic-bezier(0.16,1,0.3,1)] will-change-[transform,opacity]"
                           align="start"
                           sideOffset={5}
                           alignOffset={-3}
                         >
-                          <Menubar.Item className="group text-[16px] leading-none text-violet11 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]:data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
-                            <Link href="/admin/" target="_blank">
+                          <Menubar.Item asChild>
+                            <Link href="/admin/" target="_blank" className="group text-[16px] leading-none text-violet11 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-highlighted:data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
                               Bitacoras
                             </Link>
                           </Menubar.Item>
-                          <Menubar.Separator className="h-[1px] bg-violet6 m-[5px]" />
-                          <Menubar.Item className="group text-[16px] leading-none text-violet11 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]:data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
+                          <Menubar.Separator className="h-px bg-violet6 m-1.25" />
+                          <Menubar.Item asChild className="group text-[16px] leading-none text-violet11 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-highlighted:data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
                             <Link href="/admin/tipo_events/" target="_blank">
                               TypeEvents
                             </Link>
                           </Menubar.Item>
-                          <Menubar.Separator className="h-[1px] bg-violet6 m-[5px]" />
-                          <Menubar.Item className="group text-[16px] leading-none text-violet11 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]:data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
+                          <Menubar.Separator className="h-px bg-violet6 m-1.25" />
+                          <Menubar.Item asChild className="group text-[16px] leading-none text-violet11 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-highlighted:data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
                             <Link href="/adminAnimals/" target="_blank">
                               AdminAnimals
                             </Link>
@@ -83,70 +84,69 @@ export default function RootLayout({
                         </Menubar.Content>
                       </Menubar.Portal>
                     </Menubar.Menu>
-
                     <Menubar.Menu>
-                      <Menubar.Trigger className="py-2 px-3 outline-none select-none font-medium leading-none rounded text-violet11 text-[16px] flex items-center justify-between gap-[2px] data-[highlighted]:bg-violet4 data-[state=open]:bg-violet4">
+                      <Menubar.Trigger className="py-2 px-3 outline-none select-none font-medium leading-none rounded text-violet11 text-[16px] flex items-center justify-between gap-0.5 data-highlighted:bg-violet4 data-[state=open]:bg-violet4">
                         Viewss
                         <CaretDownIcon className="CaretDown" aria-hidden />
                       </Menubar.Trigger>
 
                       <Menubar.Portal>
                         <Menubar.Content
-                          className="min-w-[220px] bg-white text-gray-700 rounded-md p-[5px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] [animation-duration:_400ms] [animation-timing-function:_cubic-bezier(0.16,_1,_0.3,_1)] will-change-[transform,opacity]"
+                          className="min-w-55 bg-white text-gray-700 rounded-md p-1.25 shadow-[0px_10px_38px_-10px_rgba(22,23,24,0.35),0px_10px_20px_-15px_rgba(22,23,24,0.2)] [animation-duration:400ms] [animation-timing-function:cubic-bezier(0.16,1,0.3,1)] will-change-[transform,opacity]"
                           align="start"
                           sideOffset={5}
                           alignOffset={-14}
                         >
-                          <Menubar.Separator className="h-[1px] bg-violet6 m-[5px]" />
+                          <Menubar.Separator className="h-px bg-violet6 m-1.25" />
                           <Menubar.Sub>
-                            <Menubar.SubTrigger className="group text-[16px] text-gray-700 leading-none  rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]:data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
+                            <Menubar.SubTrigger className="group text-[16px] text-gray-700 leading-none  rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-highlighted:data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
                               BitaEvents
-                              <div className="ml-auto pl-5 text-mauve9 group-data-[highlighted]:text-white group-data-[disabled]:text-mauve8">
+                              <div className="ml-auto pl-5 text-mauve9 group-data-highlighted:text-white group-data-disabled:text-mauve8">
                                 <ChevronRightIcon />
                               </div>
                             </Menubar.SubTrigger>
 
                             <Menubar.Portal>
                               <Menubar.SubContent
-                                className="min-w-[220px] bg-white text-gray-700 rounded-md p-[5px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] [animation-duration:_400ms] [animation-timing-function:_cubic-bezier(0.16,_1,_0.3,_1)] will-change-[transform,opacity]"
+                                className="min-w-55 bg-white text-gray-700 rounded-md p-1.25 shadow-[0px_10px_38px_-10px_rgba(22,23,24,0.35),0px_10px_20px_-15px_rgba(22,23,24,0.2)] [animation-duration:400ms] [animation-timing-function:cubic-bezier(0.16,1,0.3,1)] will-change-[transform,opacity]"
                                 alignOffset={-5}
                               >
-                                <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
+                                <Menubar.Separator className="h-px bg-gray-400 m-1.25" />
 
-                                <Menubar.Item className="text-[16px] leading-none text-gray-700 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
+                                <Menubar.Item className="text-[16px] leading-none text-gray-700 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
                                   <Link href="/bita_events/" target="_blank">
                                     AutoLoad
                                   </Link>
                                 </Menubar.Item>
 
-                                <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
+                                <Menubar.Separator className="h-px bg-gray-400 m-1.25" />
 
-                                <Menubar.Item className="text-[16px] leading-none text-gray-700 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
+                                <Menubar.Item asChild className="text-[16px] leading-none text-gray-700 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
                                   <Link href="/bitaEventPage/" target="_blank">
                                     Paginate
                                   </Link>
                                 </Menubar.Item>
-                                <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
+                                <Menubar.Separator className="h-px bg-gray-400 m-1.25" />
                               </Menubar.SubContent>
                             </Menubar.Portal>
                           </Menubar.Sub>
-                          <Menubar.Separator className="h-[1px] bg-violet6 m-[5px]" />
+                          <Menubar.Separator className="h-px bg-violet6 m-1.25" />
 
                           <Menubar.Sub>
-                            <Menubar.SubTrigger className="group text-[16px] leading-none text-violet11 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]:data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
+                            <Menubar.SubTrigger className="group text-[16px] leading-none text-violet11 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-highlighted:data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
                               Gonzalera
-                              <div className="ml-auto pl-5 text-mauve9 group-data-[highlighted]:text-white group-data-[disabled]:text-mauve8">
+                              <div className="ml-auto pl-5 text-mauve9 group-data-highlighted:text-white group-data-disabled:text-mauve8">
                                 <ChevronRightIcon />
                               </div>
                             </Menubar.SubTrigger>
 
                             <Menubar.Portal>
                               <Menubar.SubContent
-                                className="min-w-[220px] bg-white rounded-md p-[5px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] [animation-duration:_400ms] [animation-timing-function:_cubic-bezier(0.16,_1,_0.3,_1)] will-change-[transform,opacity]"
+                                className="min-w-55 bg-white rounded-md p-1.25 shadow-[0px_10px_38px_-10px_rgba(22,23,24,0.35),0px_10px_20px_-15px_rgba(22,23,24,0.2)] [animation-duration:400ms] [animation-timing-function:cubic-bezier(0.16,1,0.3,1)] will-change-[transform,opacity]"
                                 alignOffset={-5}
                               >
-                                <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
-                                <Menubar.Item className="text-[16px] leading-none text-gray-700 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
+                                <Menubar.Separator className="h-px bg-gray-400 m-1.25" />
+                                <Menubar.Item className="text-[16px] leading-none text-gray-700 rounded flex items-center h-6.25px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
                                   <Link
                                     href="/animals/animalscard/"
                                     target="_blank"
@@ -154,8 +154,8 @@ export default function RootLayout({
                                     Listado
                                   </Link>
                                 </Menubar.Item>
-                                <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
-                                <Menubar.Item className="text-[16px] leading-none text-gray-700 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
+                                <Menubar.Separator className="h-px bg-gray-400 m-1.25" />
+                                <Menubar.Item className="text-[16px] leading-none text-gray-700 rounded flex items-center h-6.25px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
                                   <Link
                                     href="/animals/animalsOwners/"
                                     target="_blank"
@@ -163,7 +163,7 @@ export default function RootLayout({
                                     SearchOwner
                                   </Link>
                                 </Menubar.Item>
-                                <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
+                                <Menubar.Separator className="h-px bg-gray-400 m-1.25" />
                               </Menubar.SubContent>
                             </Menubar.Portal>
                           </Menubar.Sub>
@@ -171,86 +171,88 @@ export default function RootLayout({
                       </Menubar.Portal>
                     </Menubar.Menu>
 
+
+
                     <Menubar.Menu>
-                      <Menubar.Trigger className="py-2 px-3 outline-none select-none font-medium leading-none rounded text-violet11 text-[16px] flex items-center justify-between gap-[2px] data-[highlighted]:bg-violet4 data-[state=open]:bg-violet4">
+                      <Menubar.Trigger className="py-2 px-3 outline-none select-none font-medium leading-none rounded text-violet11 text-[16px] flex items-center justify-between gap-0.5 data-highlighted:bg-violet4 data-[state=open]:bg-violet4">
                         Consultas
                         <CaretDownIcon className="CaretDown" aria-hidden />
                       </Menubar.Trigger>
 
                       <Menubar.Portal>
                         <Menubar.Content
-                          className="min-w-[220px] bg-white text-gray-700 rounded-md p-[5px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] [animation-duration:_400ms] [animation-timing-function:_cubic-bezier(0.16,_1,_0.3,_1)] will-change-[transform,opacity]"
+                          className="min-w-55 bg-white text-gray-700 rounded-md p-1.25 shadow-[0px_10px_38px_-10px_rgba(22,23,24,0.35),0px_10px_20px_-15px_rgba(22,23,24,0.2)] [animation-duration:400ms] [animation-timing-function:cubic-bezier(0.16,1,0.3,1)] will-change-[transform,opacity]"
                           align="start"
                           sideOffset={5}
                           alignOffset={-14}
                         >
-                          <Menubar.Separator className="h-[1px] bg-gray-600 m-[5px]" />
+                          <Menubar.Separator className="h-px bg-gray-600 m-1.25" />
                           <Menubar.Sub>
-                            <Menubar.SubTrigger className="group text-[16px] leading-none text-violet11 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]:data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
+                            <Menubar.SubTrigger className="group text-[16px] leading-none text-violet11 rounded flex items-center h-6.25px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-highlighted:data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
                               BitaEvents
-                              <div className="ml-auto pl-5 text-mauve9 group-data-[highlighted]:text-white group-data-[disabled]:text-mauve8">
+                              <div className="ml-auto pl-5 text-mauve9 group-data-highlighted:text-white group-data-disabled:text-mauve8">
                                 <ChevronRightIcon />
                               </div>
                             </Menubar.SubTrigger>
 
                             <Menubar.Portal>
                               <Menubar.SubContent
-                                className="min-w-[220px] bg-white text-gray-700 rounded-md p-[5px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] [animation-duration:_400ms] [animation-timing-function:_cubic-bezier(0.16,_1,_0.3,_1)] will-change-[transform,opacity]"
+                                className="min-w-55 bg-white text-gray-700 rounded-md p-1.25 shadow-[0px_10px_38px_-10px_rgba(22,23,24,0.35),0px_10px_20px_-15px_rgba(22,23,24,0.2)] [animation-duration:400ms] [animation-timing-function:cubic-bezier(0.16,1,0.3,1)] will-change-[transform,opacity]"
                                 alignOffset={-5}
                               >
-                                <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
-                                <Menubar.Item className="text-[16px] leading-none text-gray-700 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
+                                <Menubar.Separator className="h-px bg-gray-400 m-1.25" />
+                                <Menubar.Item className="text-[16px] leading-none text-gray-700 rounded flex items-center h-6.25px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
                                   <Link href="/bitaEventWordEvent/">
                                     DescriWord
                                   </Link>
                                 </Menubar.Item>
-                                <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
+                                <Menubar.Separator className="h-px bg-gray-400 m-1.25" />
 
-                                <Menubar.Item className="text-[16px] leading-none text-gray-700 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
+                                <Menubar.Item className="text-[16px] leading-none text-gray-700 rounded flex items-center h-6.25px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
                                   <Link href="/bitaEventPageType/">
                                     TypeEvent
                                   </Link>
                                 </Menubar.Item>
-                                <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
+                                <Menubar.Separator className="h-px bg-gray-400 m-1.25" />
 
-                                <Menubar.Item className="text-[16px] leading-none text-violet11 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
+                                <Menubar.Item className="text-[16px] leading-none text-violet11 rounded flex items-center h-6.25px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
                                   <Link href="/bitaEventTypeEven/">
                                     TypeEventEvent
                                   </Link>
                                 </Menubar.Item>
-                                <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
+                                <Menubar.Separator className="h-px bg-gray-400 m-1.25" />
                               </Menubar.SubContent>
                             </Menubar.Portal>
                           </Menubar.Sub>
-                          <Menubar.Separator className="h-[1px] bg-violet6 m-[5px]" />
+                          <Menubar.Separator className="h-px bg-violet6 m-1.25" />
 
                           <Menubar.Sub>
-                            <Menubar.SubTrigger className="group text-[16px] leading-none text-violet11 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]:data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
+                            <Menubar.SubTrigger className="group text-[16px] leading-none text-violet11 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-highlighted:data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
                               Gonzalera
-                              <div className="ml-auto pl-5 text-mauve9 group-data-[highlighted]:text-white group-data-[disabled]:text-mauve8">
+                              <div className="ml-auto pl-5 text-mauve9 group-data-highlighted:text-white group-data-disabled:text-mauve8">
                                 <ChevronRightIcon />
                               </div>
                             </Menubar.SubTrigger>
 
                             <Menubar.Portal>
                               <Menubar.SubContent
-                                className="min-w-[220px] bg-white text-gray-600 rounded-md p-[5px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] [animation-duration:_400ms] [animation-timing-function:_cubic-bezier(0.16,_1,_0.3,_1)] will-change-[transform,opacity]"
+                                className="min-w-55 bg-white text-gray-600 rounded-md p-1.25 shadow-[0px_10px_38px_-10px_rgba(22,23,24,0.35),0px_10px_20px_-15px_rgba(22,23,24,0.2)] [animation-duration:400ms] [animation-timing-function:cubic-bezier(0.16,1,0.3,1)] will-change-[transform,opacity]"
                                 alignOffset={-5}
                               >
-                                <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
-                                <Menubar.Item className="text-[16px] leading-none text-gray-600 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
+                                <Menubar.Separator className="h-px bg-gray-400 m-1.25" />
+                                <Menubar.Item className="text-[16px] leading-none text-gray-600 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
                                   <Link href="/animals/animalscard/">
                                     Listado
                                   </Link>
                                 </Menubar.Item>
-                                <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
+                                <Menubar.Separator className="h-px bg-gray-400 m-1.25" />
 
-                                <Menubar.Item className="text-[16px] leading-none text-gray-600 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
+                                <Menubar.Item className="text-[16px] leading-none text-gray-600 rounded flex items-center h-6.25px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
                                   <Link href="/animals/animalsOwners/">
                                     SearchOwner
                                   </Link>
                                 </Menubar.Item>
-                                <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
+                                <Menubar.Separator className="h-px bg-gray-400 m-1.25" />
                               </Menubar.SubContent>
                             </Menubar.Portal>
                           </Menubar.Sub>
@@ -267,7 +269,7 @@ export default function RootLayout({
               <div className="sm:p-3 md:py-3 lg:px-3 py-3 px-4 bg-white dark:bg-black divide-y">
                 <header>
                   <div className="grid grid-cols-4 gap-4">
-                    <div className="flex items-center flex-shrink-0 mr-6  text-gray-900 dark:text-white">
+                    <div className="flex items-center shrink-0 mr-6  text-gray-900 dark:text-white">
                       <Image
                         src={"/static/images/logo3.jpg"}
                         width={70}
