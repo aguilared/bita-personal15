@@ -24,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle, center }) => {
                 width={70}
                 height={50}
                 alt=""
-                style={{ objectFit: "cover" }}
+                className="w-full h-auto"
               />
               <span className="sm:inline-block font-semibold text-xl tracking-tight px-4 ">
                 Bitacora Aguila
@@ -250,7 +250,7 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle, center }) => {
                 width={70}
                 height={50}
                 alt=""
-                style={{ objectFit: "cover" }}
+                className="w-full h-auto"
               />
               <span className="sm:inline-block font-semibold text-xl tracking-tight px-4 ">
                 Bitacora Aguila2

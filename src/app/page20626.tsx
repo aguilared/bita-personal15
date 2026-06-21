@@ -48,38 +48,6 @@ interface ResultData {
 }
 
 const queryClient = new QueryClient();
-function EventImageFallback({ event }: { event: any }) {
-  // Estado local para manejar si la imagen existe o falló
-  const [imgSrc, setImgSrc] = useState(`/static/images/${event.id}.jpg`);
-  const [hasError, setHasError] = useState(false);
-
-  return (
-    <a
-      href={imgSrc}
-      target="_blank"
-      rel="noreferrer"
-      className="relative h-96 w-full overflow-hidden block" // Añadido 'block' para asegurar el contenedor
-    >
-      <Image
-        src={imgSrc}
-        alt={event.event?.description || "Imagen del evento"}
-        fill
-        priority // <-- Añade esto para indicarle a Next.js que la cargue de inmediato
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        className="object-cover transition-transform duration-300 hover:scale-105"
-        // ELIMINADO: 'placeholder="blur"' para evitar que Next.js se congele al dar 404
-
-        // Si la imagen física no existe en la carpeta, cargamos un placeholder local real
-        onError={() => {
-          if (!hasError) {
-            setHasError(true);
-            setImgSrc("/static/images/placeholder.jpg"); // Asegúrate de crear este archivo en tu carpeta public/static/images/
-          }
-        }}
-      />
-    </a>
-  );
-}
 
 const BitaEventsList = () => {
   const { ref, inView } = useInView();
@@ -109,18 +77,15 @@ const BitaEventsList = () => {
     refetch,
     isRefetching,
   } = useInfiniteQuery<ResultData | null>({
+    // IMPORTANTE: Añadimos debouncedSearch a la queryKey
+    // para que React Query refresque cuando cambie la búsqueda
     queryKey: ["listbitacoras", debouncedSearch, tipoSeleccionado],
-    queryFn: async ({ pageParam = 0 }) => {
-      const limit = 9;
-      const tipo = tipoSeleccionado === "Todos" ? "" : tipoSeleccionado;
-
-      // Construimos la URL apuntando directamente a tu API desde el cliente
-      const url = `${process.env.NEXT_PUBLIC_API_URL}bitacora/events/bita_events_paginated?offset=${pageParam}&limit=${limit}&ordering=-bitacora_date&search=${encodeURIComponent(debouncedSearch)}&tipo=${encodeURIComponent(tipo)}`;
-
-      const response = await fetch(url);
-      if (!response.ok) throw new Error("Error en la petición");
-      return await response.json();
-    },
+    queryFn: ({ pageParam = 0 }) =>
+      getBitacoraEvents(
+        pageParam as number,
+        debouncedSearch,
+        tipoSeleccionado === "Todos" ? "" : tipoSeleccionado,
+      ),
     initialPageParam: 0,
     getNextPageParam: (lastPage) => lastPage?.next,
   });
@@ -253,8 +218,25 @@ const BitaEventsList = () => {
                       }}
                       elevation={3}
                     >
-                      {/* --- OPTIMIZACIÓN DE IMAGEN CORREGIDA --- */}
-                      {event.image && <EventImageFallback event={event} />}
+                      {/* --- OPTIMIZACIÓN DE IMAGEN AQUÍ --- */}
+                      {event.image && (
+                        <a
+                          href={`/static/images/${event.id}.jpg`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="relative h-96 w-full overflow-hidden"
+                        >
+                          <Image
+                            src={`/static/images/${event.id}.jpg`}
+                            alt={event.event.description}
+                            fill // Hace que la imagen llene el contenedor
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-300 hover:scale-105"
+                            placeholder="blur" // Efecto de carga suave
+                            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
+                          />
+                        </a>
+                      )}
                       <CardContent>
                         <Typography variant="body1">
                           <a

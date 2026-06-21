@@ -42,7 +42,7 @@ export default function RootLayout({
                         width={70}
                         height={50}
                         alt=""
-                        style={{ objectFit: "cover" }}
+                        className="w-full h-auto"
                       />
                       <span className="sm:inline-block font-semibold text-xl tracking-tight px-4 ">
                         Bitacora Personal Aguila
@@ -50,7 +50,49 @@ export default function RootLayout({
                     </div>
                   </div>
                   <Menubar.Root className="flex text-gray-900 dark:text-white p-0.75">
+                    <Menubar.Menu>
+                      <Menubar.Trigger className="py-2 px-3 outline-none select-none font-medium leading-none rounded text-violet11 text-[16px] flex items-center justify-between gap-0.5 data-highlighted:bg-violet4 data-[state=open]:bg-violet4">
+                        Adminx
+                        <CaretDownIcon className="CaretDown" aria-hidden />
+                      </Menubar.Trigger>
 
+                      <Menubar.Portal>
+                        <Menubar.Content
+                          className="min-w-55 bg-white text-gray-700 rounded-md p-1.25 shadow-[0px_10px_38px_-10px_rgba(22,23,24,0.35),0px_10px_20px_-15px_rgba(22,23,24,0.2)] [animation-duration:400ms] [animation-timing-function:cubic-bezier(0.16,1,0.3,1)] will-change-[transform,opacity]"
+                          align="start"
+                          sideOffset={5}
+                          alignOffset={-3}
+                        >
+                          <Menubar.Item asChild>
+                            <Link
+                              href="/admin/"
+                              target="_blank"
+                              className="group text-[16px] leading-none text-violet11 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-highlighted:data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none"
+                            >
+                              Bitacoras
+                            </Link>
+                          </Menubar.Item>
+                          <Menubar.Separator className="h-px bg-violet6 m-1.25" />
+                          <Menubar.Item
+                            asChild
+                            className="group text-[16px] leading-none text-violet11 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-highlighted:data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none"
+                          >
+                            <Link href="/admin/tipo_events/" target="_blank">
+                              TypeEvents
+                            </Link>
+                          </Menubar.Item>
+                          <Menubar.Separator className="h-px bg-violet6 m-1.25" />
+                          <Menubar.Item
+                            asChild
+                            className="group text-[16px] leading-none text-violet11 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-highlighted:data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none"
+                          >
+                            <Link href="/adminAnimals/" target="_blank">
+                              AdminAnimals
+                            </Link>
+                          </Menubar.Item>
+                        </Menubar.Content>
+                      </Menubar.Portal>
+                    </Menubar.Menu>
                     <Menubar.Menu>
                       <Menubar.Trigger className="py-2 px-3 outline-none select-none font-medium leading-none rounded text-violet11 text-[16px] flex items-center justify-between gap-0.5 data-highlighted:bg-violet4 data-[state=open]:bg-violet4">
                         Admins
@@ -65,18 +107,28 @@ export default function RootLayout({
                           alignOffset={-3}
                         >
                           <Menubar.Item asChild>
-                            <Link href="/admin/" target="_blank" className="group text-[16px] leading-none text-violet11 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-highlighted:data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
+                            <Link
+                              href="/admin/"
+                              target="_blank"
+                              className="group text-[16px] leading-none text-violet11 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-highlighted:data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none"
+                            >
                               Bitacoras
                             </Link>
                           </Menubar.Item>
                           <Menubar.Separator className="h-px bg-violet6 m-1.25" />
-                          <Menubar.Item asChild className="group text-[16px] leading-none text-violet11 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-highlighted:data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
+                          <Menubar.Item
+                            asChild
+                            className="group text-[16px] leading-none text-violet11 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-highlighted:data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none"
+                          >
                             <Link href="/admin/tipo_events/" target="_blank">
                               TypeEvents
                             </Link>
                           </Menubar.Item>
                           <Menubar.Separator className="h-px bg-violet6 m-1.25" />
-                          <Menubar.Item asChild className="group text-[16px] leading-none text-violet11 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-highlighted:data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
+                          <Menubar.Item
+                            asChild
+                            className="group text-[16px] leading-none text-violet11 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-highlighted:data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none"
+                          >
                             <Link href="/adminAnimals/" target="_blank">
                               AdminAnimals
                             </Link>
@@ -121,7 +173,10 @@ export default function RootLayout({
 
                                 <Menubar.Separator className="h-px bg-gray-400 m-1.25" />
 
-                                <Menubar.Item asChild className="text-[16px] leading-none text-gray-700 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
+                                <Menubar.Item
+                                  asChild
+                                  className="text-[16px] leading-none text-gray-700 rounded flex items-center h-6.25 px-2.5 relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none"
+                                >
                                   <Link href="/bitaEventPage/" target="_blank">
                                     Paginate
                                   </Link>
@@ -170,8 +225,6 @@ export default function RootLayout({
                         </Menubar.Content>
                       </Menubar.Portal>
                     </Menubar.Menu>
-
-
 
                     <Menubar.Menu>
                       <Menubar.Trigger className="py-2 px-3 outline-none select-none font-medium leading-none rounded text-violet11 text-[16px] flex items-center justify-between gap-0.5 data-highlighted:bg-violet4 data-[state=open]:bg-violet4">
@@ -275,7 +328,7 @@ export default function RootLayout({
                         width={70}
                         height={50}
                         alt=""
-                        style={{ objectFit: "cover" }}
+                        className="w-full h-auto"
                       />
                       <span className="sm:inline-block font-semibold text-xl tracking-tight px-4 ">
                         Bitacora Personal Aguila2

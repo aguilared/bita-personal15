@@ -6,7 +6,7 @@ export default async function handle1(req, res) {
 
   const offset = parseInt(query.offset) || 0;
   const limit = parseInt(query.limit) || 9; // Sincronizado con tu límite de 9 del frontend
-  const andConditions = [];
+
   try {
     if (offset < 0) {
       return res.status(400).json("Offset value should not be negative");
@@ -15,37 +15,34 @@ export default async function handle1(req, res) {
     const searchAsNumber = parseInt(search);
     const isNumeric = !isNaN(searchAsNumber);
 
-    // 1. Solo armar el bloque de búsqueda si realmente hay texto
-    if (search && search.trim() !== "") {
-      const searchAsNumber = parseInt(search);
-      const isNumeric = !isNaN(searchAsNumber);
-
-      const orConditions = [
-        { description: { contains: search, mode: "insensitive" } },
-      ];
-
-      if (isNumeric) {
-        orConditions.push({ id: { equals: searchAsNumber } });
-        orConditions.push({ bitacora_id: { equals: searchAsNumber } });
-      }
-
-      // Solo metemos la relación si es estrictamente necesario para no saturar los JOINs
-      orConditions.push({
-        event: { description: { contains: search, mode: "insensitive" } },
-      });
-
-      andConditions.push({ OR: orConditions });
-    }
-
-    // 2. Solo filtrar por tipo si no está vacío
-    if (tipo && tipo.trim() !== "") {
-      andConditions.push({
-        tipoEvent: { description: { equals: tipo } },
-      });
-    }
     // Creamos un objeto de filtros reutilizable para que el COUNT sea exacto y rápido
-    const whereConditions =
-      andConditions.length > 0 ? { AND: andConditions } : {};
+    const whereConditions = {
+      AND: [
+        search
+          ? {
+              OR: [
+                ...(isNumeric
+                  ? [
+                      { id: { equals: searchAsNumber } },
+                      { bitacora_id: { equals: searchAsNumber } },
+                    ]
+                  : []),
+                { description: { contains: search, mode: "insensitive" } },
+                {
+                  event: {
+                    description: { contains: search, mode: "insensitive" },
+                  },
+                },
+              ],
+            }
+          : {},
+        tipo
+          ? {
+              tipoEvent: { description: { equals: tipo } },
+            }
+          : {},
+      ],
+    };
 
     // Ejecutamos el conteo filtrado y la búsqueda en paralelo (¡Mucho más rápido!)
     const [count, results] = await Promise.all([

@@ -47,6 +47,7 @@ model Bitacora {
   author        User?        @relation(fields: [author_id], references: [id])
 
   @@map("bitacoras")
+  @@index([bitacora_date]) 
 }
 
 model BitaEvents {
@@ -62,8 +63,9 @@ model BitaEvents {
   bitacora      Bitacora?  @relation(fields: [bitacora_id], references: [id])
   event         Event?     @relation(fields: [events_id], references: [id])
   tipoEvent     TipoEvent? @relation(fields: [tipo_event_id], references: [id])
-
+  @@index([event_date]) // <-- ESTO ES LO QUE FALTA
   @@map("bita_events")
+
 }
 
 model TipoEvent {
