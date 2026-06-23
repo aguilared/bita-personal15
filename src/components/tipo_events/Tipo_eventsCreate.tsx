@@ -20,7 +20,7 @@ const Tipo_eventsEdit = (props: any): JSX.Element => {
   return (
     <form
       name="create-tipoevent-Form"
-      className="w-full max-w-lg  bg-slate-100 dark:bg-slate-800 shadow-md rounded"
+      className="w-full max-w-lg   bg-gray-200 dark:bg-slate-800 dark:text-gray-100 shadow-md rounded"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="md:w-11/12 px-3 mb-6 md:mb-0">
