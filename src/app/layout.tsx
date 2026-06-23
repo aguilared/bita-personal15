@@ -42,10 +42,10 @@ export default function RootLayout({
                         width={70}
                         height={50}
                         alt=""
-                        className="w-full h-auto"
+                        className="w-3/5 h-sm"
                       />
                       <span className="sm:inline-block font-semibold text-xl tracking-tight px-4 ">
-                        Bitacora Personal Aguila
+                        Bitacora Personal
                       </span>
                     </div>
                   </div>
@@ -328,10 +328,10 @@ export default function RootLayout({
                         width={70}
                         height={50}
                         alt=""
-                        className="w-full h-auto"
+                        className="w-3/5 h-md"
                       />
                       <span className="sm:inline-block font-semibold text-xl tracking-tight px-4 ">
-                        Bitacora Personal Aguila2
+                        Bitacora Personal2
                       </span>
                     </div>
                     <nav className="text-base font-medium space-x-6 text-gray-900 dark:text-white">
