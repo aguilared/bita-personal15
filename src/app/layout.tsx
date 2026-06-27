@@ -42,7 +42,7 @@ export default function RootLayout({
                         width={70}
                         height={50}
                         alt=""
-                        className="w-3/5 h-sm"
+                        className="w-2/5 h-fit"
                       />
                       <span className="sm:inline-block font-semibold text-xl tracking-tight px-4 ">
                         Bitacora Personal
