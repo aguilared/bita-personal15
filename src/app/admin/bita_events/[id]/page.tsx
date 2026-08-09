@@ -182,7 +182,7 @@ const BitaEvents = (props: any): JSX.Element => {
   }, [setTotalEvents, events, bitacora]);
 
   const { data, isLoading, refetch } = useQuery<EditFormValues[]>({
-    queryKey: ["BitacoraEvents"],
+    queryKey: ["BitacoraEventss"],
     queryFn: async () => {
       const response = await axios.get(
         `${DATABASEURL}bitacora/events/admin/${ID}`,
@@ -286,7 +286,7 @@ const BitaEvents = (props: any): JSX.Element => {
       return axios.post("/api/bitacora/events/admin/create", parsedata);
     },
     onSuccess: (data, variables) => {
-      queryClient.invalidateQueries({ queryKey: ["BitacoraEvents"] });
+      queryClient.invalidateQueries({ queryKey: ["BitacoraEventss"] });
       console.log("DATADDEVUELLTA", data);
       console.log("DATADATA0", data.data);
       console.log("variables", variables);
@@ -345,7 +345,7 @@ const BitaEvents = (props: any): JSX.Element => {
       return axios.post("/api/bitacora/events/admin/edit", parsedata);
     },
     onSuccess: (data, variables, context) => {
-      queryClient.invalidateQueries({ queryKey: ["BitacoraEvents"] });
+      queryClient.invalidateQueries({ queryKey: ["BitacoraEventss"] });
       console.log("DATADDEVUELLTA", data);
       console.log("DATADATA0", data.data);
       console.log("variables", variables);
