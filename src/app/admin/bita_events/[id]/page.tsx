@@ -414,7 +414,7 @@ const BitaEvents = (props: any): JSX.Element => {
         <div className="bg-white shadow-lg rounded">
           <HeaderBitacora
             bitacoraid={params?.get("id")}
-            totalEvents={data?.length}
+            totalEvents={totalEvents}
             author={author}
             bitacoraDate={bitacoraDate}
           />
