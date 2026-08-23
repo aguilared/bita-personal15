@@ -25,10 +25,10 @@ const Tipo_eventsEdit = (props: any): JSX.Element => {
     >
       <div className="md:w-11/12 px-3 mb-6 md:mb-0">
         <label
-          className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-1"
+          className="w-full max-w-lg  bg-slate-100 dark:bg-slate-800 shadow-md rounded"
           htmlFor="description"
         >
-          Tipo Event
+          Tipo Eventss
         </label>
         <input
           className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"

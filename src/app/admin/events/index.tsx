@@ -38,7 +38,7 @@ const EventsList = (): JSX.Element => {
       const res = await axios.get(`${ENDPOINT}`);
       console.log("DATA1", res);
       return res.data;
-    }
+    },
   );
 
   const convertDate = (dateTo: any) => {
@@ -201,7 +201,7 @@ const EventsList = (): JSX.Element => {
     try {
       console.log("Entra a Borrar");
       const result = await fetch(
-        "/api/eventss/delete/" + bitacoraSeleccionada.id
+        "/api/eventss/delete/" + bitacoraSeleccionada.id,
       );
       // await removeBitacora(bitacoraSeleccionada.id);
       refetch();
@@ -447,7 +447,7 @@ const EventsList = (): JSX.Element => {
                 className="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2"
                 htmlFor="updated_at"
               >
-                Fecha Tipo Event
+                Fecha Tipo Eventss
               </label>
               <input
                 className="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4"

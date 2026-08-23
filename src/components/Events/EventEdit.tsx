@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 
 type Inputs = {
@@ -21,7 +19,7 @@ const EventEdit = (props: any): JSX.Element => {
   return (
     <form
       name="editForm"
-      className="w-full max-w-lg  bg-gray-600 shadow-md rounded"
+      className="w-full max-w-lg  bg-slate-100 dark:bg-slate-800 shadow-md rounded"
       onSubmit={handleSubmit(onSubmitE)}
     >
       <div className="md:w-11/12 px-3 mb-6 md:mb-0">
@@ -29,7 +27,7 @@ const EventEdit = (props: any): JSX.Element => {
           className="block uppercase tracking-wide  text-gray-800 dark:text-white text-xs font-bold mb-1"
           htmlFor="description"
         >
-          Events
+          Event
         </label>
         <input
           className="appearance-none block w-full bg-grey-lighter  text-gray-600 dark:text-white border border-grey-lighter rounded py-3 px-4"
@@ -47,7 +45,7 @@ const EventEdit = (props: any): JSX.Element => {
 
       <div className="md:w-11/12 px-3 mb-6 md:mb-0">
         <label
-          className="block uppercase tracking-wide text-gray-200 text-xs font-bold mb-1"
+          className="w-full max-w-lg  bg-slate-100 dark:bg-slate-800 shadow-md rounded"
           htmlFor="updated_at"
         >
           Fecha Tipo Event

@@ -17,7 +17,7 @@ import { useEventsId } from "@/hooks/useEventsId";
 import getTypeEventsId from "@/services/getTypeEventsId";
 import Button from "@/components/ButtonAdd";
 import HeaderEventss from "@/components/HearderEventss";
-import EventEdit from "@/components/events/EventEdit";
+import EventEdit from "@/components/Events/EventEdit";
 
 import {
   useQuery,
@@ -124,7 +124,7 @@ const TipoEventsEventss = (props: any): JSX.Element => {
   const modalDeleteClose = () => setModalDelete(false);
 
   const [eventSeleccionada, setEventSeleccionada] = useState<Events | null>(
-    null
+    null,
   );
 
   const convertDate = (date: any) => {
