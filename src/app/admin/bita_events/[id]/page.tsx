@@ -98,6 +98,10 @@ interface EditFormValues {
   image: boolean;
 }
 
+interface EventItem {
+  id: number;
+}
+
 const dateBitacora = new Date();
 const convertDate1 = (date: any) => {
   return dayjs(date).format("YYYY/MM/DD hh:mm");
@@ -203,14 +207,14 @@ const BitaEvents = (props: any): JSX.Element => {
     defaultValues: createFormDefaultValues,
   });
 
-  const [eventss, setEventss] = useState([]);
+  const [eventss, setEventss] = useState<EventItem[]>([]);
   const [loading, setLoading] = useState(false);
 
   const fetchEvents = async () => {
     setLoading(true);
     try {
       const res = await fetch("/api/events");
-      const newData = await res.json();
+      const newData: EventItem[] = await res.json();
 
       // 1. Corregir el typo: usa setEventss (o como lo hayas definido)
       // Pero ojo: el Select de abajo usa 'eventsId' que viene de un hook.
@@ -219,7 +223,7 @@ const BitaEvents = (props: any): JSX.Element => {
 
       if (newData.length > eventss.length) {
         // Corregido el nombre aquí también
-        const newestItem = newData.reduce((prev, current) =>
+        const newestItem = newData.reduce((prev: EventItem, current: EventItem) =>
           prev.id > current.id ? prev : current,
         );
         setValue("events_id", newestItem.id);
