@@ -140,6 +140,15 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle, center }) => {
                           </Link>
                         </Menubar.Item>
                         <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
+                        <Menubar.Item className="text-[16px] leading-none text-gray-700 rounded flex items-center h-[25px] px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-[highlighted]:bg-gradient-to-br data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[highlighted]:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none">
+                          <Link
+                            href="/animals/animalsOwnersVacas/"
+                            target="_blank"
+                          >
+                            SearchOwnerVa
+                          </Link>
+                        </Menubar.Item>
+                        <Menubar.Separator className="h-[1px] bg-gray-400 m-[5px]" />
                       </Menubar.SubContent>
                     </Menubar.Portal>
                   </Menubar.Sub>

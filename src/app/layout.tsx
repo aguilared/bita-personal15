@@ -302,7 +302,22 @@ export default function RootLayout({
 
                                 <Menubar.Item className="text-[16px] leading-none text-gray-600 rounded flex items-center h-6.25px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
                                   <Link href="/animals/animalsOwners/">
-                                    SearchOwner
+                                    Historico Animales
+                                  </Link>
+                                </Menubar.Item>
+                                <Menubar.Separator className="h-px bg-gray-400 m-1.25" />
+                                <Menubar.Item className="text-[16px] leading-none text-gray-600 rounded flex items-center h-6.25px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
+                                  <Link href="/animals/animalsLives/">
+                                    Animales Vivos
+                                  </Link>
+                                </Menubar.Item>
+                                <Menubar.Separator className="h-px bg-gray-400 m-1.25" />
+                                <Menubar.Item className="text-[16px] leading-none text-gray-600 rounded flex items-center h-6.25px-[10px] relative select-none outline-none data-[state=open]:bg-violet4 data-[state=open]:text-violet11 data-highlighted:bg-linear-to-br data-highlighted:from-violet9 data-highlighted:to-violet10 data-highlighted:text-violet1 data-[highlighted]::to-violet10 data-[state=open]:text-violet1 data-disabled:text-mauve8 data-disabled:pointer-events-none">
+                                  <Link
+                                    href="/animals/animalsOwnersVacas/"
+                                    target="_blank"
+                                  >
+                                    Vacas
                                   </Link>
                                 </Menubar.Item>
                                 <Menubar.Separator className="h-px bg-gray-400 m-1.25" />

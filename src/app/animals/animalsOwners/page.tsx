@@ -17,7 +17,7 @@ import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
 import axios from "axios";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
-import { useOwners } from "../../../hooks/useOwners";
+import { useOwners } from "../../../hooks/useOwnersAnimalsHisto";
 import Image from "next/image";
 import Select, { StylesConfig } from "react-select";
 
@@ -104,7 +104,7 @@ const AnimalsCardQuery: NextPage = () => {
     setBitacoraSearch(value);
 
     const newData = data.filter(
-      (bitacora: any) => bitacora.owner_id === Number(value)
+      (bitacora: any) => bitacora.owner_id === Number(value),
     );
     return setDatafilter(newData);
   };
@@ -127,7 +127,7 @@ const AnimalsCardQuery: NextPage = () => {
     }
     //filtrando la data al hacer un search
     const newData = data.filter(
-      (bitacora: any) => bitacora.owner_id === Number(value)
+      (bitacora: any) => bitacora.owner_id === Number(value),
     );
     return setDatafilter(newData);
   };
@@ -136,7 +136,7 @@ const AnimalsCardQuery: NextPage = () => {
     <Container>
       <QueryClientProvider client={queryClient}>
         <div className="container mx-auto px-20 text-gray-600 text-2xl font-bold">
-          Query List Animals{" "}
+          Animales{" Historia"} by Propietario.
         </div>
 
         <div className="flex mb-4">
@@ -191,97 +191,101 @@ const AnimalsCardQuery: NextPage = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {data && data?.length > 0 ? (
-            datafilter?.map((animal: any) => (
-              <Card
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-                key={animal.id}
-              >
-                <CardMedia>
-                  <div
-                    style={{
-                      position: "relative",
-                      width: "100%",
-                      height: "100%",
-                    }}
-                  >
-                    <Image
-                      src={"/static/images/" + `${animal.id}` + ".jpg"}
-                      width={520}
-                      height={400}
-                      alt=""
-                      style={{ objectFit: "cover" }}
-                    />
-                  </div>
-                </CardMedia>
-                <CardContent>
-                  <Typography align="left" component="div">
-                    <a
-                      className="bg-blue-200 rounded underline hover:underline hover:underline-offset-4"
-                      href={`/animals/animal/4?id=${encodeURIComponent(
-                        animal.id
-                      )}`}
-                      target={"_blank"}
-                      rel="noreferrer"
+            datafilter?.map((animal: any, index: number) => {
+              const nroEnConsulta = index + 1;
+              return (
+                <Card
+                  component="div"
+                  sx={{ maxWidth: 545, bgcolor: "neutral.900" }}
+                  color="neutral"
+                  key={animal.id}
+                >
+                  <CardMedia>
+                    <div
+                      style={{
+                        position: "relative",
+                        width: "100%",
+                        height: "240px",
+                      }}
                     >
-                      {" "}
-                      Animal ID: {animal.id},{" "}
-                    </a>
-                  </Typography>
-
-                  <Typography gutterBottom align="left">
-                    {animal.clase.description}: {animal.name}, Dueno:{" "}
-                    {animal.owner.name}
-                  </Typography>
-
-                  <Typography gutterBottom align="left">
-                    Nacimiento: {convertDate(animal.birthdate)}, Live:{" "}
-                    {animal.live! ? (
-                      <input
-                        type="checkbox"
-                        checked
-                        placeholder="Live"
-                        className="mx-3"
-                        onChange={() => console.log("checked")}
+                      <Image
+                        src={"/static/images/" + `${animal.id}` + ".jpg"}
+                        fill
+                        alt={`Animal ${animal.id}`}
+                        style={{ objectFit: "cover" }}
+                        sizes="(max-width: 768px) 100vw, 33vw"
                       />
-                    ) : (
-                      <input
-                        type="checkbox"
-                        placeholder="Live"
-                        className="mx-3"
-                      />
-                    )}{" "}
-                  </Typography>
-                  <Typography gutterBottom align="left">
-                    Tipo animal: <b> {animal.clase.description}</b>
-                  </Typography>
+                    </div>
+                  </CardMedia>
+                  <CardContent>
+                    <Typography align="left" component="div">
+                      {/* Número correlativo de la consulta actual */}
+                      <span>#{nroEnConsulta} — </span>
+                      <a
+                        className="bg-blue-200 rounded underline hover:underline hover:underline-offset-4"
+                        href={`/animals/animal/4?id=${encodeURIComponent(
+                          animal.id,
+                        )}`}
+                        target={"_blank"}
+                        rel="noreferrer"
+                      >
+                        {" "}
+                        Animal ID: {animal.id},{" "}
+                      </a>
+                    </Typography>
 
-                  <Typography align="left">
-                    Madre: {animal.mother},{" "}
-                    <a
-                      className="bg-blue-200 rounded underline hover:underline hover:underline-offset-4"
-                      href={`/animals/animal/4?id=${encodeURIComponent(
-                        animal.mother_id
-                      )}`}
-                      target={"_blank"}
-                      rel="noreferrer"
-                    >
-                      {" "}
-                      motherID:&nbsp; {animal.mother_id},{" "}
-                    </a>{" "}
-                  </Typography>
+                    <Typography gutterBottom align="left">
+                      {animal.clase.description}: {animal.name}, Dueno:{" "}
+                      {animal.owner.name}
+                    </Typography>
 
-                  <Typography paragraph>Info: {animal.info}</Typography>
-                  <Typography align="left">
-                    Date update: {convertDate(animal.updated_at)}
-                  </Typography>
-                </CardContent>
-              </Card>
-            ))
+                    <Typography gutterBottom align="left">
+                      Nacimiento: {convertDate(animal.birthdate)}, Live:{" "}
+                      {animal.live! ? (
+                        <input
+                          type="checkbox"
+                          checked
+                          placeholder="Live"
+                          className="mx-3"
+                          onChange={() => console.log("checked")}
+                        />
+                      ) : (
+                        <input
+                          type="checkbox"
+                          placeholder="Live"
+                          className="mx-3"
+                        />
+                      )}{" "}
+                    </Typography>
+                    <Typography gutterBottom align="left">
+                      Tipo animal: <b> {animal.clase.description}</b>
+                    </Typography>
+
+                    <Typography align="left">
+                      Madre: {animal.mother},{" "}
+                      <a
+                        className="bg-blue-200 rounded underline hover:underline hover:underline-offset-4"
+                        href={`/animals/animal/4?id=${encodeURIComponent(
+                          animal.mother_id,
+                        )}`}
+                        target={"_blank"}
+                        rel="noreferrer"
+                      >
+                        {" "}
+                        motherID:&nbsp; {animal.mother_id},{" "}
+                      </a>{" "}
+                    </Typography>
+
+                    <Typography paragraph>Info: {animal.info}</Typography>
+                    <Typography align="left">
+                      Date update: {convertDate(animal.updated_at)}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              );
+            })
           ) : (
             <div className="fixed top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
               <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900" />
